@@ -3062,11 +3062,47 @@ abstract class AppLocalizations {
   /// **'Each tax is rounded to the nearest cent per line, then summed. If your taxable sales are \$30,000 or less, you may not need to register or charge taxes at all.'**
   String get tpsTvqBody3;
 
-  /// No description provided for @toolsComingSoon.
+  /// No description provided for @toolsTaxCalculator.
   ///
   /// In en, this message translates to:
-  /// **'More tools coming soon.'**
-  String get toolsComingSoon;
+  /// **'TPS/TVQ calculator'**
+  String get toolsTaxCalculator;
+
+  /// No description provided for @toolsTaxCalculatorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add taxes or extract them from a total.'**
+  String get toolsTaxCalculatorSubtitle;
+
+  /// No description provided for @calcAmountLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get calcAmountLabel;
+
+  /// No description provided for @calcAddTaxes.
+  ///
+  /// In en, this message translates to:
+  /// **'Add taxes'**
+  String get calcAddTaxes;
+
+  /// No description provided for @calcExtractTaxes.
+  ///
+  /// In en, this message translates to:
+  /// **'Taxes included'**
+  String get calcExtractTaxes;
+
+  /// No description provided for @calcPreTaxAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Pre-tax amount'**
+  String get calcPreTaxAmount;
+
+  /// No description provided for @calcTotalWithTaxes.
+  ///
+  /// In en, this message translates to:
+  /// **'Total with taxes'**
+  String get calcTotalWithTaxes;
 
   /// No description provided for @dashboardUnpaid.
   ///

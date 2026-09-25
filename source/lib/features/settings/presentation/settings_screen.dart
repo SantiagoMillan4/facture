@@ -8,6 +8,7 @@ import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/form_section_title.dart';
 import 'how_it_works_screen.dart';
+import 'tax_calculator_screen.dart';
 import 'tax_explainer_screen.dart';
 
 // TODO: replace with the real support address before the App Store release.
@@ -80,9 +81,11 @@ class SettingsScreen extends StatelessWidget {
           ),
           FormSectionTitle(title: l10n.toolsSection),
           _SettingsTile(
-            icon: Icons.handyman_outlined,
-            title: l10n.toolsComingSoon,
-            subtitle: '',
+            icon: Icons.calculate_outlined,
+            title: l10n.toolsTaxCalculator,
+            subtitle: l10n.toolsTaxCalculatorSubtitle,
+            onTap: () =>
+                pushAppPage(context, (_) => const TaxCalculatorScreen()),
           ),
           FormSectionTitle(title: l10n.settingsAbout),
           _SettingsTile(

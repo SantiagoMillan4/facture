@@ -138,4 +138,48 @@ void main() {
       expect(taxes.totalCents, 12550);
     });
   });
+
+  group('extractTaxes (tax-included total -> pre-tax subtotal)', () {
+    test('recovers the textbook example', () {
+      final recovered = extractTaxes(11547);
+
+      expect(recovered.subtotalCents, 10000);
+      expect(recovered.tpsCents, 500);
+      expect(recovered.tvqCents, 1047);
+      expect(recovered.totalCents, 11547);
+    });
+
+    test('zero total recovers zero', () {
+      final recovered = extractTaxes(0);
+
+      expect(recovered.subtotalCents, 0);
+      expect(recovered.tpsCents, 0);
+      expect(recovered.tvqCents, 0);
+    });
+
+    test('round-trips every forward total', () {
+      // The forward map is strictly increasing (each pre-tax cent adds at
+      // least one total cent), so every achievable total inverts exactly.
+      for (final subtotal in [1, 2, 99, 100, 199, 999, 1000, 9999, 100000]) {
+        final total = taxesForLine(subtotal).totalCents;
+        final recovered = extractTaxes(total);
+
+        expect(
+          recovered.subtotalCents,
+          subtotal,
+          reason: 'total $total should invert to subtotal $subtotal',
+        );
+      }
+    });
+
+    test('respects custom rates', () {
+      const rates = QuebecTaxRates(tpsPercent: 5.0, tvqPercent: 0.0);
+      final forward = taxesForLine(20000, rates: rates);
+      final recovered = extractTaxes(forward.totalCents, rates: rates);
+
+      expect(recovered.subtotalCents, 20000);
+      expect(recovered.tpsCents, 1000);
+      expect(recovered.tvqCents, 0);
+    });
+  });
 }

@@ -1697,7 +1697,26 @@ class AppLocalizationsEn extends AppLocalizations {
       'Each tax is rounded to the nearest cent per line, then summed. If your taxable sales are \$30,000 or less, you may not need to register or charge taxes at all.';
 
   @override
-  String get toolsComingSoon => 'More tools coming soon.';
+  String get toolsTaxCalculator => 'TPS/TVQ calculator';
+
+  @override
+  String get toolsTaxCalculatorSubtitle =>
+      'Add taxes or extract them from a total.';
+
+  @override
+  String get calcAmountLabel => 'Amount';
+
+  @override
+  String get calcAddTaxes => 'Add taxes';
+
+  @override
+  String get calcExtractTaxes => 'Taxes included';
+
+  @override
+  String get calcPreTaxAmount => 'Pre-tax amount';
+
+  @override
+  String get calcTotalWithTaxes => 'Total with taxes';
 
   @override
   String get dashboardUnpaid => 'Unpaid';

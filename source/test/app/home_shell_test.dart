@@ -47,7 +47,11 @@ void main() {
       expect(find.text('How Facture works'), findsOneWidget);
       expect(find.text('Understanding TPS/TVQ'), findsOneWidget);
       expect(find.text('Tools'), findsOneWidget);
-      expect(find.text('More tools coming soon.'), findsOneWidget);
+      expect(find.text('TPS/TVQ calculator'), findsOneWidget);
+      expect(
+        find.text('Add taxes or extract them from a total.'),
+        findsOneWidget,
+      );
       expect(find.text('About'), findsOneWidget);
       expect(find.text('Send feedback'), findsOneWidget);
       await tester.scrollUntilVisible(find.text('Rate Facture'), 200);

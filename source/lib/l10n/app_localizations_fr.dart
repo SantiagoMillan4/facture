@@ -1717,7 +1717,26 @@ class AppLocalizationsFr extends AppLocalizations {
       'Chaque taxe est arrondie au cent près par ligne, puis additionnée. Si vos ventes taxables sont de 30 000 \$ ou moins, vous n\'avez peut-être pas besoin de vous inscrire ni de percevoir les taxes.';
 
   @override
-  String get toolsComingSoon => 'D\'autres outils à venir.';
+  String get toolsTaxCalculator => 'Calculatrice TPS/TVQ';
+
+  @override
+  String get toolsTaxCalculatorSubtitle =>
+      'Ajouter les taxes ou les extraire d\'un total.';
+
+  @override
+  String get calcAmountLabel => 'Montant';
+
+  @override
+  String get calcAddTaxes => 'Ajouter les taxes';
+
+  @override
+  String get calcExtractTaxes => 'Taxes incluses';
+
+  @override
+  String get calcPreTaxAmount => 'Montant avant taxes';
+
+  @override
+  String get calcTotalWithTaxes => 'Total avec taxes';
 
   @override
   String get dashboardUnpaid => 'Impayées';

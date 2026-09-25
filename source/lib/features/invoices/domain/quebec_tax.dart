@@ -149,3 +149,33 @@ InvoiceTaxes taxesForInvoice(
         .toList(),
   );
 }
+
+/// Recovers the pre-tax subtotal from a tax-included total (in cents).
+///
+/// Inverts [taxesForLine]: finds the subtotal whose forward-computed total
+/// equals [totalCents]. Because rounding makes the forward map stepwise,
+/// the inverse is estimated arithmetically and then corrected by
+/// re-checking forward (the map is strictly increasing — each extra
+/// pre-tax cent adds at least one total cent — so the loop converges in
+/// a step or two). Totals that fall in a rounding gap return the closest
+/// achievable breakdown.
+LineTaxes extractTaxes(
+  int totalCents, {
+  QuebecTaxRates rates = const QuebecTaxRates(),
+}) {
+  if (totalCents <= 0) {
+    return LineTaxes(subtotalCents: totalCents, tpsCents: 0, tvqCents: 0);
+  }
+  // total ≈ subtotal * (1 + tps) * (1 + tvq): invert for a starting
+  // estimate (double precision is plenty for an estimate; the loop below
+  // makes the result exact).
+  final combinedFactor =
+      (1 + rates.tpsPercent / 100) * (1 + rates.tvqPercent / 100);
+  var subtotal = (totalCents / combinedFactor).round();
+  for (var i = 0; i < 10; i++) {
+    final forward = taxesForLine(subtotal, rates: rates).totalCents;
+    if (forward == totalCents) break;
+    subtotal += forward < totalCents ? 1 : -1;
+  }
+  return taxesForLine(subtotal, rates: rates);
+}
