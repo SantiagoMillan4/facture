@@ -5,7 +5,9 @@ import '../../../l10n/app_l10n.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/utils/currency_formatter.dart';
+import '../../../shared/widgets/adaptive_action_sheet.dart';
 import '../../../shared/widgets/adaptive_date_field.dart';
+import '../../../shared/widgets/app_haptics.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/empty_state.dart';
 import '../../../shared/widgets/swipe_to_delete_tile.dart';
@@ -108,6 +110,53 @@ class _InvoiceTile extends ConsumerWidget {
     }
   }
 
+  /// Label + icon for each status the invoice may move to.
+  ActionSheetOption<InvoiceStatus> _transitionOption(
+    AppLocalizations l10n,
+    InvoiceStatus status,
+  ) {
+    switch (status) {
+      case InvoiceStatus.draft:
+        return ActionSheetOption(
+          value: status,
+          label: l10n.invoiceBackToDraft,
+          icon: Icons.drafts_outlined,
+        );
+      case InvoiceStatus.sent:
+        return ActionSheetOption(
+          value: status,
+          label: invoice.status == InvoiceStatus.paid
+              ? l10n.invoiceReopenAsSent
+              : l10n.invoiceMarkSent,
+          icon: Icons.send_outlined,
+        );
+      case InvoiceStatus.paid:
+        return ActionSheetOption(
+          value: status,
+          label: l10n.invoiceMarkPaid,
+          icon: Icons.check_circle_outline,
+        );
+      case InvoiceStatus.overdue:
+        // Overdue is derived, never a transition target.
+        return ActionSheetOption(value: status, label: '');
+    }
+  }
+
+  /// Opens the status action sheet for the invoice's allowed transitions.
+  Future<void> _changeStatus(BuildContext context, WidgetRef ref) async {
+    final l10n = context.l10n;
+    final targets = Invoice.allowedTransitions(invoice.effectiveStatus);
+    final selected = await showAdaptiveActionSheet<InvoiceStatus>(
+      context,
+      title: l10n.invoiceChangeStatus,
+      message: invoice.number.isEmpty ? null : invoice.number,
+      options: [for (final s in targets) _transitionOption(l10n, s)],
+    );
+    if (selected == null || !context.mounted) return;
+    AppHaptics.confirm();
+    await ref.read(invoicesProvider.notifier).setStatus(invoice.id, selected);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
@@ -143,20 +192,23 @@ class _InvoiceTile extends ConsumerWidget {
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppSpacing.sm,
-                vertical: AppSpacing.xs,
-              ),
-              decoration: BoxDecoration(
-                color: _statusColor(context, status).withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(999),
-              ),
-              child: Text(
-                _statusLabel(l10n, status),
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                  color: _statusColor(context, status),
-                  fontWeight: FontWeight.w600,
+            GestureDetector(
+              onTap: () => _changeStatus(context, ref),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppSpacing.sm,
+                  vertical: AppSpacing.xs,
+                ),
+                decoration: BoxDecoration(
+                  color: _statusColor(context, status).withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(999),
+                ),
+                child: Text(
+                  _statusLabel(l10n, status),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                    color: _statusColor(context, status),
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),
@@ -168,7 +220,11 @@ class _InvoiceTile extends ConsumerWidget {
             const SizedBox(height: AppSpacing.xs),
             Text(client?.name ?? '—'),
             Text(
-              l10n.invoiceDueOn(formatShortDate(context, invoice.dueDate)),
+              invoice.status == InvoiceStatus.paid && invoice.paidDate != null
+                  ? l10n.invoicePaidOn(
+                      formatShortDate(context, invoice.paidDate!),
+                    )
+                  : l10n.invoiceDueOn(formatShortDate(context, invoice.dueDate)),
               style: Theme.of(context).textTheme.bodySmall,
             ),
           ],

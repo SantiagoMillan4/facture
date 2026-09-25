@@ -262,11 +262,31 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get invoiceBackToDraft => 'Back to draft';
+
+  @override
+  String get invoiceChangeStatus => 'Change status';
+
+  @override
+  String get invoiceMarkPaid => 'Mark as paid';
+
+  @override
+  String get invoiceMarkSent => 'Mark as sent';
+
+  @override
+  String invoicePaidOn(String date) {
+    return 'Paid $date';
+  }
+
+  @override
   String get invoiceProfileNudge =>
       'Add your business info and tax numbers to appear on your invoices.';
 
   @override
   String get invoiceProfileNudgeAction => 'Set up';
+
+  @override
+  String get invoiceReopenAsSent => 'Reopen as sent';
 
   @override
   String get invoiceSharePdf => 'Share PDF';

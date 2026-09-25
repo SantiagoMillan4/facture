@@ -536,6 +536,36 @@ abstract class AppLocalizations {
   /// **'First month of year {year}'**
   String firstMonthOfYear(int year);
 
+  /// No description provided for @invoiceBackToDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to draft'**
+  String get invoiceBackToDraft;
+
+  /// No description provided for @invoiceChangeStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Change status'**
+  String get invoiceChangeStatus;
+
+  /// No description provided for @invoiceMarkPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as paid'**
+  String get invoiceMarkPaid;
+
+  /// No description provided for @invoiceMarkSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as sent'**
+  String get invoiceMarkSent;
+
+  /// No description provided for @invoicePaidOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid {date}'**
+  String invoicePaidOn(String date);
+
   /// No description provided for @invoiceProfileNudge.
   ///
   /// In en, this message translates to:
@@ -547,6 +577,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Set up'**
   String get invoiceProfileNudgeAction;
+
+  /// No description provided for @invoiceReopenAsSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Reopen as sent'**
+  String get invoiceReopenAsSent;
 
   /// No description provided for @invoiceSharePdf.
   ///

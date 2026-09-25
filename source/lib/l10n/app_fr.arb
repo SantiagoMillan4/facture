@@ -403,8 +403,21 @@
   "businessTvqNumberHint": "1234567890TQ0001",
   "businessTvqNumberLabel": "Numéro d'inscription TVQ",
   "firstMonthOfYear": "Premier mois de l'année {year}",
+  "invoiceBackToDraft": "Remettre en brouillon",
+  "invoiceChangeStatus": "Changer le statut",
+  "invoiceMarkPaid": "Marquer comme payée",
+  "invoiceMarkSent": "Marquer comme envoyée",
+  "invoicePaidOn": "Payée le {date}",
+  "@invoicePaidOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "invoiceProfileNudge": "Ajoutez les informations de votre entreprise et vos numéros de taxe pour les afficher sur vos factures.",
   "invoiceProfileNudgeAction": "Configurer",
+  "invoiceReopenAsSent": "Rouvrir comme envoyée",
   "invoiceSharePdf": "Partager le PDF",
   "primaryScenarioSection": "Scénario principal",
   "primaryScenarioSectionSubtitle": "Le scénario principal contient vos hypothèses principales — vous pourrez en ajouter d'autres pour comparer.",

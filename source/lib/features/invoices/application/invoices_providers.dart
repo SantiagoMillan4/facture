@@ -19,28 +19,16 @@ class InvoicesNotifier extends AsyncNotifier<List<Invoice>> {
   }
 
   /// Inserts a new invoice or replaces the one with the same id, then
-  /// persists the whole book. [Invoice.paidDate] is maintained here:
-  /// stamped on the transition to paid, preserved while paid, cleared
-  /// when moved away from paid. (Rebuilt rather than copyWith'd because
-  /// copyWith cannot null paidDate out.)
+  /// persists the whole book. [Invoice.paidDate] and [Invoice.sentDate]
+  /// are maintained here: stamped on the transition to paid/sent,
+  /// preserved while paid/sent, cleared when moved away. (Rebuilt rather
+  /// than copyWith'd because copyWith cannot null dates out.)
   Future<void> saveInvoice(Invoice invoice) async {
     final current = state.valueOrNull ?? [];
     final index = current.indexWhere((i) => i.id == invoice.id);
     final previous = index >= 0 ? current[index] : null;
-    final isPaid = invoice.status == InvoiceStatus.paid;
 
-    final toSave = Invoice(
-      id: invoice.id,
-      number: invoice.number,
-      clientId: invoice.clientId,
-      issueDate: invoice.issueDate,
-      dueDate: invoice.dueDate,
-      lines: invoice.lines,
-      status: invoice.status,
-      notes: invoice.notes,
-      chargeTaxes: invoice.chargeTaxes,
-      paidDate: isPaid ? (previous?.paidDate ?? DateTime.now()) : null,
-    );
+    final toSave = _withStampedDates(previous, invoice);
 
     final updated = List<Invoice>.of(current);
     if (index >= 0) {
@@ -49,6 +37,75 @@ class InvoicesNotifier extends AsyncNotifier<List<Invoice>> {
       updated.add(toSave);
     }
     await _persist(updated);
+  }
+
+  /// Moves an invoice to [status], stamping/clearing paidDate and sentDate
+  /// like [saveInvoice] does. No-op when the status is unchanged.
+  Future<void> setStatus(String id, InvoiceStatus status) async {
+    final current = state.valueOrNull ?? [];
+    final index = current.indexWhere((i) => i.id == id);
+    if (index < 0) return;
+    final previous = current[index];
+    if (previous.status == status) return;
+    final updated = List<Invoice>.of(current);
+    updated[index] = _withStampedDates(
+      previous,
+      previous.copyWith(status: status),
+    );
+    await _persist(updated);
+  }
+
+  /// Rebuilds [invoice] with paidDate/sentDate stamped from [previous]
+  /// according to its status: paid keeps (or stamps) paidDate; sent keeps
+  /// (or stamps) sentDate and drops paidDate; draft drops both.
+  Invoice _withStampedDates(Invoice? previous, Invoice invoice) {
+    final now = DateTime.now();
+    switch (invoice.status) {
+      case InvoiceStatus.paid:
+        return Invoice(
+          id: invoice.id,
+          number: invoice.number,
+          clientId: invoice.clientId,
+          issueDate: invoice.issueDate,
+          dueDate: invoice.dueDate,
+          lines: invoice.lines,
+          status: invoice.status,
+          notes: invoice.notes,
+          chargeTaxes: invoice.chargeTaxes,
+          paidDate: previous?.paidDate ?? now,
+          sentDate: previous?.sentDate,
+        );
+      case InvoiceStatus.sent:
+        return Invoice(
+          id: invoice.id,
+          number: invoice.number,
+          clientId: invoice.clientId,
+          issueDate: invoice.issueDate,
+          dueDate: invoice.dueDate,
+          lines: invoice.lines,
+          status: invoice.status,
+          notes: invoice.notes,
+          chargeTaxes: invoice.chargeTaxes,
+          sentDate: previous?.sentDate ?? now,
+        );
+      case InvoiceStatus.draft:
+      case InvoiceStatus.overdue:
+        // overdue is derived, never stored; a stored overdue is treated
+        // as sent for its dates.
+        final asSent = invoice.status == InvoiceStatus.overdue;
+        return Invoice(
+          id: invoice.id,
+          number: invoice.number,
+          clientId: invoice.clientId,
+          issueDate: invoice.issueDate,
+          dueDate: invoice.dueDate,
+          lines: invoice.lines,
+          status: asSent ? InvoiceStatus.sent : invoice.status,
+          notes: invoice.notes,
+          chargeTaxes: invoice.chargeTaxes,
+          sentDate: asSent ? (previous?.sentDate ?? now) : null,
+        );
+    }
   }
 
   Future<void> deleteInvoice(String id) async {

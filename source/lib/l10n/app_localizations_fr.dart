@@ -263,11 +263,31 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get invoiceBackToDraft => 'Remettre en brouillon';
+
+  @override
+  String get invoiceChangeStatus => 'Changer le statut';
+
+  @override
+  String get invoiceMarkPaid => 'Marquer comme payée';
+
+  @override
+  String get invoiceMarkSent => 'Marquer comme envoyée';
+
+  @override
+  String invoicePaidOn(String date) {
+    return 'Payée le $date';
+  }
+
+  @override
   String get invoiceProfileNudge =>
       'Ajoutez les informations de votre entreprise et vos numéros de taxe pour les afficher sur vos factures.';
 
   @override
   String get invoiceProfileNudgeAction => 'Configurer';
+
+  @override
+  String get invoiceReopenAsSent => 'Rouvrir comme envoyée';
 
   @override
   String get invoiceSharePdf => 'Partager le PDF';

@@ -102,6 +102,7 @@ class Invoice {
     this.notes = '',
     this.chargeTaxes = true,
     this.paidDate,
+    this.sentDate,
   });
 
   /// Internal id.
@@ -126,6 +127,24 @@ class Invoice {
   /// When the invoice was marked paid. Set by the application layer on the
   /// draft/sent → paid transition; null otherwise.
   final DateTime? paidDate;
+
+  /// When the invoice was marked sent. Stamped on the draft → sent
+  /// transition, preserved while sent/paid, cleared back to draft.
+  final DateTime? sentDate;
+
+  /// The statuses a status chip may move to from [status]. Overdue is
+  /// derived from sent, so it shares sent's transitions.
+  static List<InvoiceStatus> allowedTransitions(InvoiceStatus status) {
+    switch (status) {
+      case InvoiceStatus.draft:
+        return const [InvoiceStatus.sent, InvoiceStatus.paid];
+      case InvoiceStatus.sent:
+      case InvoiceStatus.overdue:
+        return const [InvoiceStatus.paid, InvoiceStatus.draft];
+      case InvoiceStatus.paid:
+        return const [InvoiceStatus.sent, InvoiceStatus.draft];
+    }
+  }
 
   /// The status to display: a sent invoice past its due date reads as
   /// overdue. Date-only comparison — an invoice due today is not overdue.
@@ -166,6 +185,7 @@ class Invoice {
     String? notes,
     bool? chargeTaxes,
     DateTime? paidDate,
+    DateTime? sentDate,
   }) {
     return Invoice(
       id: id ?? this.id,
@@ -178,6 +198,7 @@ class Invoice {
       notes: notes ?? this.notes,
       chargeTaxes: chargeTaxes ?? this.chargeTaxes,
       paidDate: paidDate ?? this.paidDate,
+      sentDate: sentDate ?? this.sentDate,
     );
   }
 
@@ -192,6 +213,7 @@ class Invoice {
     'notes': notes,
     'chargeTaxes': chargeTaxes,
     'paidDate': paidDate?.toIso8601String(),
+    'sentDate': sentDate?.toIso8601String(),
   };
 
   factory Invoice.fromJson(Map<String, dynamic> json) => Invoice(
@@ -215,6 +237,9 @@ class Invoice {
     paidDate: json['paidDate'] == null
         ? null
         : DateTime.tryParse(json['paidDate'] as String),
+    sentDate: json['sentDate'] == null
+        ? null
+        : DateTime.tryParse(json['sentDate'] as String),
   );
 
   @override
@@ -230,7 +255,8 @@ class Invoice {
           status == other.status &&
           notes == other.notes &&
           chargeTaxes == other.chargeTaxes &&
-          paidDate == other.paidDate;
+          paidDate == other.paidDate &&
+          sentDate == other.sentDate;
 
   @override
   int get hashCode => Object.hash(
@@ -244,6 +270,7 @@ class Invoice {
     notes,
     chargeTaxes,
     paidDate,
+    sentDate,
   );
 }
 
