@@ -11,6 +11,8 @@
 /// implemented; add persistence + invoice numbering.
 library;
 
+import 'quebec_tax.dart';
+
 /// Lifecycle of an invoice.
 enum InvoiceStatus {
   /// Being edited, not sent to the client yet.
@@ -91,7 +93,23 @@ class Invoice {
   double get subtotal =>
       lines.fold(0.0, (sum, line) => sum + line.subtotal);
 
-  // TODO: tpsTotal, tvqTotal, grandTotal — computed via quebec_tax.dart.
+  /// Full TPS/TVQ breakdown for this invoice's lines, derived from the
+  /// Québec tax rules — never stored.
+  ///
+  /// [chargeTaxes] comes from the seller's tax profile (application layer):
+  /// false for a small supplier (≤ $30k taxable sales, not registered),
+  /// who must not charge TPS/TVQ. [rates] are user-editable; the user is
+  /// responsible for the rates on their invoices.
+  InvoiceTaxes taxes({
+    QuebecTaxRates rates = const QuebecTaxRates(),
+    required bool chargeTaxes,
+  }) =>
+      taxesForInvoice(
+        lines.map((line) => dollarsToCents(line.subtotal)),
+        rates: rates,
+        chargeTaxes: chargeTaxes,
+      );
+
   // TODO: isOverdue derived from status + dueDate vs today.
 
   Invoice copyWith({
