@@ -845,5 +845,6 @@
   "invoicesTitle": "Invoices",
   "invoicesEmptyTitle": "No invoices yet",
   "invoicesEmptySubtitle": "Create your first invoice to get started.",
+  "newInvoice": "New invoice",
   "settingsTitle": "Settings"
 }

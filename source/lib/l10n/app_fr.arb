@@ -835,5 +835,6 @@
   "invoicesTitle": "Factures",
   "invoicesEmptyTitle": "Aucune facture",
   "invoicesEmptySubtitle": "Créez votre première facture pour commencer.",
+  "newInvoice": "Nouvelle facture",
   "settingsTitle": "Réglages"
 }

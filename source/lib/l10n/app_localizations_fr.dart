@@ -1671,5 +1671,8 @@ class AppLocalizationsFr extends AppLocalizations {
       'Créez votre première facture pour commencer.';
 
   @override
+  String get newInvoice => 'Nouvelle facture';
+
+  @override
   String get settingsTitle => 'Réglages';
 }

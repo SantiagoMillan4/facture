@@ -2978,6 +2978,12 @@ abstract class AppLocalizations {
   /// **'Create your first invoice to get started.'**
   String get invoicesEmptySubtitle;
 
+  /// No description provided for @newInvoice.
+  ///
+  /// In en, this message translates to:
+  /// **'New invoice'**
+  String get newInvoice;
+
   /// No description provided for @settingsTitle.
   ///
   /// In en, this message translates to:

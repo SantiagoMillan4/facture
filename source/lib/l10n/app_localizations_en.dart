@@ -1651,5 +1651,8 @@ class AppLocalizationsEn extends AppLocalizations {
       'Create your first invoice to get started.';
 
   @override
+  String get newInvoice => 'New invoice';
+
+  @override
   String get settingsTitle => 'Settings';
 }
