@@ -1,3 +1,7 @@
+import 'dart:convert';
+
+import 'package:facture/features/business/data/business_profile_repository.dart';
+import 'package:facture/features/business/domain/business_profile.dart';
 import 'package:facture/features/clients/application/clients_providers.dart';
 import 'package:facture/features/clients/domain/client.dart';
 import 'package:facture/features/invoices/application/invoices_providers.dart';
@@ -21,8 +25,12 @@ void main() {
     WidgetTester tester, {
     Invoice? invoice,
     Locale? locale,
+    BusinessProfile? profile,
   }) async {
-    SharedPreferences.setMockInitialValues({});
+    SharedPreferences.setMockInitialValues({
+      if (profile != null)
+        BusinessProfileRepository.storageKey: jsonEncode(profile.toJson()),
+    });
     // Tall viewport: the form is a lazily-built ListView, and the
     // business-profile nudge makes it taller than the default 600px
     // surface, which would leave fields unbuilt.
@@ -106,7 +114,14 @@ void main() {
     testWidgets('live totals show the Québec TPS/TVQ breakdown', (
       tester,
     ) async {
-      await pumpForm(tester);
+      // A registered business: taxes default on.
+      await pumpForm(
+        tester,
+        profile: const BusinessProfile(
+          name: 'Atelier Nord',
+          taxStatus: TaxRegistrationStatus.registered,
+        ),
+      );
       await fillFirstLine(tester);
 
       expect(find.text('\$100.00', skipOffstage: false), findsWidgets);
@@ -117,13 +132,24 @@ void main() {
       expect(find.text('\$115.47', skipOffstage: false), findsOneWidget);
     });
 
-    testWidgets('turning taxes off hides the tax rows', (tester) async {
+    testWidgets('toggling the tax switch shows and hides the tax rows', (
+      tester,
+    ) async {
+      // No profile: taxes start off, never assumed.
       await pumpForm(tester);
       await fillFirstLine(tester);
 
       final taxSwitch = find.byType(SwitchListTile);
       await tester.ensureVisible(taxSwitch);
       await tester.pumpAndSettle();
+      expect(find.text('TPS (5 %)', skipOffstage: false), findsNothing);
+
+      await tester.tap(taxSwitch);
+      await tester.pump();
+
+      expect(find.text('TPS (5 %)', skipOffstage: false), findsOneWidget);
+      expect(find.text('TVQ (9,975 %)', skipOffstage: false), findsOneWidget);
+
       await tester.tap(taxSwitch);
       await tester.pump();
 
@@ -136,7 +162,14 @@ void main() {
     testWidgets('saves a complete invoice to the on-device book', (
       tester,
     ) async {
-      await pumpForm(tester);
+      // Registered business: taxes default on and are saved with it.
+      await pumpForm(
+        tester,
+        profile: const BusinessProfile(
+          name: 'Atelier Nord',
+          taxStatus: TaxRegistrationStatus.registered,
+        ),
+      );
       await pickSeededClient(tester);
       await fillFirstLine(tester);
 
@@ -155,6 +188,23 @@ void main() {
       expect(saved.taxes().totalCents, 11547);
       // Back on the previous screen after saving.
       expect(find.byType(InvoiceFormScreen), findsNothing);
+    });
+
+    testWidgets('new invoice with no profile is saved without taxes', (
+      tester,
+    ) async {
+      await pumpForm(tester);
+      await pickSeededClient(tester);
+      await fillFirstLine(tester);
+
+      await tester.tap(find.text('Save'));
+      await tester.pumpAndSettle();
+
+      final invoices = container.read(invoicesProvider).valueOrNull ?? [];
+      expect(invoices, hasLength(1));
+      // Registration is never assumed: the stored invoice is tax-free.
+      expect(invoices.single.chargeTaxes, isFalse);
+      expect(invoices.single.taxes().totalCents, 10000);
     });
 
     testWidgets('editing an invoice pre-fills its values', (tester) async {
@@ -190,7 +240,14 @@ void main() {
     testWidgets('French locale renders French labels and amounts', (
       tester,
     ) async {
-      await pumpForm(tester, locale: const Locale('fr'));
+      await pumpForm(
+        tester,
+        locale: const Locale('fr'),
+        profile: const BusinessProfile(
+          name: 'Atelier Nord',
+          taxStatus: TaxRegistrationStatus.registered,
+        ),
+      );
       await fillFirstLine(
         tester,
         descriptionLabel: 'Description',

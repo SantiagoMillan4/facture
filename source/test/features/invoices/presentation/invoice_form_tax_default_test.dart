@@ -10,7 +10,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// The invoice form's tax default must follow the declared business
-/// profile: registered → taxes on, small supplier → taxes off.
+/// profile: registered → taxes on, small supplier → taxes off, and no
+/// profile → taxes off (registration is never assumed).
 void main() {
   Future<void> pumpForm(WidgetTester tester, {BusinessProfile? profile}) async {
     SharedPreferences.setMockInitialValues({
@@ -36,11 +37,11 @@ void main() {
     return toggle.value;
   }
 
-  testWidgets('taxes default ON when no business profile exists', (
+  testWidgets('taxes default OFF when no business profile exists', (
     tester,
   ) async {
     await pumpForm(tester);
-    expect(taxesToggleValue(tester), isTrue);
+    expect(taxesToggleValue(tester), isFalse);
   });
 
   testWidgets('taxes default ON when profile is registered', (tester) async {

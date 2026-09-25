@@ -43,9 +43,13 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
   late DateTime _issueDate;
   late DateTime _dueDate;
   InvoiceStatus _status = InvoiceStatus.draft;
-  bool _chargeTaxes = true;
+  bool _chargeTaxes = false;
   // Set once the user manually flips the tax toggle: after that the
   // business profile no longer drives the default.
+  //
+  // Taxes start OFF on a new invoice: the form must never silently assume
+  // the user is registered to collect TPS/TVQ. Declaring "registered" in
+  // the business profile flips the default on (see _reconcileTaxDefault).
   var _taxesTouched = false;
   late List<LineDraft> _lines;
   String? _clientError;
@@ -64,10 +68,10 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
       );
       _issueDate = DateTime.now();
       _dueDate = DateTime.now().add(const Duration(days: 30));
-      // The tax default follows the declared business profile (small
-      // supplier → off). The profile loads async, so the reconciliation
-      // happens in build() once it arrives; no profile yet → taxes on,
-      // the common case, with a nudge to set up the profile.
+      // The tax default follows the declared business profile (registered
+      // → on, small supplier → off). The profile loads async, so the
+      // reconciliation happens in build() once it arrives. With no profile
+      // the toggle stays off: registration is never assumed.
       _lines = [LineDraft()];
     } else {
       _numberController = TextEditingController(text: invoice.number);
