@@ -1,0 +1,839 @@
+{
+  "@@locale": "fr",
+  "@amortYearsShort": {
+    "placeholders": {
+      "years": {
+        "type": "int"
+      }
+    }
+  },
+  "@amortShort": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      },
+      "years": {
+        "type": "int"
+      }
+    }
+  },
+  "@amortizationValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "@amortizationYearsMonths": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      },
+      "years": {
+        "type": "int"
+      }
+    }
+  },
+  "@annualAfterFinancing": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@annualCashFlow": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@annualizedPrimaryNote": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@buyingDerivedLine": {
+    "placeholders": {
+      "balance": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "@dataInvalidError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@dataReadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@dataSaveErrorDetail": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealCapRate": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealCashFlow": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealCashOnCash": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealDownPayment": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealDscr": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealGrossRent": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealMonthlyPayment": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealPurchasePrice": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealScenario": {
+    "placeholders": {
+      "scenarioName": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealSnapshotTitle": {
+    "placeholders": {
+      "propertyName": {
+        "type": "String"
+      }
+    }
+  },
+  "@deletePropertyConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@expensesTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@explainerTitle": {
+    "description": "Title of the info explainer sheet, e.g. 'What is DSCR?'",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "@incomeScreenTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@mortgageTitle": {
+    "placeholders": {
+      "scenarioName": {
+        "type": "String"
+      }
+    }
+  },
+  "@perMonthShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@perWeekShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@perYearShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@percentOfGrossRevenue": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "@portfolioAnnualLine": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@rateAmortLine": {
+    "placeholders": {
+      "amort": {
+        "type": "String"
+      },
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "@rateLabel": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "@refinanceScenarioName": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      },
+      "term": {
+        "type": "String"
+      }
+    }
+  },
+  "@taxExportScenario": {
+    "placeholders": {
+      "scenarioName": {
+        "type": "String"
+      }
+    }
+  },
+  "@taxExportTitle": {
+    "placeholders": {
+      "propertyName": {
+        "type": "String"
+      },
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "@taxSummaryBasisNote": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@taxSummaryTitle": {
+    "placeholders": {
+      "propertyName": {
+        "type": "String"
+      }
+    }
+  },
+  "@unableToCalculate": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@unableToLoadData": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@vacancyOfGrossRent": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "@versionLabel": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "@whatIs": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "aboutSection": "À propos",
+  "acquisitionOwned": "Déjà propriétaire",
+  "acquisitionPurchase": "Achat envisagé",
+  "acquisitionTypeHint": "Évaluez-vous un achat ou êtes-vous déjà propriétaire de ce bien?",
+  "acquisitionTypeLabel": "Statut de la propriété",
+  "acrossProperties": "sur {count, plural, =1{la propriété} other{les propriétés}}",
+  "actionDelete": "Supprimer",
+  "actionEdit": "Modifier",
+  "add": "Ajouter",
+  "addExpense": "Ajouter une dépense",
+  "addExpenseButton": "Ajouter une dépense",
+  "addExpenseSubtitle": "Ajoutez une dépense d’exploitation récurrente pour ce scénario.",
+  "addExpenseTitle": "Ajouter une dépense",
+  "addIncome": "Ajouter un revenu",
+  "addIncomeButton": "Ajouter un revenu",
+  "addIncomeSubtitle": "Ajoutez une source de revenu récurrente pour ce scénario.",
+  "addIncomeTitle": "Ajouter un revenu",
+  "addNotes": "Ajouter des notes",
+  "addProperty": "Ajouter une propriété",
+  "addPropertyForPortfolio": "Ajoutez une propriété pour voir votre portefeuille.",
+  "addPropertySubtitle": "Créez une propriété pour suivre ses flux de trésorerie.",
+  "addPropertyTitle": "Ajouter une propriété",
+  "addPropertyToCompare": "Ajoutez une propriété pour commencer à comparer des scénarios.",
+  "addScenario": "Ajouter un scénario",
+  "addScenarioTitle": "Ajouter un scénario",
+  "addStreetAddress": "Ajouter une rue ou une adresse",
+  "addressLabel": "Adresse",
+  "addressPlaceholder": "Ajoutez une rue ou une adresse",
+  "allProperties": "Toutes les propriétés",
+  "amortMonths": "Mois d'amortissement",
+  "amortMonthsLabel": "Amortissement (mois)",
+  "amortShort": "{years}a {months}m",
+  "amortYears": "Années d'amortissement",
+  "amortYearsLabel": "Amortissement (années)",
+  "amortYearsShort": "{years}a",
+  "amortizationLabel": "Amortissement",
+  "amortizationValue": "Amortissement : {value}",
+  "amortizationYearsMonths": "{years} ans {months} mois",
+  "amountHint": "0,00",
+  "amountLabel": "Montant",
+  "amountModeFixed": "Montant",
+  "amountModePercent": "% du revenu",
+  "analyzeAction": "Analyser",
+  "annual": "Annuel",
+  "annualAfterFinancing": "Annuel {amount} après financement",
+  "annualCashFlow": "{amount} par an après financement",
+  "annualLabel": "Annuel",
+  "annualRunRate": "Rythme annuel",
+  "annualizedPrimaryNote": "Basé sur le scénario principal « {name} », annualisé.",
+  "appTitle": "Facture",
+  "balanceLabel": "Solde",
+  "balanceEndOfYear": "Solde à la fin de l'année {year}",
+  "@balanceEndOfYear": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "firstMonthOfYear": "Premier mois de l'année {year}",
+  "primaryScenarioSection": "Scénario principal",
+  "primaryScenarioSectionSubtitle": "Le scénario principal contient vos hypothèses principales — vous pourrez en ajouter d'autres pour comparer.",
+  "primaryScenarioCopyHelper": "S'applique uniquement en partant de zéro — une propriété copiée conserve ses scénarios.",
+  "propertyDetails": "Détails de la propriété",
+  "scenarioName": "Nom du scénario",
+  "primaryScenarioNameHint": "p. ex. Base case",
+  "@firstMonthOfYear": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "bar": "Barres",
+  "barChart": "Barres",
+  "basedOn": "Basé sur",
+  "basedOnLabel": "Basé sur",
+  "byProperty": "Par propriété",
+  "buyingDerivedLine": "Solde : {balance} · mise de fonds de {percent} %",
+  "calcError": "Impossible de calculer ce scénario.",
+  "calculated": "Calculé",
+  "calculatedPayment": "Versement calculé",
+  "canada": "Canada",
+  "canadaCompounding": "Capitalisation semestrielle",
+  "canadaUsExplainer": "Les hypothèques canadiennes se capitalisent semestriellement; les hypothèques américaines se capitalisent mensuellement.",
+  "cannotDeleteLastScenario": "Une propriété doit conserver au moins un scénario.",
+  "cannotOpenUrl": "Impossible d'ouvrir le lien",
+  "capRateLabel": "Taux cap.",
+  "cashFlowComparison": "Comparaison des flux de trésorerie",
+  "cashFlowLabel": "Flux de trésorerie",
+  "cashOnCashLabel": "Rendement sur mise de fonds",
+  "categoryField": "Catégorie",
+  "categoryInsurance": "Assurance",
+  "categoryMaintenance": "Entretien",
+  "categoryOther": "Autre",
+  "categoryParking": "Stationnement",
+  "categoryPropertyManagement": "Gestion immobilière",
+  "categoryPropertyTax": "Taxes foncières",
+  "categoryRent": "Loyer",
+  "categoryRepairs": "Réparations",
+  "categoryStorage": "Entreposage",
+  "categoryUtilities": "Services publics",
+  "chartDisplayBy": "Graphique par",
+  "classificationSection": "Classification",
+  "comparisonTitle": "Comparaison",
+  "compoundingHelper": "Le même taux nominal donne un versement légèrement plus bas avec la capitalisation semestrielle.",
+  "compoundingLabel": "Capitalisation",
+  "confirm": "Confirmer",
+  "convCashFlow": "Flux de trésorerie = RNE − coûts de financement.",
+  "convCompounding": "Les hypothèques canadiennes se capitalisent semestriellement; les hypothèques américaines, mensuellement. Les nouvelles hypothèques utilisent la capitalisation semestrielle canadienne par défaut.",
+  "convFrequencies": "Les fréquences sont normalisées : annuel ÷ 12, hebdomadaire × 52 ÷ 12.",
+  "convNoi": "RNE (revenu net d’exploitation) = revenus effectifs − dépenses d’exploitation. Les versements hypothécaires sont exclus du RNE.",
+  "convOneTime": "Les éléments uniques sont conservés, mais exclus des chiffres mensuels récurrents.",
+  "convPrimary": "Le scénario principal est la référence pour les totaux du portefeuille.",
+  "convVacancy": "L'inoccupation / perte de revenus est une dépense comme les autres : entrez un montant fixe ou un pourcentage du revenu brut.",
+  "conventionCashFlow": "Flux de trésorerie = bénéfice d'exploitation net − coûts de financement.",
+  "conventionCompounding": "Les hypothèques canadiennes se capitalisent semestriellement; les américaines mensuellement. Les nouvelles hypothèques utilisent la capitalisation semestrielle canadienne par défaut.",
+  "conventionFrequencies": "Fréquences normalisées : annuel ÷ 12, hebdomadaire × 52 ÷ 12.",
+  "conventionNoi": "Bénéfice d'exploitation net = revenus effectifs − charges d'exploitation. Les versements hypothécaires sont exclus du bénéfice d'exploitation net.",
+  "conventionOneTime": "Les éléments ponctuels sont conservés, mais exclus des chiffres mensuels récurrents.",
+  "conventionPrimary": "Le scénario principal est la référence pour les totaux du portefeuille.",
+  "conventionVacancy": "L'inoccupation / perte de revenus est un pourcentage des revenus bruts prévus.",
+  "copyScenarioHint": "Copiez les chiffres d'un scénario existant ou partez de zéro.",
+  "createPropertySubtitle": "Créez une propriété pour commencer à suivre son flux de trésorerie.",
+  "createScenarioSubtitle": "Modélisez une variante hypothétique (refinancement, hausse de loyer, nouvel achat) sans toucher à votre scénario principal.",
+  "csvHeader": "Catégorie,Montant",
+  "currentMonthlyPayment": "Versement mensuel actuel",
+  "currentMortgageBalance": "Solde hypothécaire actuel",
+  "currentScenario": "Scénario actuel",
+  "currentTotalInterest": "Intérêts totaux actuels",
+  "dashboardMonthlyPerformance": "Rendement mensuel",
+  "dataInvalidError": "Les données locales contiennent une valeur invalide : {error}",
+  "dataReadError": "Les données locales n'ont pas pu être lues : {error}",
+  "dataSaveError": "Les données locales n'ont pas pu être enregistrées.",
+  "dataSaveErrorDetail": "Les données locales n'ont pas pu être enregistrées : {error}",
+  "dealCapRate": "Taux cap. : {value}",
+  "dealCashFlow": "Flux de trésorerie mensuel : {amount}",
+  "dealCashOnCash": "Rendement sur mise de fonds : {value}",
+  "dealDownPayment": "Mise de fonds : {amount}",
+  "dealDscr": "Ratio de couverture : {value}",
+  "dealGrossRent": "Loyer mensuel brut : {amount}",
+  "dealMonthlyPayment": "Versement hypothécaire mensuel : {amount}",
+  "dealPurchasePrice": "Prix d'achat : {amount}",
+  "dealScenario": "Scénario : {scenarioName}",
+  "dealSnapshotTitle": "Aperçu de l'affaire — {propertyName}",
+  "delete": "Supprimer",
+  "deleteItemMessage": "Voulez-vous vraiment supprimer cet élément?",
+  "deleteItemTitle": "Supprimer?",
+  "deletePropertyConfirm": "Supprimer « {name} » et ses scénarios?",
+  "deletePropertyMessage": "Cela supprimera aussi tous les scénarios associés à cette propriété.",
+  "deletePropertyTitle": "Supprimer la propriété?",
+  "deleteScenarioMessage": "Voulez-vous vraiment supprimer ce scénario?",
+  "deleteScenarioTitle": "Supprimer le scénario?",
+  "dialogCancel": "Annuler",
+  "dialogConfirm": "Confirmer",
+  "dialogDelete": "Supprimer",
+  "dialogOk": "OK",
+  "dialogSave": "Enregistrer",
+  "dscrLabel": "RCD",
+  "downPayment": "Mise de fonds",
+  "downPaymentCustomOption": "Montant personnalisé",
+  "downPaymentMinimumHint": "Paliers SCHL : 5 % / 10 % / 20 %",
+  "downPaymentMinimumHintInvestment": "Minimum 20 % — les immeubles à revenu ne sont pas assurables SCHL",
+  "downPaymentMinimumOption": "Minimale",
+  "downPaymentModeLabel": "Mise de fonds",
+  "downPaymentPercentMode": "Mise de fonds (%)",
+  "duplicatePropertyName": "Une propriété portant ce nom existe déjà.",
+  "duplicateScenarioName": "Un scénario portant ce nom existe déjà pour cette propriété.",
+  "eachPropertyPrimary": "Chaque propriété est représentée par son scénario principal.",
+  "eachSideNeedsScenario": "Chaque côté a besoin d'un scénario à comparer.",
+  "edit": "Modifier",
+  "editExpense": "Modifier la dépense",
+  "editExpenseSubtitle": "Mettez à jour cette dépense.",
+  "editExpenseTitle": "Modifier la dépense",
+  "editIncome": "Modifier le revenu",
+  "editIncomeSubtitle": "Mettez à jour ce revenu.",
+  "editIncomeTitle": "Modifier le revenu",
+  "editMortgage": "Modifier l'hypothèque",
+  "editProperty": "Modifier la propriété",
+  "editPropertyName": "Modifier le nom de la propriété",
+  "editPropertySubtitle": "Mettez à jour les détails de la propriété.",
+  "editPropertyTitle": "Modifier la propriété",
+  "editStreetAddress": "Modifier la rue ou l’adresse",
+  "emptyExpenseMessage": "Ajoutez votre première charge d’exploitation pour compléter le portrait.",
+  "emptyExpenseTitle": "Aucune dépense pour l’instant",
+  "emptyIncomeMessage": "Ajoutez votre première source de revenus pour voir vos liquidités prendre forme.",
+  "emptyIncomeTitle": "Aucun revenu pour l’instant",
+  "errorTitle": "Un problème est survenu",
+  "enterMortgageDetails": "Entrez le solde, le taux et l'amortissement; l'appli calcule le versement mensuel.",
+  "enterValidTerms": "Entrez des modalités de refinancement valides pour comparer.",
+  "estimatedMonthlyPayment": "Paiement mensuel estimé",
+  "expenseNameHint": "p. ex. Taxe foncière",
+  "expenseTitle": "Dépense",
+  "expensesTitle": "Dépenses · {name}",
+  "explainerTitle": "Qu'est-ce que {title}?",
+  "fieldAmount": "Montant",
+  "fieldCategory": "Catégorie",
+  "fieldFrequency": "Fréquence",
+  "fieldName": "Nom",
+  "fieldNotes": "Notes",
+  "financialConventions": "Conventions financières",
+  "financialConventionsSubtitle": "Comment l’app calcule ses chiffres",
+  "financingAssumptions": "Hypothèses de financement pour ce scénario.",
+  "financingAssumptionsTitle": "Hypothèses de financement",
+  "financingExcludedNote": "Le versement hypothécaire est traité comme un coût de financement et est exclu du bénéfice d’exploitation net.",
+  "financingLabel": "Financement",
+  "formAdd": "Ajouter",
+  "formCancel": "Annuler",
+  "formSave": "Enregistrer",
+  "feedbackEmailSubject": "Rentable {version} – commentaire",
+  "@feedbackEmailSubject": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackEmailCopied": "Aucune application de courriel disponible — l'adresse d'assistance a été copiée dans le presse-papiers.",
+  "feedbackSubtitle": "Signalez un bogue ou suggérez une amélioration",
+  "feedbackTitle": "Envoyer un commentaire",
+  "frequenciesNote": "Fréquences normalisées : annuel ÷ 12, hebdomadaire × 52 ÷ 12.",
+  "frequencyField": "Fréquence",
+  "frequencyMonthly": "Mensuel",
+  "frequencyOneTime": "Ponctuel",
+  "frequencyWeekly": "Hebdomadaire",
+  "frequencyYearly": "Annuel",
+  "yearPickerLabel": "Année",
+  "blank": "Vide",
+  "generatedBy": "Généré par Rentable.",
+  "grossRents": "Loyers bruts",
+  "guideAnalysisBody": "Choisissez deux scénarios pour les comparer côte à côte : revenus, dépenses, flux de trésorerie, financement et les métriques d’investisseur ci-dessous.",
+  "guideAnalysisTitle": "Analyse",
+  "guideDashboardBody": "Le tableau de bord montre une propriété et un scénario à la fois ou — choisissez « Toutes les propriétés » — tout votre portefeuille d’un coup. La vue portefeuille additionne le scénario principal de chaque propriété, donc elle reflète toujours vos chiffres de référence.",
+  "guideDashboardTitle": "Tableau de bord",
+  "guideIncomeBody": "Ajoutez les revenus récurrents et les dépenses d’exploitation d’un scénario : loyer, buanderie, taxe foncière, assurance, entretien. Chaque élément a une fréquence (mensuelle, annuelle, hebdomadaire, unique) et est normalisé en montant mensuel.\n\nL’inoccupation / perte de revenu se règle en pourcentage du revenu brut dans l’onglet Dépenses.",
+  "guideIncomeTitle": "Revenus et dépenses",
+  "guideMortgageBody": "Entrez le solde, le taux et l’amortissement; l’app calcule le versement mensuel. Choisissez le type de taux qui correspond au prêt : Canada (capitalisation semestrielle) ou États-Unis (capitalisation mensuelle).\n\nLes versements hypothécaires sont des coûts de financement : ils réduisent le flux de trésorerie, mais sont exclus du RNE, selon la convention standard.",
+  "guideMortgageTitle": "Hypothèque",
+  "guidePropertiesBody": "Une propriété est un immeuble que vous suivez — un multiplex, un condo, une maison. Ajoutez-en une à partir de l’onglet Propriétés. Tout dans l’app (scénarios, revenus, dépenses, hypothèque) est rattaché à une propriété.",
+  "guidePropertiesTitle": "Propriétés",
+  "guideScenariosBody": "Chaque propriété contient un ou plusieurs scénarios : des variantes hypothétiques du même immeuble. Modélisez un refinancement, une hausse de loyer ou une offre d’achat sans toucher à vos chiffres de référence.\n\nUn scénario est toujours le principal. C’est la référence utilisée pour le tableau de bord Toutes les propriétés et il reflète la réalité actuelle de l’immeuble. Copiez un scénario pour explorer des alternatives, puis changez le scénario principal quand l’alternative devient le plan.",
+  "guideScenariosTitle": "Scénarios",
+  "howItWorks": "Comment l’app fonctionne",
+  "howItWorksSubtitle": "Propriétés, scénarios et notions de flux de trésorerie",
+  "hypotheticalTerms": "Modalités hypothétiques de refinancement",
+  "incomeNameHint": "p. ex. Loyer unité 1",
+  "incomeScreenTitle": "Revenus · {name}",
+  "incomeTitle": "Revenu",
+  "interestLabel": "Intérêts",
+  "interestRateLabel": "Taux d'intérêt",
+  "interestRatePercent": "Taux d'intérêt (%)",
+  "investorMetrics": "Indicateurs investisseurs",
+  "investorMetricsExplained": "Indicateurs investisseurs expliqués",
+  "investorMetricsSubtitle": "RCD, taux cap., rendement sur mise de fonds, RPV",
+  "investorMetricsTitle": "Indicateurs investisseurs",
+  "loanAmountLabel": "Montant du prêt",
+  "loanDetails": "Détails du prêt",
+  "ltvDisclaimer": "Hypothèse V1 : l'emprunt potentiel est plafonné à 80 % de la valeur de la propriété. Ce n'est ni une opération de refinancement ni un résultat d'admissibilité d'un prêteur.",
+  "ltvLabel": "RPV",
+  "listingUrlHint": "Collez un lien d'annonce ou un texte partagé Centris",
+  "listingUrlLabel": "URL de l'annonce",
+  "listingUrlPrefillHelper": "Collez un lien d’annonce : le nom, la ville et les logements seront pré-remplis.",
+  "listingPlexDetected": "Plex détecté : {count} loyers seront créés.",
+  "@listingPlexDetected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "makePrimaryScenario": "Définir comme scénario principal",
+  "manageScenarios": "Gérer les scénarios",
+  "manualMonthlyPayment": "Versement mensuel manuel",
+  "manualOverride": "Remplacement manuel",
+  "manualPaymentHint": "Entrez un versement manuel seulement si votre versement réel diffère de celui calculé.",
+  "maxMortgageBalance": "Solde hypothécaire maximal (RPV 80 %)",
+  "metricCapRate": "Taux cap. — Taux de capitalisation",
+  "metricCapRateMeaning": "Bénéfice d'exploitation net annuel divisé par la valeur de la propriété. Il répond à : quel rendement cet immeuble rapporterait-il s'il était acheté comptant?",
+  "metricCapRateReading": "Plus il est élevé, moins l'immeuble est cher par rapport à ses revenus. Servez-vous-en pour comparer des immeubles, peu importe leur financement.",
+  "metricCapRateShort": "Taux de capitalisation",
+  "metricCashOnCash": "Rendement sur mise de fonds",
+  "metricCashOnCashMeaning": "Flux de trésorerie annuel divisé par l'argent réellement investi (valeur de la propriété moins le solde hypothécaire). Il répond à : quel rendement est-ce que je gagne sur mon argent?",
+  "metricCashOnCashReading": "Plus il est élevé, plus votre mise de fonds travaille fort. Contrairement au taux cap., il tient compte de votre financement.",
+  "metricCashOnCashShort": "Rendement sur mise de fonds",
+  "metricDscr": "RCD — Ratio de couverture de la dette",
+  "metricDscrMeaning": "Bénéfice d'exploitation net annuel divisé par les versements hypothécaires annuels. Il répond à : est-ce que le loyer couvre le prêt?",
+  "metricDscrReading": "Au-dessus de 1,20, c'est confortable et c'est ce que la plupart des prêteurs veulent voir. Sous 1,00, l'immeuble ne s'autofinance pas.",
+  "metricDscrShort": "DSCR",
+  "metricLtv": "RPV — Ratio prêt-valeur",
+  "metricLtvMeaning": "Solde hypothécaire divisé par la valeur de la propriété. Il répond à : quelle part de l'immeuble appartient au prêteur?",
+  "metricLtvReading": "Plus il est bas, plus vous avez une marge de sécurité. La plupart des prêteurs résidentiels plafonnent les prêts assurés autour de 80 %.",
+  "metricLtvShort": "Ratio prêt-valeur",
+  "monthly": "Mensuel",
+  "monthlyCashFlowChart": "FLUX DE TRÉSORERIE MENSUEL",
+  "monthlyCashFlowLabel": "Flux de trésorerie mensuel",
+  "monthlyDifference": "Différence mensuelle",
+  "monthlyLabel": "Mensuel",
+  "monthlyPayment": "Versement mensuel",
+  "monthlyPaymentCalculated": "Versement mensuel (calculé)",
+  "monthlyPaymentManual": "Versement mensuel (manuel)",
+  "monthlyPerformance": "Performance mensuelle",
+  "mortgageBalance": "Solde hypothécaire",
+  "mortgageBalanceLabel": "Solde hypothécaire",
+  "mortgageCalculatorSubtitle": "Estimez votre paiement mensuel",
+  "mortgageCalculatorTitle": "Calculateur hypothécaire",
+  "mortgageInterestNote": "Les intérêts hypothécaires sont une estimation (intérêts mensuels actuels × 12) et n'apparaissent ici qu'à des fins fiscales — ils restent exclus du bénéfice d'exploitation net.",
+  "mortgageTitle": "Hypothèque · {scenarioName}",
+  "nameHintExpense": "p. ex. Taxes foncières",
+  "nameHintIncome": "p. ex. Loyer unité 1",
+  "nameLabel": "Nom",
+  "navAnalysis": "Analyse",
+  "analyzeMode": "Analyser",
+  "@analyzeMode": {},
+  "compareMode": "Comparer",
+  "@compareMode": {},
+  "scenarioFieldLabel": "Scénario",
+  "@scenarioFieldLabel": {},
+  "navDashboard": "Accueil",
+  "navProperties": "Propriétés",
+  "navSettings": "Réglages",
+  "needScenarioEachSide": "Chaque côté a besoin d’un scénario à comparer.\nAjoutez un scénario pour continuer.",
+  "netRentalIncome": "Revenu net de location",
+  "newBalance": "Nouveau solde",
+  "newInterestRate": "Nouveau taux d'intérêt (%)",
+  "newMortgagesDefault": "Les nouvelles hypothèques utilisent la capitalisation semestrielle canadienne par défaut.",
+  "noExpenseCategories": "Aucune catégorie de dépense d’exploitation pour le moment.",
+  "noExpenses": "Aucune charge d'exploitation pour l'instant.",
+  "noIncomeCategories": "Aucune catégorie de revenu pour le moment.",
+  "noIncomeItems": "Aucun revenu pour le moment.",
+  "noOperatingExpenses": "Aucune dépense d’exploitation pour le moment.",
+  "noScenario": "Aucun scénario",
+  "noiLabel": "Bénéf. expl.",
+  "noiShort": "RNE",
+  "notAvailable": "s.o.",
+  "notesField": "Notes",
+  "notesOptional": "Facultatif",
+  "ok": "OK",
+  "oneTimeNote": "Les éléments ponctuels sont conservés, mais exclus des chiffres mensuels récurrents.",
+  "operatingExpensesLabel": "Dépenses d’exploitation",
+  "optional": "Facultatif",
+  "paymentMode": "Mode de versement",
+  "perMonthShort": "{amount} / mois",
+  "perWeekShort": "{amount} / sem",
+  "perYearShort": "{amount} / an",
+  "percentOfGrossRevenue": "{rate} % du revenu brut",
+  "percentage": "Pourcentage",
+  "persistenceLoadError": "Impossible de charger les données locales.",
+  "pickTwoScenarios": "Choisissez deux scénarios à comparer côte à côte : revenus, dépenses, flux de trésorerie, financement et indicateurs.",
+  "pie": "Circulaire",
+  "pieChart": "Circulaire",
+  "portfolioAnnualLine": "Annuel {amount} pour {count, plural, one {{count} propriété} other {{count} propriétés}}",
+  "portfolioCashFlow": "FLUX DE TRÉSORERIE DU PORTEFEUILLE",
+  "portfolioCashFlowLabel": "Flux de trésorerie du portefeuille",
+  "potentialAdditional": "Montant supplémentaire potentiel",
+  "potentialRefinanceTitle": "Refinancement supplémentaire potentiel",
+  "ppSuffix": "p.p.",
+  "primaryBadge": "Principal",
+  "primaryForAllProperties": "Le scénario principal est utilisé pour les calculs Toutes les propriétés",
+  "primaryScenarioCalculations": "Le scénario principal est utilisé pour les calculs Toutes les propriétés",
+  "primaryScenarioNote": "Chaque propriété est représentée par son scénario principal.",
+  "primaryScenarioTooltip": "Scénario principal",
+  "principalLabel": "Capital",
+  "propertiesTitle": "Propriétés",
+  "propertyActions": "Actions de la propriété",
+  "propertyAddressHint": "Facultatif",
+  "propertyAddressLabel": "Rue ou adresse",
+  "propertyFallbackName": "Propriété",
+  "propertyLabel": "Propriété",
+  "propertyMortgage": "Propriété / Hypothèque",
+  "propertyName": "Nom de la propriété",
+  "propertyNameHint": "p. ex. Triplex à Montréal",
+  "propertyNameLabel": "Nom de la propriété",
+  "propertyValue": "Valeur de la propriété",
+  "propertyValueLabel": "Valeur de la propriété",
+  "purchasePrice": "Prix d'achat",
+  "rateAmortLine": "Taux : {rate}  ·  Amortissement : {amort}",
+  "rateAppSubtitle": "L’app vous plaît ? Laissez un avis sur l’App Store",
+  "rateAppTitle": "Évaluer Rentable",
+  "rateCompounding": "Capitalisation du taux",
+  "rateLabel": "Taux : {rate}",
+  "rateType": "Type de taux",
+  "recurringAnnualizedNote": "Basé sur les éléments récurrents, annualisé. Éléments ponctuels exclus.",
+  "refinanceMonthlyPayment": "Versement mensuel refinancé",
+  "refinanceOption": "Refinancement",
+  "refinanceOptionSubtitle": "Dupliquer le scénario principal avec de nouvelles modalités hypothécaires",
+  "refinanceScenarioName": "Refi {rate} % / {term}",
+  "refinanceTotalInterest": "Intérêts totaux refinancés",
+  "rentalIncomeLabel": "Revenus de location",
+  "retry": "Réessayer",
+  "rowPropertyMortgage": "Propriété / hypothèque",
+  "rowRentalIncome": "Revenus de location",
+  "rowVacancyLoss": "Inoccupation / perte de revenu",
+  "saveFailed": "Enregistrement impossible. Veuillez réessayer.",
+  "saveAsScenario": "Enregistrer comme scénario",
+  "scenarioA": "Scénario A",
+  "scenarioB": "Scénario B",
+  "scenarioName": "Nom du scénario",
+  "scenarioNameHint": "p. ex. Refinancé à 4,5 %",
+  "scenarioNameLabel": "Nom du scénario",
+  "scenarioNotFound": "Scénario introuvable.",
+  "scenariosTitle": "Scénarios",
+  "scheduleSection": "Périodicité",
+  "selectPropertyScenario": "Sélectionnez une propriété et un scénario pour commencer.",
+  "selectPropertyToBegin": "Sélectionnez une propriété et un scénario pour commencer.",
+  "selectScenario": "Sélectionnez un scénario",
+  "selectScenarioFinancing": "Sélectionnez un scénario pour modifier le financement.",
+  "selectTwoScenarios": "Sélectionnez deux scénarios différents à comparer.",
+  "settingsAbout": "À propos",
+  "settingsLearn": "Apprendre",
+  "shareDealSnapshot": "Partager l'aperçu de l'affaire",
+  "shareTaxSummary": "Partager le sommaire fiscal",
+  "sheetDone": "Terminé",
+  "startFrom": "Partir de",
+  "startFromPropertySubtitle": "Choisissez de partir de zéro ou de copier une propriété existante.",
+  "startFromScenarioSubtitle": "Copiez les chiffres d’un scénario existant ou partez de zéro.",
+  "startFromSubtitle": "Choisissez de partir de zéro ou de copier une propriété existante.",
+  "startFromTitle": "Point de départ",
+  "statExpenses": "Dépenses",
+  "statIncome": "Revenus",
+  "statInterest": "Intérêts",
+  "statInterestRate": "Taux d'intérêt",
+  "statMortgage": "Hypothèque",
+  "statPrincipal": "Capital",
+  "streetAddress": "Rue ou adresse",
+  "t776Header": "Dépenses (catégories T776 de l'ARC) :",
+  "taxCategoryAdvertising": "Publicité",
+  "taxCategoryInsurance": "Assurance",
+  "taxCategoryInterest": "Intérêts",
+  "taxCategoryMaintenanceRepairs": "Entretien et réparations",
+  "taxCategoryManagementAdmin": "Gestion et administration",
+  "taxCategoryOffice": "Fournitures de bureau",
+  "taxCategoryOther": "Autres dépenses",
+  "taxCategoryProfessionalFees": "Honoraires professionnels",
+  "taxCategoryPropertyTaxes": "Taxes foncières",
+  "taxCategoryTravel": "Déplacements",
+  "taxCategoryUtilities": "Services publics",
+  "taxExportBasis": "Basé sur les éléments récurrents, annualisé. Éléments ponctuels exclus.",
+  "taxExportInterestNote": "Les intérêts sont une estimation (intérêts hypothécaires mensuels actuels × 12).",
+  "taxExportScenario": "Scénario : {scenarioName}",
+  "taxExportTitle": "Sommaire fiscal des revenus de location — {propertyName} ({year})",
+  "taxSummary": "Sommaire fiscal",
+  "taxSummaryBasisNote": "Basé sur le scénario principal « {name} », annualisé. Les intérêts hypothécaires sont une estimation (intérêts mensuels actuels × 12) et n’apparaissent ici qu’à des fins fiscales — ils restent exclus du bénéfice d’exploitation net.",
+  "testRefinance": "Tester un refinancement…",
+  "taxSummaryButton": "Sommaire fiscal",
+  "taxSummaryTitle": "Sommaire fiscal · {propertyName}",
+  "taxYear": "Année d'imposition",
+  "toolsSection": "Outils",
+  "totalExpenses": "Dépenses totales",
+  "totalInterestDifference": "Différence d'intérêts totaux",
+  "totalInterestNote": "Les intérêts totaux sont simulés sur toute la durée d'amortissement de chaque prêt.",
+  "totalInterestOverAmortization": "Intérêts totaux sur l'amortissement",
+  "unableToCalculate": "Impossible de calculer ce scénario.\n{error}",
+  "unableToLoadData": "Impossible de charger vos données.\n{error}",
+  "us": "É.-U.",
+  "usCompounding": "Capitalisation mensuelle",
+  "vacancyModeAmount": "Montant",
+  "vacancyModePercent": "Pourcentage",
+  "vacancyOfGrossRent": "{percent} des loyers bruts",
+  "validationDownPaymentPercentRange": "La mise de fonds doit être inférieure à 100 %",
+  "validationEnterAmount": "Entrez un montant valide",
+  "validationEnterAnAmount": "Entrez un montant",
+  "validationAmortizationRange": "Entrez de 1 à 30 ans",
+  "validationEnterName": "Entrez un nom",
+  "validationEnterNonNegative": "Entrez un nombre valide non négatif",
+  "validationEnterPercentage": "Entrez un pourcentage de 0 à 100",
+  "validationEnterPropertyName": "Entrez un nom de propriété",
+  "validationEnterScenarioName": "Entrez un nom de scénario",
+  "validationInvalidUrl": "Entrez une URL valide commençant par http:// ou https://",
+  "validationMonthsRange": "Les mois doivent être entre 0 et 11.",
+  "validationPercentRange": "Entrez un pourcentage de 0 à 100",
+  "validationDownPaymentRange": "La mise de fonds doit être inférieure au prix d'achat",
+  "amortizationCappedNote": "Amortissement limité à 25 ans avec moins de 20 % de mise de fonds.",
+  "amortizationYearsLabel": "Amortissement (années)",
+  "bindingConstraintGds": "Ce sont les coûts du logement qui limitent (ratio ABD).",
+  "bindingConstraintTds": "Ce sont les dettes totales qui limitent (ratio ATD).",
+  "borrowingCapacityDisclaimer": "Estimation seulement, basée sur les lignes directrices ABD/ATD et le test de résistance fédéral. Ne constitue pas un conseil financier ni une préapprobation — les prêteurs considèrent d’autres facteurs.",
+  "borrowingCapacityEnterTerms": "Indiquez vos revenus et vos dettes pour voir votre estimation.",
+  "borrowingCapacitySubtitle": "Estimez combien vous pourriez emprunter selon les règles canadiennes standards.",
+  "borrowingCapacityTitle": "Capacité d’emprunt",
+  "creditScoreNote": "Votre cote de crédit ne change pas ce calcul — elle change le taux auquel vous êtes admissible. C’est là qu’une bonne cote paie.",
+  "estimateBorrowingCapacity": "Estimez votre capacité d’emprunt",
+  "estimatesSection": "Estimations",
+  "estimatesSectionSubtitle": "Estimations préremplies pour la future propriété — ajustez au besoin.",
+  "expectedMortgageRate": "Taux hypothécaire prévu",
+  "expectedMortgageRateHint": "Taux fixe 5 ans typique — ajustez selon votre situation.",
+  "grossAnnualIncome": "Revenu brut annuel du ménage",
+  "incomeAndDebts": "Revenus et dettes",
+  "investmentDownPaymentError": "Pour un immeuble à revenu, la mise de fonds doit être d’au moins 20 % du prix d’achat — environ {required} pour un achat de {price}.",
+  "investmentPropertyNote": "Estimation approximative — les prêteurs évaluent différemment les immeubles à revenu et peuvent inclure une partie des revenus locatifs, ce que cet outil ne modélise pas.",
+  "maxMortgageAmount": "Hypothèque maximale",
+  "maxPurchasePrice": "Prix d’achat maximal",
+  "minimumDownPayment": "Mise de fonds minimale",
+  "monthlyDebtPayments": "Paiements mensuels des dettes actuelles",
+  "monthlyHeating": "Estimation du chauffage mensuel",
+  "monthlyPaymentAtContractRate": "Paiement mensuel (à votre taux)",
+  "mortgageAmortization": "Amortissement hypothécaire",
+  "mortgageAmortizationHint": "En combien d’années rembourser le prêt — plus c’est long, plus les paiements sont petits, mais plus vous payez d’intérêts.",
+  "percentValue": "{value}%",
+  "propertyTaxPercent": "Taxes foncières (% du prix)",
+  "propertyUseInvestment": "Immeuble à revenu",
+  "propertyUseLabel": "Usage de la propriété",
+  "propertyUsePrincipal": "Résidence principale",
+  "qualifyingRate": "Taux admissible (test de résistance)",
+  "rateSensitivity": "Sensibilité au taux",
+  "validationEnterPositive": "Entrez un nombre positif valide",
+  "versionLabel": "Version {version}",
+  "viewListing": "Voir l'annonce",
+  "whatIfDisclaimer": "Ceci est une comparaison hypothétique, pas une offre de prêteur.",
+  "whatIs": "Qu’est-ce que {title}?",
+  "invoicesTitle": "Factures",
+  "invoicesEmptyTitle": "Aucune facture",
+  "invoicesEmptySubtitle": "Créez votre première facture pour commencer.",
+  "settingsTitle": "Réglages"
+}

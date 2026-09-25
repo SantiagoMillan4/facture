@@ -1,0 +1,849 @@
+{
+  "@@locale": "en",
+  "@amortYearsShort": {
+    "placeholders": {
+      "years": {
+        "type": "int"
+      }
+    }
+  },
+  "@amortShort": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      },
+      "years": {
+        "type": "int"
+      }
+    }
+  },
+  "@amortizationValue": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "@amortizationYearsMonths": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      },
+      "years": {
+        "type": "int"
+      }
+    }
+  },
+  "@annualAfterFinancing": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@annualCashFlow": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@annualizedPrimaryNote": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@buyingDerivedLine": {
+    "placeholders": {
+      "balance": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "@dataInvalidError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@dataReadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@dataSaveErrorDetail": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealCapRate": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealCashFlow": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealCashOnCash": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealDownPayment": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealDscr": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealGrossRent": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealMonthlyPayment": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealPurchasePrice": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealScenario": {
+    "placeholders": {
+      "scenarioName": {
+        "type": "String"
+      }
+    }
+  },
+  "@dealSnapshotTitle": {
+    "placeholders": {
+      "propertyName": {
+        "type": "String"
+      }
+    }
+  },
+  "@deletePropertyConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@expensesTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@explainerTitle": {
+    "description": "Title of the info explainer sheet, e.g. 'What is DSCR?'",
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "@incomeScreenTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@investmentDownPaymentError": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "required": {
+        "type": "String"
+      }
+    }
+  },
+  "@mortgageTitle": {
+    "placeholders": {
+      "scenarioName": {
+        "type": "String"
+      }
+    }
+  },
+  "@perMonthShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@perWeekShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@perYearShort": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "@percentOfGrossRevenue": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "@portfolioAnnualLine": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@rateAmortLine": {
+    "placeholders": {
+      "amort": {
+        "type": "String"
+      },
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "@rateLabel": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      }
+    }
+  },
+  "@refinanceScenarioName": {
+    "placeholders": {
+      "rate": {
+        "type": "String"
+      },
+      "term": {
+        "type": "String"
+      }
+    }
+  },
+  "@taxExportScenario": {
+    "placeholders": {
+      "scenarioName": {
+        "type": "String"
+      }
+    }
+  },
+  "@taxExportTitle": {
+    "placeholders": {
+      "propertyName": {
+        "type": "String"
+      },
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "@taxSummaryBasisNote": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@taxSummaryTitle": {
+    "placeholders": {
+      "propertyName": {
+        "type": "String"
+      }
+    }
+  },
+  "@unableToCalculate": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@unableToLoadData": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "@vacancyOfGrossRent": {
+    "placeholders": {
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "@versionLabel": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "@whatIs": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "aboutSection": "About",
+  "acquisitionOwned": "Already own",
+  "acquisitionPurchase": "Evaluating a purchase",
+  "acquisitionTypeHint": "Are you evaluating a purchase, or do you already own this property?",
+  "acquisitionTypeLabel": "Property status",
+  "acrossProperties": "across {count, plural, =1{property} other{properties}}",
+  "actionDelete": "Delete",
+  "actionEdit": "Edit",
+  "add": "Add",
+  "addExpense": "Add expense",
+  "addExpenseButton": "Add expense",
+  "addExpenseSubtitle": "Add a recurring operating cost for this scenario.",
+  "addExpenseTitle": "Add expense",
+  "addIncome": "Add income",
+  "addIncomeButton": "Add income",
+  "addIncomeSubtitle": "Add a recurring revenue stream for this scenario.",
+  "addIncomeTitle": "Add income",
+  "addNotes": "Add notes",
+  "addProperty": "Add property",
+  "addPropertyForPortfolio": "Add a property to see your portfolio.",
+  "addPropertySubtitle": "Create a property to start tracking its cash flow.",
+  "addPropertyTitle": "Add Property",
+  "addPropertyToCompare": "Add a property to start comparing scenarios.",
+  "addScenario": "Add scenario",
+  "addScenarioTitle": "Add Scenario",
+  "addStreetAddress": "Add street or address",
+  "addressLabel": "Address",
+  "addressPlaceholder": "Add street or address",
+  "allProperties": "All Properties",
+  "amortMonths": "Amortization months",
+  "amortMonthsLabel": "Amortization (months)",
+  "amortShort": "{years}y {months}m",
+  "amortYears": "Amortization years",
+  "amortYearsLabel": "Amortization (years)",
+  "amortYearsShort": "{years}y",
+  "amortizationLabel": "Amortization",
+  "amortizationValue": "Amortization: {value}",
+  "amortizationYearsMonths": "{years} years {months} months",
+  "amountHint": "0.00",
+  "amountLabel": "Amount",
+  "amountModeFixed": "Amount",
+  "amountModePercent": "% of income",
+  "analyzeAction": "Analyze",
+  "annual": "Annual",
+  "annualAfterFinancing": "Annual {amount} after financing",
+  "annualCashFlow": "Annual {amount} after financing",
+  "annualLabel": "Annual",
+  "annualRunRate": "Annual run rate",
+  "annualizedPrimaryNote": "Based on the primary scenario \"{name}\", annualized.",
+  "appTitle": "Facture",
+  "balanceLabel": "Balance",
+  "balanceEndOfYear": "Balance at end of year {year}",
+  "@balanceEndOfYear": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "firstMonthOfYear": "First month of year {year}",
+  "primaryScenarioSection": "Primary scenario",
+  "primaryScenarioSectionSubtitle": "The primary scenario holds your main assumptions — you can add more later to compare.",
+  "primaryScenarioCopyHelper": "Only applies when starting from scratch — a copied property keeps its scenarios' names.",
+  "propertyDetails": "Property details",
+  "scenarioName": "Scenario name",
+  "primaryScenarioNameHint": "e.g. Base case",
+  "@firstMonthOfYear": {
+    "placeholders": {
+      "year": {
+        "type": "int"
+      }
+    }
+  },
+  "bar": "Bar",
+  "barChart": "Bar",
+  "basedOn": "Based on",
+  "basedOnLabel": "Based on",
+  "byProperty": "By property",
+  "buyingDerivedLine": "Balance: {balance} · {percent}% down",
+  "calcError": "Unable to calculate this scenario.",
+  "calculated": "Calculated",
+  "calculatedPayment": "Calculated payment",
+  "canada": "Canada",
+  "canadaCompounding": "Semi-annual compounding",
+  "canadaUsExplainer": "Canadian mortgages compound semi-annually; US mortgages compound monthly.",
+  "cannotDeleteLastScenario": "A property must keep at least one scenario.",
+  "cannotOpenUrl": "Couldn't open the link",
+  "capRateLabel": "Cap Rate",
+  "cashFlowComparison": "Cash flow comparison",
+  "cashFlowLabel": "Cash Flow",
+  "cashOnCashLabel": "Cash-on-Cash",
+  "categoryField": "Category",
+  "categoryInsurance": "Insurance",
+  "categoryMaintenance": "Maintenance",
+  "categoryOther": "Other",
+  "categoryParking": "Parking",
+  "categoryPropertyManagement": "Property Management",
+  "categoryPropertyTax": "Property Tax",
+  "categoryRent": "Rent",
+  "categoryRepairs": "Repairs",
+  "categoryStorage": "Storage",
+  "categoryUtilities": "Utilities",
+  "chartDisplayBy": "Chart display by",
+  "classificationSection": "Classification",
+  "comparisonTitle": "Comparison",
+  "compoundingHelper": "The same nominal rate gives a slightly lower payment with semi-annual compounding.",
+  "compoundingLabel": "Compounding",
+  "confirm": "Confirm",
+  "convCashFlow": "Cash flow = NOI − financing costs.",
+  "convCompounding": "Canadian mortgages compound semi-annually; US mortgages compound monthly. New mortgages default to Canadian semi-annual.",
+  "convFrequencies": "Frequencies are normalized: yearly ÷ 12, weekly × 52 ÷ 12.",
+  "convNoi": "NOI (net operating income) = effective income − operating expenses. Mortgage payments are excluded from NOI.",
+  "convOneTime": "One-time items are stored but excluded from recurring monthly figures.",
+  "convPrimary": "The primary scenario is the reference for portfolio totals.",
+  "convVacancy": "Vacancy / income loss is a regular expense: enter a fixed amount or a percent of gross income.",
+  "conventionCashFlow": "Cash flow = NOI − financing costs.",
+  "conventionCompounding": "Canadian mortgages compound semi-annually; US mortgages compound monthly. New mortgages default to Canadian semi-annual.",
+  "conventionFrequencies": "Frequencies are normalized: yearly ÷ 12, weekly × 52 ÷ 12.",
+  "conventionNoi": "NOI (net operating income) = effective income − operating expenses. Mortgage payments are excluded from NOI.",
+  "conventionOneTime": "One-time items are stored but excluded from recurring monthly figures.",
+  "conventionPrimary": "The primary scenario is the reference for portfolio totals.",
+  "conventionVacancy": "Vacancy / income loss is a percentage of gross scheduled income.",
+  "copyScenarioHint": "Copy the numbers from an existing scenario or start empty.",
+  "createPropertySubtitle": "Create a property to start tracking its cash flow.",
+  "createScenarioSubtitle": "Model a what-if variant (refinance, rent increase, new purchase) without touching your primary scenario.",
+  "csvHeader": "Category,Amount",
+  "currentMonthlyPayment": "Current monthly payment",
+  "currentMortgageBalance": "Current mortgage balance",
+  "currentScenario": "Current scenario",
+  "currentTotalInterest": "Current total interest",
+  "dashboardMonthlyPerformance": "Monthly performance",
+  "dataInvalidError": "The local data has an invalid value: {error}",
+  "dataReadError": "The local data could not be read: {error}",
+  "dataSaveError": "The local data could not be saved.",
+  "dataSaveErrorDetail": "The local data could not be saved: {error}",
+  "dealCapRate": "Cap rate: {value}",
+  "dealCashFlow": "Monthly cash flow: {amount}",
+  "dealCashOnCash": "Cash-on-cash return: {value}",
+  "dealDownPayment": "Down payment: {amount}",
+  "dealDscr": "DSCR: {value}",
+  "dealGrossRent": "Gross monthly rent: {amount}",
+  "dealMonthlyPayment": "Monthly mortgage payment: {amount}",
+  "dealPurchasePrice": "Purchase price: {amount}",
+  "dealScenario": "Scenario: {scenarioName}",
+  "dealSnapshotTitle": "Deal snapshot — {propertyName}",
+  "delete": "Delete",
+  "deleteItemMessage": "Are you sure you want to delete this item?",
+  "deleteItemTitle": "Delete?",
+  "deletePropertyConfirm": "Delete \"{name}\" and its scenarios?",
+  "deletePropertyMessage": "This will also delete all scenarios associated with this property.",
+  "deletePropertyTitle": "Delete property?",
+  "deleteScenarioMessage": "Are you sure you want to delete this scenario?",
+  "deleteScenarioTitle": "Delete scenario?",
+  "dialogCancel": "Cancel",
+  "dialogConfirm": "Confirm",
+  "dialogDelete": "Delete",
+  "dialogOk": "OK",
+  "dialogSave": "Save",
+  "dscrLabel": "DSCR",
+  "downPayment": "Down payment",
+  "downPaymentCustomOption": "Custom amount",
+  "downPaymentMinimumHint": "CMHC tiers: 5% / 10% / 20%",
+  "downPaymentMinimumHintInvestment": "20% minimum — rentals can't be mortgage-insured",
+  "downPaymentMinimumOption": "Minimum",
+  "downPaymentModeLabel": "Down payment",
+  "downPaymentPercentMode": "Down payment (%)",
+  "duplicatePropertyName": "A property with this name already exists.",
+  "duplicateScenarioName": "A scenario with this name already exists for this property.",
+  "eachPropertyPrimary": "Each property is represented by its primary scenario.",
+  "eachSideNeedsScenario": "Each side needs a scenario to compare.",
+  "edit": "Edit",
+  "editExpense": "Edit expense",
+  "editExpenseSubtitle": "Update this expense item.",
+  "editExpenseTitle": "Edit expense",
+  "editIncome": "Edit income",
+  "editIncomeSubtitle": "Update this income item.",
+  "editIncomeTitle": "Edit income",
+  "editMortgage": "Edit mortgage",
+  "editProperty": "Edit property",
+  "editPropertyName": "Edit property name",
+  "editPropertySubtitle": "Update the property details.",
+  "editPropertyTitle": "Edit property",
+  "editStreetAddress": "Edit street or address",
+  "emptyExpenseMessage": "Add your first operating expense to complete the picture.",
+  "emptyExpenseTitle": "No expenses yet",
+  "emptyIncomeMessage": "Add your first income source to see your cash flow take shape.",
+  "emptyIncomeTitle": "No income yet",
+  "errorTitle": "Something went wrong",
+  "enterMortgageDetails": "Enter the balance, rate, and amortization; the app computes the monthly payment.",
+  "enterValidTerms": "Enter valid refinance terms to compare.",
+  "estimatedMonthlyPayment": "Estimated monthly payment",
+  "expenseNameHint": "e.g. Property tax",
+  "expenseTitle": "Expense",
+  "expensesTitle": "Expenses · {name}",
+  "explainerTitle": "What is {title}?",
+  "fieldAmount": "Amount",
+  "fieldCategory": "Category",
+  "fieldFrequency": "Frequency",
+  "fieldName": "Name",
+  "fieldNotes": "Notes",
+  "financialConventions": "Financial conventions",
+  "financialConventionsSubtitle": "How the app computes its numbers",
+  "financingAssumptions": "Financing assumptions for this scenario.",
+  "financingAssumptionsTitle": "Financing assumptions",
+  "financingExcludedNote": "Mortgage payment is treated as a financing cost and excluded from NOI.",
+  "financingLabel": "Financing",
+  "formAdd": "Add",
+  "formCancel": "Cancel",
+  "formSave": "Save",
+  "feedbackEmailSubject": "Rentable {version} feedback",
+  "@feedbackEmailSubject": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "feedbackEmailCopied": "No mail app available — the support address was copied to your clipboard.",
+  "feedbackSubtitle": "Report a bug or suggest an improvement",
+  "feedbackTitle": "Send feedback",
+  "frequenciesNote": "Frequencies are normalized: yearly ÷ 12, weekly × 52 ÷ 12.",
+  "frequencyField": "Frequency",
+  "frequencyMonthly": "Monthly",
+  "frequencyOneTime": "One-time",
+  "frequencyWeekly": "Weekly",
+  "frequencyYearly": "Yearly",
+  "yearPickerLabel": "Year",
+  "blank": "Blank",
+  "generatedBy": "Generated by Rentable.",
+  "grossRents": "Gross rents",
+  "guideAnalysisBody": "Pick two scenarios to compare them side by side: income, expenses, cash flow, financing, and the investor metrics below.",
+  "guideAnalysisTitle": "Analysis",
+  "guideDashboardBody": "The dashboard shows one property and scenario at a time, or — pick \"All Properties\" — your whole portfolio at once. The portfolio view sums each property\u2019s primary scenario, so it always reflects your reference numbers.",
+  "guideDashboardTitle": "Dashboard",
+  "guideIncomeBody": "Add the recurring income and operating expenses of a scenario: rent, laundry, property tax, insurance, maintenance. Each item has a frequency (monthly, yearly, weekly, one-time) and is normalized to a monthly amount.\n\nVacancy / income loss is set as a percentage of gross revenue on the Expenses tab.",
+  "guideIncomeTitle": "Income and expenses",
+  "guideMortgageBody": "Enter the balance, rate, and amortization; the app computes the monthly payment. Choose the rate type that matches the loan: Canada (semi-annual compounding) or US (monthly compounding).\n\nMortgage payments are financing costs: they reduce cash flow but are excluded from NOI, the standard convention.",
+  "guideMortgageTitle": "Mortgage",
+  "guidePropertiesBody": "A property is a building you track — a multiplex, a condo, a house. Add one from the Properties tab. Everything in the app (scenarios, income, expenses, mortgage) lives under a property.",
+  "guidePropertiesTitle": "Properties",
+  "guideScenariosBody": "Each property holds one or more scenarios: what-if variants of the same building. Model a refinance, a rent increase, or a purchase offer without touching your reference numbers.\n\nOne scenario is always the primary. It is the reference used for the All Properties dashboard and marks the current reality of the building. Copy any scenario to explore alternatives, then switch the primary when the alternative becomes the plan.",
+  "guideScenariosTitle": "Scenarios",
+  "howItWorks": "How the app works",
+  "howItWorksSubtitle": "Properties, scenarios, and cash flow basics",
+  "hypotheticalTerms": "Hypothetical refinance terms",
+  "incomeNameHint": "e.g. Unit 1 rent",
+  "incomeScreenTitle": "Income · {name}",
+  "incomeTitle": "Income",
+  "interestLabel": "Interest",
+  "interestRateLabel": "Interest rate",
+  "interestRatePercent": "Interest rate (%)",
+  "investorMetrics": "Investor Metrics",
+  "investorMetricsExplained": "Investor metrics explained",
+  "investorMetricsSubtitle": "DSCR, cap rate, cash-on-cash, LTV",
+  "investorMetricsTitle": "Investor metrics",
+  "loanAmountLabel": "Loan amount",
+  "loanDetails": "Loan details",
+  "ltvDisclaimer": "V1 assumption: potential borrowing is capped at 80% of property value. This is not a refinancing transaction or lender qualification result.",
+  "ltvLabel": "LTV",
+  "listingUrlHint": "Paste a listing link or Centris share text",
+  "listingUrlLabel": "Listing URL",
+  "listingUrlPrefillHelper": "Paste a listing link: the name, city, and units will be pre-filled.",
+  "listingPlexDetected": "Plex detected: {count} rent entries will be created.",
+  "@listingPlexDetected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "makePrimaryScenario": "Make primary scenario",
+  "manageScenarios": "Manage scenarios",
+  "manualMonthlyPayment": "Manual monthly payment",
+  "manualOverride": "Manual override",
+  "manualPaymentHint": "Enter a manual payment only if your actual payment differs from the calculated one.",
+  "maxMortgageBalance": "Maximum mortgage balance (80% LTV)",
+  "metricCapRate": "Cap Rate — Capitalization Rate",
+  "metricCapRateMeaning": "Annual net operating income divided by the property value. It answers: what yield would this property earn if bought all cash?",
+  "metricCapRateReading": "Higher means cheaper relative to its income. Use it to compare properties regardless of how they are financed.",
+  "metricCapRateShort": "Cap rate",
+  "metricCashOnCash": "Cash-on-Cash Return",
+  "metricCashOnCashMeaning": "Annual cash flow divided by the cash you actually invested (property value minus mortgage balance). It answers: what return am I earning on my money?",
+  "metricCashOnCashReading": "Higher means your down payment works harder. Unlike cap rate, it reflects your financing.",
+  "metricCashOnCashShort": "Cash-on-cash",
+  "metricDscr": "DSCR — Debt-Service Coverage Ratio",
+  "metricDscrMeaning": "Annual net operating income divided by annual mortgage payments. It answers: does the rent cover the loan?",
+  "metricDscrReading": "Above 1.20 is comfortable and what most lenders want to see. Below 1.00 means the property does not pay for itself.",
+  "metricDscrShort": "DSCR",
+  "metricLtv": "LTV — Loan-to-Value",
+  "metricLtvMeaning": "Mortgage balance divided by the property value. It answers: how much of the property does the lender own?",
+  "metricLtvReading": "Lower means more equity cushion. Most residential lenders cap insured mortgages around 80%.",
+  "metricLtvShort": "LTV",
+  "monthly": "Monthly",
+  "monthlyCashFlowChart": "MONTHLY CASH FLOW",
+  "monthlyCashFlowLabel": "Monthly cash flow",
+  "monthlyDifference": "Monthly difference",
+  "monthlyLabel": "Monthly",
+  "monthlyPayment": "Monthly payment",
+  "monthlyPaymentCalculated": "Monthly payment (calculated)",
+  "monthlyPaymentManual": "Monthly payment (manual override)",
+  "monthlyPerformance": "Monthly performance",
+  "mortgageBalance": "Mortgage balance",
+  "mortgageBalanceLabel": "Mortgage Balance",
+  "mortgageCalculatorSubtitle": "Estimate your monthly payment",
+  "mortgageCalculatorTitle": "Mortgage calculator",
+  "mortgageInterestNote": "Mortgage interest is an estimate (current monthly interest × 12) and appears here for tax purposes only — it is still excluded from NOI.",
+  "mortgageTitle": "Mortgage · {scenarioName}",
+  "nameHintExpense": "e.g. Property tax",
+  "nameHintIncome": "e.g. Unit 1 rent",
+  "nameLabel": "Name",
+  "navAnalysis": "Analysis",
+  "analyzeMode": "Analyze",
+  "@analyzeMode": {},
+  "compareMode": "Compare",
+  "@compareMode": {},
+  "scenarioFieldLabel": "Scenario",
+  "@scenarioFieldLabel": {},
+  "navDashboard": "Dashboard",
+  "navProperties": "Properties",
+  "navSettings": "Settings",
+  "needScenarioEachSide": "Each side needs a scenario to compare.\nAdd a scenario to continue.",
+  "netRentalIncome": "Net rental income",
+  "newBalance": "New balance",
+  "newInterestRate": "New interest rate (%)",
+  "newMortgagesDefault": "New mortgages default to Canadian semi-annual.",
+  "noExpenseCategories": "No operating expense categories yet.",
+  "noExpenses": "No operating expenses yet.",
+  "noIncomeCategories": "No income categories yet.",
+  "noIncomeItems": "No income items yet.",
+  "noOperatingExpenses": "No operating expenses yet.",
+  "noScenario": "No scenario",
+  "noiLabel": "NOI",
+  "noiShort": "NOI",
+  "notAvailable": "n/a",
+  "notesField": "Notes",
+  "notesOptional": "Optional",
+  "ok": "OK",
+  "oneTimeNote": "One-time items are stored but excluded from recurring monthly figures.",
+  "operatingExpensesLabel": "Operating expenses",
+  "optional": "Optional",
+  "paymentMode": "Payment mode",
+  "perMonthShort": "{amount} / mo",
+  "perWeekShort": "{amount} / wk",
+  "perYearShort": "{amount} / yr",
+  "percentOfGrossRevenue": "{rate}% of gross revenue",
+  "percentage": "Percentage",
+  "persistenceLoadError": "Unable to load local data.",
+  "pickTwoScenarios": "Pick two scenarios to compare them side by side: income, expenses, cash flow, financing, and the investor metrics below.",
+  "pie": "Pie",
+  "pieChart": "Pie",
+  "portfolioAnnualLine": "Annual {amount} across {count, plural, one {{count} property} other {{count} properties}}",
+  "portfolioCashFlow": "PORTFOLIO CASH FLOW",
+  "portfolioCashFlowLabel": "Portfolio cash flow",
+  "potentialAdditional": "Potential additional amount",
+  "potentialRefinanceTitle": "Potential additional refinance",
+  "ppSuffix": "pp",
+  "primaryBadge": "Primary",
+  "primaryForAllProperties": "Primary scenario is used for All Properties calculations",
+  "primaryScenarioCalculations": "Primary scenario is used for All Properties calculations",
+  "primaryScenarioNote": "Each property is represented by its primary scenario.",
+  "primaryScenarioTooltip": "Primary scenario",
+  "principalLabel": "Principal",
+  "propertiesTitle": "Properties",
+  "propertyActions": "Property actions",
+  "propertyAddressHint": "Optional",
+  "propertyAddressLabel": "Street or address",
+  "propertyFallbackName": "Property",
+  "propertyLabel": "Property",
+  "propertyMortgage": "Property / Mortgage",
+  "propertyName": "Property name",
+  "propertyNameHint": "e.g. Montreal Triplex",
+  "propertyNameLabel": "Property name",
+  "propertyValue": "Property Value",
+  "propertyValueLabel": "Property value",
+  "purchasePrice": "Purchase price",
+  "rateAmortLine": "Rate: {rate}  ·  Amortization: {amort}",
+  "rateAppSubtitle": "Enjoying the app? Leave a review on the App Store",
+  "rateAppTitle": "Rate Rentable",
+  "rateCompounding": "Rate compounding",
+  "rateLabel": "Rate: {rate}",
+  "rateType": "Rate type",
+  "recurringAnnualizedNote": "Based on recurring items, annualized. One-time items excluded.",
+  "refinanceMonthlyPayment": "Refinance monthly payment",
+  "refinanceOption": "Refinance",
+  "refinanceOptionSubtitle": "Duplicate the primary scenario with new mortgage terms",
+  "refinanceScenarioName": "Refi {rate}% / {term}",
+  "refinanceTotalInterest": "Refinance total interest",
+  "rentalIncomeLabel": "Rental Income",
+  "retry": "Retry",
+  "rowPropertyMortgage": "Property / mortgage",
+  "rowRentalIncome": "Rental income",
+  "rowVacancyLoss": "Vacancy / Income Loss",
+  "saveFailed": "Couldn't save. Please try again.",
+  "saveAsScenario": "Save as scenario",
+  "scenarioA": "Scenario A",
+  "scenarioB": "Scenario B",
+  "scenarioName": "Scenario name",
+  "scenarioNameHint": "e.g. Refinanced at 4.5%",
+  "scenarioNameLabel": "Scenario name",
+  "scenarioNotFound": "Scenario not found.",
+  "scenariosTitle": "Scenarios",
+  "scheduleSection": "Schedule",
+  "selectPropertyScenario": "Select a property and scenario to begin.",
+  "selectPropertyToBegin": "Select a property and scenario to begin.",
+  "selectScenario": "Select a scenario",
+  "selectScenarioFinancing": "Select a scenario to edit financing.",
+  "selectTwoScenarios": "Select two different scenarios to compare.",
+  "settingsAbout": "About",
+  "settingsLearn": "Learn",
+  "shareDealSnapshot": "Share deal snapshot",
+  "shareTaxSummary": "Share tax summary",
+  "sheetDone": "Done",
+  "startFrom": "Start from",
+  "startFromPropertySubtitle": "Choose whether to start from scratch or copy an existing property.",
+  "startFromScenarioSubtitle": "Copy the numbers from an existing scenario or start empty.",
+  "startFromSubtitle": "Choose whether to start from scratch or copy an existing property.",
+  "startFromTitle": "Start from",
+  "statExpenses": "Expenses",
+  "statIncome": "Income",
+  "statInterest": "Interest",
+  "statInterestRate": "Interest Rate",
+  "statMortgage": "Mortgage",
+  "statPrincipal": "Principal",
+  "streetAddress": "Street or address",
+  "t776Header": "Expenses (CRA T776 categories):",
+  "taxCategoryAdvertising": "Advertising",
+  "taxCategoryInsurance": "Insurance",
+  "taxCategoryInterest": "Interest",
+  "taxCategoryMaintenanceRepairs": "Maintenance and repairs",
+  "taxCategoryManagementAdmin": "Management and administration",
+  "taxCategoryOffice": "Office expenses",
+  "taxCategoryOther": "Other expenses",
+  "taxCategoryProfessionalFees": "Professional fees",
+  "taxCategoryPropertyTaxes": "Property taxes",
+  "taxCategoryTravel": "Travel",
+  "taxCategoryUtilities": "Utilities",
+  "taxExportBasis": "Based on recurring items, annualized. One-time items excluded.",
+  "taxExportInterestNote": "Interest is an estimate (current monthly mortgage interest x 12).",
+  "taxExportScenario": "Scenario: {scenarioName}",
+  "taxExportTitle": "Rental income tax summary — {propertyName} ({year})",
+  "taxSummary": "Tax summary",
+  "taxSummaryBasisNote": "Based on the primary scenario \"{name}\", annualized. Mortgage interest is an estimate (current monthly interest × 12) and appears here for tax purposes only — it is still excluded from NOI.",
+  "testRefinance": "Test a refinance…",
+  "taxSummaryButton": "Tax summary",
+  "taxSummaryTitle": "Tax summary · {propertyName}",
+  "taxYear": "Tax year",
+  "toolsSection": "Tools",
+  "totalExpenses": "Total expenses",
+  "totalInterestDifference": "Total interest difference",
+  "totalInterestNote": "Total interest is simulated over each loan's full amortization.",
+  "totalInterestOverAmortization": "Total interest over amortization",
+  "unableToCalculate": "Unable to calculate this scenario.\n{error}",
+  "unableToLoadData": "Unable to load your data.\n{error}",
+  "us": "US",
+  "usCompounding": "Monthly compounding",
+  "vacancyModeAmount": "Amount",
+  "vacancyModePercent": "Percent",
+  "vacancyOfGrossRent": "{percent} of gross rent",
+  "validationDownPaymentPercentRange": "Down payment must be less than 100%",
+  "validationEnterAmount": "Enter a valid amount",
+  "validationEnterAnAmount": "Enter an amount",
+  "validationAmortizationRange": "Enter 1 to 30 years",
+  "validationEnterName": "Enter a name",
+  "validationEnterNonNegative": "Enter a valid non-negative number",
+  "validationEnterPercentage": "Enter a percentage from 0 to 100",
+  "validationEnterPropertyName": "Enter a property name",
+  "validationEnterScenarioName": "Enter a scenario name",
+  "validationInvalidUrl": "Enter a valid URL starting with http:// or https://",
+  "validationMonthsRange": "Months must be between 0 and 11.",
+  "validationPercentRange": "Enter a percentage from 0 to 100",
+  "validationDownPaymentRange": "Down payment must be less than the purchase price",
+  "amortizationCappedNote": "Amortization limited to 25 years with less than 20% down.",
+  "amortizationYearsLabel": "Amortization (years)",
+  "bindingConstraintGds": "Housing costs are the limit (GDS ratio).",
+  "bindingConstraintTds": "Total debts are the limit (TDS ratio).",
+  "borrowingCapacityDisclaimer": "Estimate only, based on standard GDS/TDS guidelines and the federal mortgage stress test. Not financial advice or a pre-approval — actual lenders weigh more factors.",
+  "borrowingCapacityEnterTerms": "Enter your income and debts to see your estimate.",
+  "borrowingCapacitySubtitle": "Estimate how much you could borrow under standard Canadian lending rules.",
+  "borrowingCapacityTitle": "Borrowing capacity",
+  "creditScoreNote": "Your credit score doesn't change this math — it changes the rate you qualify for. That's where a good score pays off.",
+  "estimateBorrowingCapacity": "Estimate your borrowing capacity",
+  "estimatesSection": "Estimates",
+  "estimatesSectionSubtitle": "Prefilled estimates for the future property — adjust anything to your situation.",
+  "expectedMortgageRate": "Expected mortgage rate",
+  "expectedMortgageRateHint": "Typical 5-year fixed — adjust to your situation.",
+  "grossAnnualIncome": "Gross annual household income",
+  "incomeAndDebts": "Income and debts",
+  "investmentDownPaymentError": "For an investment property, the down payment must be at least 20% of the purchase price — about {required} on a {price} purchase.",
+  "investmentPropertyNote": "Rough estimate — lenders assess rental properties differently and may include part of the rental income, which this tool doesn't model.",
+  "maxMortgageAmount": "Maximum mortgage",
+  "maxPurchasePrice": "Maximum purchase price",
+  "minimumDownPayment": "Minimum down payment",
+  "monthlyDebtPayments": "Existing monthly debt payments",
+  "monthlyHeating": "Monthly heating estimate",
+  "monthlyPaymentAtContractRate": "Monthly payment (at your rate)",
+  "mortgageAmortization": "Mortgage amortization",
+  "mortgageAmortizationHint": "How many years to pay off the loan — longer means smaller payments but more interest.",
+  "percentValue": "{value}%",
+  "propertyTaxPercent": "Property tax (% of price)",
+  "propertyUseInvestment": "Investment property",
+  "propertyUseLabel": "Property use",
+  "propertyUsePrincipal": "Principal residence",
+  "qualifyingRate": "Qualifying rate (stress test)",
+  "rateSensitivity": "Rate sensitivity",
+  "validationEnterPositive": "Enter a valid positive number",
+  "versionLabel": "Version {version}",
+  "viewListing": "View listing",
+  "whatIfDisclaimer": "This is a what-if comparison, not a lender offer.",
+  "whatIs": "What is {title}?",
+  "invoicesTitle": "Invoices",
+  "invoicesEmptyTitle": "No invoices yet",
+  "invoicesEmptySubtitle": "Create your first invoice to get started.",
+  "settingsTitle": "Settings"
+}
