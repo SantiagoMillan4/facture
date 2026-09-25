@@ -971,5 +971,40 @@
   "dashboardPaidMonth": "Paid this month",
   "dashboardClients": "Clients",
   "dashboardRecent": "Recent invoices",
-  "dashboardRecentEmpty": "Your latest invoices will appear here."
+  "dashboardRecentEmpty": "Your latest invoices will appear here.",
+  "proTitle": "Facture Pro",
+  "proSubtitle": "Unlock unlimited invoicing",
+  "proFeatureUnlimited": "Unlimited invoices",
+  "proFeatureOneTime": "One-time purchase — yours forever",
+  "proFeatureNoSubscription": "No subscription, no ads",
+  "proBuy": "Buy for {price}",
+  "@proBuy": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proActive": "Pro active",
+  "proRestore": "Restore purchases",
+  "proRestoring": "Restoring…",
+  "proNoticeUnavailable": "Purchases are unavailable right now. Please try again later.",
+  "proNoticeFailed": "The purchase didn't go through. Please try again.",
+  "proNoticeRestored": "Your Pro purchase was restored.",
+  "proNoticeNothingToRestore": "No previous purchase found for this Apple ID.",
+  "proFinePrint": "Payment is charged to your Apple ID. One-time purchase, no subscription.",
+  "proFreeLimit": "Free plan: {used} of {total} invoices used",
+  "@proFreeLimit": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsPro": "Facture Pro",
+  "settingsProSubtitleActive": "Unlimited invoices",
+  "settingsProSection": "Subscription"
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -8,6 +9,9 @@ import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/form_section_title.dart';
 import '../../business/presentation/business_profile_screen.dart';
+import '../../purchase/application/purchase_providers.dart';
+import '../../purchase/domain/purchase_catalog.dart';
+import '../../purchase/presentation/paywall_sheet.dart';
 import 'how_it_works_screen.dart';
 import 'tax_calculator_screen.dart';
 import 'tax_explainer_screen.dart';
@@ -56,17 +60,29 @@ Future<void> _requestAppReview() async {
   }
 }
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final purchaseAsync = ref.watch(purchaseProvider);
+    final usedInvoices = ref.watch(invoiceCountProvider);
+    final isPro = purchaseAsync.valueOrNull?.isPro ?? false;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.navSettings)),
       body: ListView(
         padding: AppSpacing.screenPadding,
         children: [
+          FormSectionTitle(title: l10n.settingsProSection),
+          _ProTile(
+            isPro: isPro,
+            subtitle: isPro
+                ? l10n.settingsProSubtitleActive
+                : l10n.proFreeLimit(
+                    usedInvoices, PurchaseCatalog.freeInvoiceLimit),
+            onTap: () => showPaywallSheet(context),
+          ),
           FormSectionTitle(title: l10n.settingsBusiness),
           _SettingsTile(
             icon: Icons.business_outlined,
@@ -162,6 +178,53 @@ class _BrandTile extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// Highlighted Facture Pro row: shows the entitlement status and opens the
+/// paywall.
+class _ProTile extends StatelessWidget {
+  const _ProTile({
+    required this.isPro,
+    required this.subtitle,
+    required this.onTap,
+  });
+
+  final bool isPro;
+  final String subtitle;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Card(
+      margin: const EdgeInsets.only(bottom: AppSpacing.md),
+      color: theme.colorScheme.primaryContainer,
+      child: ListTile(
+        leading: Icon(
+          isPro ? Icons.workspace_premium : Icons.workspace_premium_outlined,
+          color: theme.colorScheme.onPrimaryContainer,
+        ),
+        title: Text(
+          'Facture Pro',
+          style: TextStyle(
+            color: theme.colorScheme.onPrimaryContainer,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: TextStyle(
+            color: theme.colorScheme.onPrimaryContainer.withValues(alpha: 0.8),
+          ),
+        ),
+        trailing: Icon(
+          isPro ? Icons.check_circle : Icons.chevron_right,
+          color: theme.colorScheme.onPrimaryContainer,
+        ),
+        onTap: onTap,
       ),
     );
   }

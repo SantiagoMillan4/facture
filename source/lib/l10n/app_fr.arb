@@ -961,5 +961,40 @@
   "dashboardPaidMonth": "Payées ce mois-ci",
   "dashboardClients": "Clients",
   "dashboardRecent": "Factures récentes",
-  "dashboardRecentEmpty": "Vos dernières factures apparaîtront ici."
+  "dashboardRecentEmpty": "Vos dernières factures apparaîtront ici.",
+  "proTitle": "Facture Pro",
+  "proSubtitle": "Débloquez la facturation illimitée",
+  "proFeatureUnlimited": "Factures illimitées",
+  "proFeatureOneTime": "Achat unique — à vous pour toujours",
+  "proFeatureNoSubscription": "Sans abonnement, sans publicité",
+  "proBuy": "Acheter — {price}",
+  "@proBuy": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      }
+    }
+  },
+  "proActive": "Pro actif",
+  "proRestore": "Restaurer les achats",
+  "proRestoring": "Restauration…",
+  "proNoticeUnavailable": "Les achats sont indisponibles pour le moment. Réessayez plus tard.",
+  "proNoticeFailed": "L'achat n'a pas abouti. Veuillez réessayer.",
+  "proNoticeRestored": "Votre achat Pro a été restauré.",
+  "proNoticeNothingToRestore": "Aucun achat précédent trouvé pour cet identifiant Apple.",
+  "proFinePrint": "Le paiement est débité de votre identifiant Apple. Achat unique, sans abonnement.",
+  "proFreeLimit": "Plan gratuit : {used} factures sur {total} utilisées",
+  "@proFreeLimit": {
+    "placeholders": {
+      "used": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "settingsPro": "Facture Pro",
+  "settingsProSubtitleActive": "Factures illimitées",
+  "settingsProSection": "Abonnement"
 }

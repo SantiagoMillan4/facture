@@ -3601,6 +3601,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Your latest invoices will appear here.'**
   String get dashboardRecentEmpty;
+
+  /// No description provided for @proTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Facture Pro'**
+  String get proTitle;
+
+  /// No description provided for @proSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock unlimited invoicing'**
+  String get proSubtitle;
+
+  /// No description provided for @proFeatureUnlimited.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited invoices'**
+  String get proFeatureUnlimited;
+
+  /// No description provided for @proFeatureOneTime.
+  ///
+  /// In en, this message translates to:
+  /// **'One-time purchase — yours forever'**
+  String get proFeatureOneTime;
+
+  /// No description provided for @proFeatureNoSubscription.
+  ///
+  /// In en, this message translates to:
+  /// **'No subscription, no ads'**
+  String get proFeatureNoSubscription;
+
+  /// No description provided for @proBuy.
+  ///
+  /// In en, this message translates to:
+  /// **'Buy for {price}'**
+  String proBuy(String price);
+
+  /// No description provided for @proActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Pro active'**
+  String get proActive;
+
+  /// No description provided for @proRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore purchases'**
+  String get proRestore;
+
+  /// No description provided for @proRestoring.
+  ///
+  /// In en, this message translates to:
+  /// **'Restoring…'**
+  String get proRestoring;
+
+  /// No description provided for @proNoticeUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Purchases are unavailable right now. Please try again later.'**
+  String get proNoticeUnavailable;
+
+  /// No description provided for @proNoticeFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The purchase didn\'t go through. Please try again.'**
+  String get proNoticeFailed;
+
+  /// No description provided for @proNoticeRestored.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Pro purchase was restored.'**
+  String get proNoticeRestored;
+
+  /// No description provided for @proNoticeNothingToRestore.
+  ///
+  /// In en, this message translates to:
+  /// **'No previous purchase found for this Apple ID.'**
+  String get proNoticeNothingToRestore;
+
+  /// No description provided for @proFinePrint.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment is charged to your Apple ID. One-time purchase, no subscription.'**
+  String get proFinePrint;
+
+  /// No description provided for @proFreeLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Free plan: {used} of {total} invoices used'**
+  String proFreeLimit(int used, int total);
+
+  /// No description provided for @settingsPro.
+  ///
+  /// In en, this message translates to:
+  /// **'Facture Pro'**
+  String get settingsPro;
+
+  /// No description provided for @settingsProSubtitleActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited invoices'**
+  String get settingsProSubtitleActive;
+
+  /// No description provided for @settingsProSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Subscription'**
+  String get settingsProSection;
 }
 
 class _AppLocalizationsDelegate

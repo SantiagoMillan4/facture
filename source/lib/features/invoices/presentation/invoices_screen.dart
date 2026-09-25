@@ -15,6 +15,8 @@ import '../domain/quebec_tax.dart';
 import '../../clients/application/clients_providers.dart';
 import '../application/invoices_providers.dart';
 import '../domain/invoice.dart';
+import '../../purchase/application/purchase_providers.dart';
+import '../../purchase/presentation/paywall_sheet.dart';
 import 'invoice_form_screen.dart';
 
 /// Invoice list — the app's main feature tab. Newest first, swipe to
@@ -24,6 +26,15 @@ class InvoicesScreen extends ConsumerWidget {
 
   void _openForm(BuildContext context, [Invoice? invoice]) {
     pushAppPage(context, (_) => InvoiceFormScreen(invoice: invoice));
+  }
+
+  /// Opens the invoice form, or the paywall once the free tier is used up.
+  void _openFormOrPaywall(BuildContext context, WidgetRef ref) {
+    if (ref.read(canCreateInvoiceProvider)) {
+      _openForm(context);
+    } else {
+      showPaywallSheet(context);
+    }
   }
 
   @override
@@ -48,7 +59,7 @@ class InvoicesScreen extends ConsumerWidget {
               title: l10n.invoicesEmptyTitle,
               message: l10n.invoicesEmptySubtitle,
               actionLabel: l10n.newInvoice,
-              onAction: () => _openForm(context),
+              onAction: () => _openFormOrPaywall(context, ref),
             );
           }
           final sorted = List<Invoice>.of(invoices)
@@ -69,7 +80,7 @@ class InvoicesScreen extends ConsumerWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _openForm(context),
+        onPressed: () => _openFormOrPaywall(context, ref),
         tooltip: l10n.newInvoice,
         child: const Icon(Icons.add),
       ),

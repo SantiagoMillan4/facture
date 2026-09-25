@@ -1983,4 +1983,66 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dashboardRecentEmpty => 'Your latest invoices will appear here.';
+
+  @override
+  String get proTitle => 'Facture Pro';
+
+  @override
+  String get proSubtitle => 'Unlock unlimited invoicing';
+
+  @override
+  String get proFeatureUnlimited => 'Unlimited invoices';
+
+  @override
+  String get proFeatureOneTime => 'One-time purchase — yours forever';
+
+  @override
+  String get proFeatureNoSubscription => 'No subscription, no ads';
+
+  @override
+  String proBuy(String price) {
+    return 'Buy for $price';
+  }
+
+  @override
+  String get proActive => 'Pro active';
+
+  @override
+  String get proRestore => 'Restore purchases';
+
+  @override
+  String get proRestoring => 'Restoring…';
+
+  @override
+  String get proNoticeUnavailable =>
+      'Purchases are unavailable right now. Please try again later.';
+
+  @override
+  String get proNoticeFailed =>
+      'The purchase didn\'t go through. Please try again.';
+
+  @override
+  String get proNoticeRestored => 'Your Pro purchase was restored.';
+
+  @override
+  String get proNoticeNothingToRestore =>
+      'No previous purchase found for this Apple ID.';
+
+  @override
+  String get proFinePrint =>
+      'Payment is charged to your Apple ID. One-time purchase, no subscription.';
+
+  @override
+  String proFreeLimit(int used, int total) {
+    return 'Free plan: $used of $total invoices used';
+  }
+
+  @override
+  String get settingsPro => 'Facture Pro';
+
+  @override
+  String get settingsProSubtitleActive => 'Unlimited invoices';
+
+  @override
+  String get settingsProSection => 'Subscription';
 }

@@ -2003,4 +2003,65 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get dashboardRecentEmpty => 'Vos dernières factures apparaîtront ici.';
+
+  @override
+  String get proTitle => 'Facture Pro';
+
+  @override
+  String get proSubtitle => 'Débloquez la facturation illimitée';
+
+  @override
+  String get proFeatureUnlimited => 'Factures illimitées';
+
+  @override
+  String get proFeatureOneTime => 'Achat unique — à vous pour toujours';
+
+  @override
+  String get proFeatureNoSubscription => 'Sans abonnement, sans publicité';
+
+  @override
+  String proBuy(String price) {
+    return 'Acheter — $price';
+  }
+
+  @override
+  String get proActive => 'Pro actif';
+
+  @override
+  String get proRestore => 'Restaurer les achats';
+
+  @override
+  String get proRestoring => 'Restauration…';
+
+  @override
+  String get proNoticeUnavailable =>
+      'Les achats sont indisponibles pour le moment. Réessayez plus tard.';
+
+  @override
+  String get proNoticeFailed => 'L\'achat n\'a pas abouti. Veuillez réessayer.';
+
+  @override
+  String get proNoticeRestored => 'Votre achat Pro a été restauré.';
+
+  @override
+  String get proNoticeNothingToRestore =>
+      'Aucun achat précédent trouvé pour cet identifiant Apple.';
+
+  @override
+  String get proFinePrint =>
+      'Le paiement est débité de votre identifiant Apple. Achat unique, sans abonnement.';
+
+  @override
+  String proFreeLimit(int used, int total) {
+    return 'Plan gratuit : $used factures sur $total utilisées';
+  }
+
+  @override
+  String get settingsPro => 'Facture Pro';
+
+  @override
+  String get settingsProSubtitleActive => 'Factures illimitées';
+
+  @override
+  String get settingsProSection => 'Abonnement';
 }
