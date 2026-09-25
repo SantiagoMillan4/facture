@@ -1649,6 +1649,101 @@ class AppLocalizationsEn extends AppLocalizations {
       'Create your first invoice to get started.';
 
   @override
+  String get done => 'Done';
+
+  @override
+  String get invoiceNewTitle => 'New invoice';
+
+  @override
+  String get invoiceEditTitle => 'Edit invoice';
+
+  @override
+  String get invoiceNumberLabel => 'Invoice number';
+
+  @override
+  String get invoiceClientLabel => 'Client';
+
+  @override
+  String get invoiceSelectClient => 'Select a client';
+
+  @override
+  String get invoiceClientRequired => 'Please select a client.';
+
+  @override
+  String get invoiceNewClient => 'New client';
+
+  @override
+  String get invoiceIssueDate => 'Issue date';
+
+  @override
+  String get invoiceDueDate => 'Due date';
+
+  @override
+  String get invoiceStatusLabel => 'Status';
+
+  @override
+  String get statusDraft => 'Draft';
+
+  @override
+  String get statusSent => 'Sent';
+
+  @override
+  String get statusPaid => 'Paid';
+
+  @override
+  String get statusOverdue => 'Overdue';
+
+  @override
+  String get invoiceChargeTaxes => 'Charge TPS/TVQ';
+
+  @override
+  String get invoiceChargeTaxesHelper =>
+      'Turn off if you\'re a small supplier (not registered for TPS/TVQ).';
+
+  @override
+  String get invoiceLinesLabel => 'Line items';
+
+  @override
+  String get invoiceAddLine => 'Add line';
+
+  @override
+  String get invoiceLineDescription => 'Description';
+
+  @override
+  String get invoiceLineQty => 'Qty';
+
+  @override
+  String get invoiceLineUnitPrice => 'Unit price';
+
+  @override
+  String get invoiceLinesRequired => 'Add at least one line item.';
+
+  @override
+  String get invoiceNotesLabel => 'Notes';
+
+  @override
+  String get invoiceNotesHint => 'Thank you for your business…';
+
+  @override
+  String get invoiceSubtotal => 'Subtotal';
+
+  @override
+  String get invoiceTotal => 'Total';
+
+  @override
+  String get invoiceDeleteTitle => 'Delete invoice?';
+
+  @override
+  String invoiceDeleteMessage(Object number) {
+    return 'Invoice \"$number\" will be permanently deleted.';
+  }
+
+  @override
+  String invoiceDueOn(Object date) {
+    return 'Due $date';
+  }
+
+  @override
   String get newInvoice => 'New invoice';
 
   @override

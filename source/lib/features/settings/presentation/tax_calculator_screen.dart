@@ -35,16 +35,7 @@ class _TaxCalculatorScreenState extends State<TaxCalculatorScreen> {
 
   /// Parses the amount field leniently: accepts both `115.47` and
   /// `115,47` (French decimal comma), ignores stray spaces and `$`.
-  int get _inputCents {
-    final cleaned = _amountController.text
-        .replaceAll(' ', '')
-        .replaceAll('\u00a0', '')
-        .replaceAll('\$', '')
-        .replaceAll(',', '.');
-    final value = double.tryParse(cleaned);
-    if (value == null || value.isNaN) return 0;
-    return dollarsToCents(value.clamp(0, 999999999).toDouble());
-  }
+  int get _inputCents => parseAmountToCents(_amountController.text);
 
   @override
   Widget build(BuildContext context) {

@@ -166,3 +166,29 @@ String formatPercent(double value) {
   final text = value.toStringAsFixed(2);
   return '${text == '-0.00' ? '0.00' : text}%';
 }
+
+/// Parses a user-typed amount to integer cents.
+///
+/// Lenient on purpose: accepts `115.47` and `115,47` (French decimal
+/// comma), ignores spaces and `$`. Unparseable input is 0, never an
+/// exception — form fields re-validate separately.
+int parseAmountToCents(String text) {
+  final cleaned = text
+      .replaceAll(' ', '')
+      .replaceAll('\u00a0', '')
+      .replaceAll('\u202f', '')
+      .replaceAll('\$', '')
+      .replaceAll(',', '.');
+  final value = double.tryParse(cleaned);
+  if (value == null || value.isNaN) return 0;
+  final clamped = value.clamp(0, 999999999).toDouble();
+  return (clamped * 100).round();
+}
+
+/// Parses a user-typed quantity (allows decimals, e.g. 2.5 hours).
+double parseQuantity(String text) {
+  final cleaned = text.replaceAll(' ', '').replaceAll(',', '.');
+  final value = double.tryParse(cleaned);
+  if (value == null || value.isNaN) return 0;
+  return value.clamp(0, 999999).toDouble();
+}

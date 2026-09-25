@@ -1669,6 +1669,101 @@ class AppLocalizationsFr extends AppLocalizations {
       'Créez votre première facture pour commencer.';
 
   @override
+  String get done => 'Terminé';
+
+  @override
+  String get invoiceNewTitle => 'Nouvelle facture';
+
+  @override
+  String get invoiceEditTitle => 'Modifier la facture';
+
+  @override
+  String get invoiceNumberLabel => 'Numéro de facture';
+
+  @override
+  String get invoiceClientLabel => 'Client';
+
+  @override
+  String get invoiceSelectClient => 'Choisir un client';
+
+  @override
+  String get invoiceClientRequired => 'Veuillez choisir un client.';
+
+  @override
+  String get invoiceNewClient => 'Nouveau client';
+
+  @override
+  String get invoiceIssueDate => 'Date d\'émission';
+
+  @override
+  String get invoiceDueDate => 'Date d\'échéance';
+
+  @override
+  String get invoiceStatusLabel => 'Statut';
+
+  @override
+  String get statusDraft => 'Brouillon';
+
+  @override
+  String get statusSent => 'Envoyée';
+
+  @override
+  String get statusPaid => 'Payée';
+
+  @override
+  String get statusOverdue => 'En retard';
+
+  @override
+  String get invoiceChargeTaxes => 'Percevoir TPS/TVQ';
+
+  @override
+  String get invoiceChargeTaxesHelper =>
+      'Désactivez si vous êtes un petit fournisseur (non inscrit aux TPS/TVQ).';
+
+  @override
+  String get invoiceLinesLabel => 'Lignes';
+
+  @override
+  String get invoiceAddLine => 'Ajouter une ligne';
+
+  @override
+  String get invoiceLineDescription => 'Description';
+
+  @override
+  String get invoiceLineQty => 'Qté';
+
+  @override
+  String get invoiceLineUnitPrice => 'Prix unitaire';
+
+  @override
+  String get invoiceLinesRequired => 'Ajoutez au moins une ligne.';
+
+  @override
+  String get invoiceNotesLabel => 'Notes';
+
+  @override
+  String get invoiceNotesHint => 'Merci de votre confiance…';
+
+  @override
+  String get invoiceSubtotal => 'Sous-total';
+
+  @override
+  String get invoiceTotal => 'Total';
+
+  @override
+  String get invoiceDeleteTitle => 'Supprimer la facture ?';
+
+  @override
+  String invoiceDeleteMessage(Object number) {
+    return 'La facture « $number » sera définitivement supprimée.';
+  }
+
+  @override
+  String invoiceDueOn(Object date) {
+    return 'Échéance : $date';
+  }
+
+  @override
   String get newInvoice => 'Nouvelle facture';
 
   @override

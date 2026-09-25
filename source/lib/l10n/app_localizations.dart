@@ -2978,6 +2978,186 @@ abstract class AppLocalizations {
   /// **'Create your first invoice to get started.'**
   String get invoicesEmptySubtitle;
 
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @invoiceNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New invoice'**
+  String get invoiceNewTitle;
+
+  /// No description provided for @invoiceEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit invoice'**
+  String get invoiceEditTitle;
+
+  /// No description provided for @invoiceNumberLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice number'**
+  String get invoiceNumberLabel;
+
+  /// No description provided for @invoiceClientLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Client'**
+  String get invoiceClientLabel;
+
+  /// No description provided for @invoiceSelectClient.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a client'**
+  String get invoiceSelectClient;
+
+  /// No description provided for @invoiceClientRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a client.'**
+  String get invoiceClientRequired;
+
+  /// No description provided for @invoiceNewClient.
+  ///
+  /// In en, this message translates to:
+  /// **'New client'**
+  String get invoiceNewClient;
+
+  /// No description provided for @invoiceIssueDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Issue date'**
+  String get invoiceIssueDate;
+
+  /// No description provided for @invoiceDueDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Due date'**
+  String get invoiceDueDate;
+
+  /// No description provided for @invoiceStatusLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get invoiceStatusLabel;
+
+  /// No description provided for @statusDraft.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft'**
+  String get statusDraft;
+
+  /// No description provided for @statusSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent'**
+  String get statusSent;
+
+  /// No description provided for @statusPaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get statusPaid;
+
+  /// No description provided for @statusOverdue.
+  ///
+  /// In en, this message translates to:
+  /// **'Overdue'**
+  String get statusOverdue;
+
+  /// No description provided for @invoiceChargeTaxes.
+  ///
+  /// In en, this message translates to:
+  /// **'Charge TPS/TVQ'**
+  String get invoiceChargeTaxes;
+
+  /// No description provided for @invoiceChargeTaxesHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off if you\'re a small supplier (not registered for TPS/TVQ).'**
+  String get invoiceChargeTaxesHelper;
+
+  /// No description provided for @invoiceLinesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Line items'**
+  String get invoiceLinesLabel;
+
+  /// No description provided for @invoiceAddLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Add line'**
+  String get invoiceAddLine;
+
+  /// No description provided for @invoiceLineDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get invoiceLineDescription;
+
+  /// No description provided for @invoiceLineQty.
+  ///
+  /// In en, this message translates to:
+  /// **'Qty'**
+  String get invoiceLineQty;
+
+  /// No description provided for @invoiceLineUnitPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit price'**
+  String get invoiceLineUnitPrice;
+
+  /// No description provided for @invoiceLinesRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one line item.'**
+  String get invoiceLinesRequired;
+
+  /// No description provided for @invoiceNotesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get invoiceNotesLabel;
+
+  /// No description provided for @invoiceNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Thank you for your business…'**
+  String get invoiceNotesHint;
+
+  /// No description provided for @invoiceSubtotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtotal'**
+  String get invoiceSubtotal;
+
+  /// No description provided for @invoiceTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get invoiceTotal;
+
+  /// No description provided for @invoiceDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete invoice?'**
+  String get invoiceDeleteTitle;
+
+  /// No description provided for @invoiceDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice \"{number}\" will be permanently deleted.'**
+  String invoiceDeleteMessage(Object number);
+
+  /// No description provided for @invoiceDueOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Due {date}'**
+  String invoiceDueOn(Object date);
+
   /// No description provided for @newInvoice.
   ///
   /// In en, this message translates to:
