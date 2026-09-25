@@ -8,11 +8,15 @@ import '../../../shared/widgets/app_haptics.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/labeled_choice_field.dart';
 import '../../../shared/widgets/labeled_fields.dart';
+import '../../business/application/business_profile_providers.dart';
+import '../../business/domain/business_profile.dart';
+import '../../business/presentation/business_profile_screen.dart';
 import '../../clients/application/clients_providers.dart';
 import '../../clients/domain/client.dart';
 import '../application/invoices_providers.dart';
 import '../domain/invoice.dart';
 import '../domain/quebec_tax.dart';
+import '../pdf/share_invoice_pdf.dart';
 import 'client_picker_screen.dart';
 import 'invoice_line_card.dart';
 import 'invoice_totals_card.dart';
@@ -40,6 +44,9 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
   late DateTime _dueDate;
   InvoiceStatus _status = InvoiceStatus.draft;
   bool _chargeTaxes = true;
+  // Set once the user manually flips the tax toggle: after that the
+  // business profile no longer drives the default.
+  var _taxesTouched = false;
   late List<LineDraft> _lines;
   String? _clientError;
   String? _linesError;
@@ -57,6 +64,10 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
       );
       _issueDate = DateTime.now();
       _dueDate = DateTime.now().add(const Duration(days: 30));
+      // The tax default follows the declared business profile (small
+      // supplier → off). The profile loads async, so the reconciliation
+      // happens in build() once it arrives; no profile yet → taxes on,
+      // the common case, with a nudge to set up the profile.
       _lines = [LineDraft()];
     } else {
       _numberController = TextEditingController(text: invoice.number);
@@ -104,6 +115,18 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
     chargeTaxes: _chargeTaxes,
   );
 
+  /// Applies the business profile's tax default to a new invoice once the
+  /// profile finishes loading. Never overrides an existing invoice or a
+  /// toggle the user flipped themselves.
+  void _reconcileTaxDefault(BusinessProfile? profile) {
+    if (widget.invoice != null || _taxesTouched || profile == null) return;
+    final shouldCharge = profile.chargesTaxes;
+    if (_chargeTaxes == shouldCharge) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) setState(() => _chargeTaxes = shouldCharge);
+    });
+  }
+
   Future<void> _pickClient() async {
     final client = await pushAppPage<Client>(
       context,
@@ -117,7 +140,9 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
     }
   }
 
-  Future<void> _save() async {
+  /// Validates the form, showing inline errors. Returns the invoice built
+  /// from the current form state, or null when invalid.
+  Invoice? _validate() {
     final l10n = context.l10n;
     var ok = true;
     if (_clientId == null) {
@@ -129,11 +154,9 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
       setState(() => _linesError = l10n.invoiceLinesRequired);
       ok = false;
     }
-    if (!ok) return;
-
-    setState(() => _saving = true);
+    if (!ok) return null;
     final existing = widget.invoice;
-    final invoice = Invoice(
+    return Invoice(
       id: existing?.id ?? newInvoiceId(),
       number: _numberController.text.trim().isEmpty
           ? nextInvoiceNumber(ref.read(invoicesProvider).valueOrNull ?? [])
@@ -147,9 +170,34 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
       chargeTaxes: _chargeTaxes,
       paidDate: existing?.paidDate,
     );
+  }
+
+  Future<void> _save() async {
+    final invoice = _validate();
+    if (invoice == null) return;
+    setState(() => _saving = true);
     AppHaptics.confirm();
     await ref.read(invoicesProvider.notifier).saveInvoice(invoice);
     if (mounted) Navigator.of(context).pop();
+  }
+
+  /// Renders the current form state as a PDF and opens the share sheet.
+  /// The invoice doesn't need to be saved first.
+  Future<void> _sharePdf() async {
+    final invoice = _validate();
+    if (invoice == null) return;
+    final clients = ref.read(clientsProvider).valueOrNull ?? [];
+    final client = clients.where((c) => c.id == invoice.clientId).firstOrNull;
+    if (client == null || !mounted) return;
+    final l10n = context.l10n;
+    final profile = ref.read(businessProfileProvider).valueOrNull;
+    AppHaptics.confirm();
+    await shareInvoicePdf(
+      invoice: invoice,
+      client: client,
+      profile: profile,
+      l10n: l10n,
+    );
   }
 
   @override
@@ -157,6 +205,7 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
     final l10n = context.l10n;
     final clients = ref.watch(clientsProvider).valueOrNull ?? [];
     final client = clients.where((c) => c.id == _clientId).firstOrNull;
+    _reconcileTaxDefault(ref.watch(businessProfileProvider).valueOrNull);
 
     return Scaffold(
       appBar: AppBar(
@@ -164,6 +213,11 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
           widget.invoice == null ? l10n.invoiceNewTitle : l10n.invoiceEditTitle,
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.share_outlined),
+            tooltip: l10n.invoiceSharePdf,
+            onPressed: _saving ? null : _sharePdf,
+          ),
           TextButton(
             onPressed: _saving ? null : _save,
             child: Text(l10n.save),
@@ -176,6 +230,13 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
         child: ListView(
           padding: const EdgeInsets.all(AppSpacing.lg),
           children: [
+            if (ref.watch(businessProfileProvider).valueOrNull == null)
+              _ProfileNudge(
+                onTap: () => pushAppPage(
+                  context,
+                  (_) => const BusinessProfileScreen(),
+                ),
+              ),
             _ClientField(
               clientName: client?.name,
               error: _clientError,
@@ -224,7 +285,10 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
               title: Text(l10n.invoiceChargeTaxes),
               subtitle: Text(l10n.invoiceChargeTaxesHelper),
               value: _chargeTaxes,
-              onChanged: (v) => setState(() => _chargeTaxes = v),
+              onChanged: (v) => setState(() {
+                _taxesTouched = true;
+                _chargeTaxes = v;
+              }),
               contentPadding: EdgeInsets.zero,
             ),
             const SizedBox(height: AppSpacing.md),
@@ -317,6 +381,48 @@ class _ClientField extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+/// One-time nudge shown until the business profile exists: without it the
+/// invoice PDF has no business header and the tax default is just a guess.
+class _ProfileNudge extends StatelessWidget {
+  const _ProfileNudge({required this.onTap});
+
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    return Card(
+      margin: const EdgeInsets.only(bottom: AppSpacing.md),
+      color: theme.colorScheme.primaryContainer,
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.md),
+        child: Row(
+          children: [
+            Icon(
+              Icons.business_outlined,
+              color: theme.colorScheme.onPrimaryContainer,
+            ),
+            const SizedBox(width: AppSpacing.md),
+            Expanded(
+              child: Text(
+                l10n.invoiceProfileNudge,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color: theme.colorScheme.onPrimaryContainer,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: onTap,
+              child: Text(l10n.invoiceProfileNudgeAction),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

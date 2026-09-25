@@ -195,9 +195,81 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
+  String get businessAddressHint => 'Street, city, postal code';
+
+  @override
+  String get businessAddressLabel => 'Address';
+
+  @override
+  String get businessDisclaimer =>
+      'You\'re responsible for the accuracy of your business info and tax status. Facture doesn\'t provide tax advice.';
+
+  @override
+  String get businessEmailLabel => 'Email';
+
+  @override
+  String get businessNameHint => 'e.g. Atelier Nord';
+
+  @override
+  String get businessNameLabel => 'Business name';
+
+  @override
+  String get businessNameRequired => 'Enter your business name';
+
+  @override
+  String get businessPhoneLabel => 'Phone';
+
+  @override
+  String get businessProfileSubtitle => 'Name, contact, TPS/TVQ status';
+
+  @override
+  String get businessProfileTitle => 'Business profile';
+
+  @override
+  String get businessTaxStatusHelper =>
+      'Small suppliers (\$30,000 or less in taxable sales over the last four quarters) aren\'t required to register and must not charge TPS/TVQ.';
+
+  @override
+  String get businessTaxStatusLabel => 'TPS/TVQ registration';
+
+  @override
+  String get businessTaxStatusRegistered => 'Registered';
+
+  @override
+  String get businessTaxStatusRegisteredSub => 'Charges TPS/TVQ';
+
+  @override
+  String get businessTaxStatusSmallSupplier => 'Small supplier';
+
+  @override
+  String get businessTaxStatusSmallSupplierSub => 'No taxes charged';
+
+  @override
+  String get businessTpsNumberHint => '123456789RT0001';
+
+  @override
+  String get businessTpsNumberLabel => 'TPS registration number';
+
+  @override
+  String get businessTvqNumberHint => '1234567890TQ0001';
+
+  @override
+  String get businessTvqNumberLabel => 'TVQ registration number';
+
+  @override
   String firstMonthOfYear(int year) {
     return 'First month of year $year';
   }
+
+  @override
+  String get invoiceProfileNudge =>
+      'Add your business info and tax numbers to appear on your invoices.';
+
+  @override
+  String get invoiceProfileNudgeAction => 'Set up';
+
+  @override
+  String get invoiceSharePdf => 'Share PDF';
 
   @override
   String get primaryScenarioSection => 'Primary scenario';
@@ -722,6 +794,19 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get frequencyYearly => 'Yearly';
+
+  @override
+  String get settingsBusiness => 'Business';
+
+  @override
+  String shareInvoiceSubject(String number) {
+    return 'Invoice $number';
+  }
+
+  @override
+  String shareInvoiceText(String number, String total) {
+    return 'Here\'s invoice $number — $total.';
+  }
 
   @override
   String get yearPickerLabel => 'Year';

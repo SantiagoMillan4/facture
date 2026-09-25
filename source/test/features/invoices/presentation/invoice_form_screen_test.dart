@@ -23,6 +23,12 @@ void main() {
     Locale? locale,
   }) async {
     SharedPreferences.setMockInitialValues({});
+    // Tall viewport: the form is a lazily-built ListView, and the
+    // business-profile nudge makes it taller than the default 600px
+    // surface, which would leave fields unbuilt.
+    tester.view.physicalSize = const Size(800, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
     await tester.pumpWidget(
       ProviderScope(
         child: MaterialApp(

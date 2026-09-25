@@ -196,9 +196,81 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
+  String get businessAddressHint => 'Rue, ville, code postal';
+
+  @override
+  String get businessAddressLabel => 'Adresse';
+
+  @override
+  String get businessDisclaimer =>
+      'Vous êtes responsable de l\'exactitude de vos informations d\'entreprise et de votre statut fiscal. Facture ne fournit pas de conseils fiscaux.';
+
+  @override
+  String get businessEmailLabel => 'Courriel';
+
+  @override
+  String get businessNameHint => 'p. ex. Atelier Nord';
+
+  @override
+  String get businessNameLabel => 'Nom de l\'entreprise';
+
+  @override
+  String get businessNameRequired => 'Entrez le nom de votre entreprise';
+
+  @override
+  String get businessPhoneLabel => 'Téléphone';
+
+  @override
+  String get businessProfileSubtitle => 'Nom, coordonnées, statut TPS/TVQ';
+
+  @override
+  String get businessProfileTitle => 'Profil d\'entreprise';
+
+  @override
+  String get businessTaxStatusHelper =>
+      'Les petits fournisseurs (30 000 \$ ou moins de ventes taxables au cours des quatre derniers trimestres) ne sont pas tenus de s\'inscrire et ne doivent pas percevoir la TPS/TVQ.';
+
+  @override
+  String get businessTaxStatusLabel => 'Inscription aux TPS/TVQ';
+
+  @override
+  String get businessTaxStatusRegistered => 'Inscrit';
+
+  @override
+  String get businessTaxStatusRegisteredSub => 'Perçoit la TPS/TVQ';
+
+  @override
+  String get businessTaxStatusSmallSupplier => 'Petit fournisseur';
+
+  @override
+  String get businessTaxStatusSmallSupplierSub => 'Aucune taxe perçue';
+
+  @override
+  String get businessTpsNumberHint => '123456789RT0001';
+
+  @override
+  String get businessTpsNumberLabel => 'Numéro d\'inscription TPS';
+
+  @override
+  String get businessTvqNumberHint => '1234567890TQ0001';
+
+  @override
+  String get businessTvqNumberLabel => 'Numéro d\'inscription TVQ';
+
+  @override
   String firstMonthOfYear(int year) {
     return 'Premier mois de l\'année $year';
   }
+
+  @override
+  String get invoiceProfileNudge =>
+      'Ajoutez les informations de votre entreprise et vos numéros de taxe pour les afficher sur vos factures.';
+
+  @override
+  String get invoiceProfileNudgeAction => 'Configurer';
+
+  @override
+  String get invoiceSharePdf => 'Partager le PDF';
 
   @override
   String get primaryScenarioSection => 'Scénario principal';
@@ -730,6 +802,19 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get frequencyYearly => 'Annuel';
+
+  @override
+  String get settingsBusiness => 'Entreprise';
+
+  @override
+  String shareInvoiceSubject(String number) {
+    return 'Facture $number';
+  }
+
+  @override
+  String shareInvoiceText(String number, String total) {
+    return 'Voici la facture $number — $total.';
+  }
 
   @override
   String get yearPickerLabel => 'Année';

@@ -7,6 +7,7 @@ import '../../../l10n/app_l10n.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/form_section_title.dart';
+import '../../business/presentation/business_profile_screen.dart';
 import 'how_it_works_screen.dart';
 import 'tax_calculator_screen.dart';
 import 'tax_explainer_screen.dart';
@@ -66,6 +67,14 @@ class SettingsScreen extends StatelessWidget {
       body: ListView(
         padding: AppSpacing.screenPadding,
         children: [
+          FormSectionTitle(title: l10n.settingsBusiness),
+          _SettingsTile(
+            icon: Icons.business_outlined,
+            title: l10n.businessProfileTitle,
+            subtitle: l10n.businessProfileSubtitle,
+            onTap: () =>
+                pushAppPage(context, (_) => const BusinessProfileScreen()),
+          ),
           FormSectionTitle(title: l10n.settingsLearn),
           _SettingsTile(
             icon: Icons.school_outlined,

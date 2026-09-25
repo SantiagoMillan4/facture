@@ -410,11 +410,149 @@ abstract class AppLocalizations {
   /// **'Balance at end of year {year}'**
   String balanceEndOfYear(int year);
 
+  /// No description provided for @businessAddressHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Street, city, postal code'**
+  String get businessAddressHint;
+
+  /// No description provided for @businessAddressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get businessAddressLabel;
+
+  /// No description provided for @businessDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'You\'re responsible for the accuracy of your business info and tax status. Facture doesn\'t provide tax advice.'**
+  String get businessDisclaimer;
+
+  /// No description provided for @businessEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get businessEmailLabel;
+
+  /// No description provided for @businessNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Atelier Nord'**
+  String get businessNameHint;
+
+  /// No description provided for @businessNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Business name'**
+  String get businessNameLabel;
+
+  /// No description provided for @businessNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your business name'**
+  String get businessNameRequired;
+
+  /// No description provided for @businessPhoneLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get businessPhoneLabel;
+
+  /// No description provided for @businessProfileSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Name, contact, TPS/TVQ status'**
+  String get businessProfileSubtitle;
+
+  /// No description provided for @businessProfileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Business profile'**
+  String get businessProfileTitle;
+
+  /// No description provided for @businessTaxStatusHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Small suppliers (\$30,000 or less in taxable sales over the last four quarters) aren\'t required to register and must not charge TPS/TVQ.'**
+  String get businessTaxStatusHelper;
+
+  /// No description provided for @businessTaxStatusLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'TPS/TVQ registration'**
+  String get businessTaxStatusLabel;
+
+  /// No description provided for @businessTaxStatusRegistered.
+  ///
+  /// In en, this message translates to:
+  /// **'Registered'**
+  String get businessTaxStatusRegistered;
+
+  /// No description provided for @businessTaxStatusRegisteredSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Charges TPS/TVQ'**
+  String get businessTaxStatusRegisteredSub;
+
+  /// No description provided for @businessTaxStatusSmallSupplier.
+  ///
+  /// In en, this message translates to:
+  /// **'Small supplier'**
+  String get businessTaxStatusSmallSupplier;
+
+  /// No description provided for @businessTaxStatusSmallSupplierSub.
+  ///
+  /// In en, this message translates to:
+  /// **'No taxes charged'**
+  String get businessTaxStatusSmallSupplierSub;
+
+  /// No description provided for @businessTpsNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'123456789RT0001'**
+  String get businessTpsNumberHint;
+
+  /// No description provided for @businessTpsNumberLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'TPS registration number'**
+  String get businessTpsNumberLabel;
+
+  /// No description provided for @businessTvqNumberHint.
+  ///
+  /// In en, this message translates to:
+  /// **'1234567890TQ0001'**
+  String get businessTvqNumberHint;
+
+  /// No description provided for @businessTvqNumberLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'TVQ registration number'**
+  String get businessTvqNumberLabel;
+
   /// No description provided for @firstMonthOfYear.
   ///
   /// In en, this message translates to:
   /// **'First month of year {year}'**
   String firstMonthOfYear(int year);
+
+  /// No description provided for @invoiceProfileNudge.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your business info and tax numbers to appear on your invoices.'**
+  String get invoiceProfileNudge;
+
+  /// No description provided for @invoiceProfileNudgeAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up'**
+  String get invoiceProfileNudgeAction;
+
+  /// No description provided for @invoiceSharePdf.
+  ///
+  /// In en, this message translates to:
+  /// **'Share PDF'**
+  String get invoiceSharePdf;
 
   /// No description provided for @primaryScenarioSection.
   ///
@@ -1327,6 +1465,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Yearly'**
   String get frequencyYearly;
+
+  /// No description provided for @settingsBusiness.
+  ///
+  /// In en, this message translates to:
+  /// **'Business'**
+  String get settingsBusiness;
+
+  /// No description provided for @shareInvoiceSubject.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoice {number}'**
+  String shareInvoiceSubject(String number);
+
+  /// No description provided for @shareInvoiceText.
+  ///
+  /// In en, this message translates to:
+  /// **'Here\'s invoice {number} — {total}.'**
+  String shareInvoiceText(String number, String total);
 
   /// No description provided for @yearPickerLabel.
   ///

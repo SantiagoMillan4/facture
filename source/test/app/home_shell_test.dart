@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:facture/app/app.dart';
 import 'package:facture/features/clients/presentation/clients_screen.dart';
 import 'package:facture/features/dashboard/presentation/dashboard_screen.dart';
@@ -16,6 +18,11 @@ void main() {
   });
 
   Future<void> pumpShell(WidgetTester tester) {
+    // Tall viewport: the settings list is lazily built, and the business
+    // section makes it taller than the default 600px surface.
+    tester.view.physicalSize = const Size(800, 2400);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
     return tester.pumpWidget(const FactureApp());
   }
 
@@ -52,9 +59,11 @@ void main() {
   });
 
   group('SettingsScreen', () {
-    testWidgets('shows learn, tools and about sections', (tester) async {
+    testWidgets('shows business, learn, tools and about sections', (tester) async {
       await goToSettings(tester);
 
+      expect(find.text('Business'), findsOneWidget);
+      expect(find.text('Business profile'), findsOneWidget);
       expect(find.text('Learn'), findsOneWidget);
       expect(find.text('How Facture works'), findsOneWidget);
       expect(find.text('Understanding TPS/TVQ'), findsOneWidget);
