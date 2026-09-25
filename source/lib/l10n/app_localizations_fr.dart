@@ -699,16 +699,15 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String feedbackEmailSubject(String version) {
-    return 'Rentable $version – commentaire';
+    return 'Commentaires sur Facture $version';
   }
 
   @override
   String get feedbackEmailCopied =>
-      'Aucune application de courriel disponible — l\'adresse d\'assistance a été copiée dans le presse-papiers.';
+      'Adresse de soutien copiée — collez-la dans votre application courriel.';
 
   @override
-  String get feedbackSubtitle =>
-      'Signalez un bogue ou suggérez une amélioration';
+  String get feedbackSubtitle => 'Signalez un problème ou proposez une idée.';
 
   @override
   String get feedbackTitle => 'Envoyer un commentaire';
@@ -787,11 +786,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get guideScenariosTitle => 'Scénarios';
 
   @override
-  String get howItWorks => 'Comment l’app fonctionne';
+  String get howItWorks => 'Comment fonctionne Facture';
 
   @override
-  String get howItWorksSubtitle =>
-      'Propriétés, scénarios et notions de flux de trésorerie';
+  String get howItWorksSubtitle => 'Clients, factures et taxes du Québec.';
 
   @override
   String get hypotheticalTerms => 'Modalités hypothétiques de refinancement';
@@ -1003,7 +1001,7 @@ class AppLocalizationsFr extends AppLocalizations {
   String get scenarioFieldLabel => 'Scénario';
 
   @override
-  String get navDashboard => 'Accueil';
+  String get navDashboard => 'Tableau de bord';
 
   @override
   String get navProperties => 'Propriétés';
@@ -1210,10 +1208,10 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get rateAppSubtitle =>
-      'L’app vous plaît ? Laissez un avis sur l’App Store';
+      'L\'application vous plaît? Laissez une évaluation.';
 
   @override
-  String get rateAppTitle => 'Évaluer Rentable';
+  String get rateAppTitle => 'Évaluer Facture';
 
   @override
   String get rateCompounding => 'Capitalisation du taux';
@@ -1675,4 +1673,64 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsTitle => 'Réglages';
+
+  @override
+  String get navInvoices => 'Factures';
+
+  @override
+  String get guideStep1Title => 'Ajoutez votre client';
+
+  @override
+  String get guideStep1Text =>
+      'Enregistrez les entreprises que vous facturez, avec leurs coordonnées.';
+
+  @override
+  String get guideStep2Title => 'Créez une facture';
+
+  @override
+  String get guideStep2Text =>
+      'Ajoutez des lignes — la TPS et la TVQ sont calculées automatiquement.';
+
+  @override
+  String get guideStep3Title => 'Envoyez le PDF';
+
+  @override
+  String get guideStep3Text =>
+      'Exportez un PDF propre et partagez-le avec votre client.';
+
+  @override
+  String get tpsTvqTitle => 'Comprendre la TPS et la TVQ';
+
+  @override
+  String get tpsTvqSubtitle => 'Comment fonctionnent les taxes de vente.';
+
+  @override
+  String get tpsTvqBody1 =>
+      'La TPS (5 %) s\'applique au montant avant taxes de chaque ligne.';
+
+  @override
+  String get tpsTvqBody2 =>
+      'La TVQ (9,975 %) s\'applique au montant incluant la TPS — une taxe sur la taxe. C\'est la règle québécoise que la plupart des outils génériques ignorent.';
+
+  @override
+  String get tpsTvqBody3 =>
+      'Chaque taxe est arrondie au cent près par ligne, puis additionnée. Si vos ventes taxables sont de 30 000 \$ ou moins, vous n\'avez peut-être pas besoin de vous inscrire ni de percevoir les taxes.';
+
+  @override
+  String get toolsComingSoon => 'D\'autres outils à venir.';
+
+  @override
+  String get dashboardUnpaid => 'Impayées';
+
+  @override
+  String get dashboardPaidMonth => 'Payées ce mois-ci';
+
+  @override
+  String get dashboardClients => 'Clients';
+
+  @override
+  String get dashboardRecent => 'Factures récentes';
+
+  @override
+  String get dashboardRecentEmpty => 'Vos dernières factures apparaîtront ici.';
 }

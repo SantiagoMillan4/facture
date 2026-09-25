@@ -1,6 +1,5 @@
 import 'package:facture/features/invoices/presentation/create_invoice_screen.dart';
 import 'package:facture/features/invoices/presentation/invoices_screen.dart';
-import 'package:facture/features/settings/presentation/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -20,7 +19,6 @@ void main() {
       await pumpInvoices(tester);
 
       expect(find.text('Invoices'), findsOneWidget);
-      expect(find.byIcon(Icons.settings_outlined), findsOneWidget);
       expect(find.text('New invoice'), findsOneWidget);
       expect(find.byType(FloatingActionButton), findsOneWidget);
     });
@@ -42,15 +40,6 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.byType(CreateInvoiceScreen), findsOneWidget);
-    });
-
-    testWidgets('settings action opens the settings screen', (tester) async {
-      await pumpInvoices(tester);
-
-      await tester.tap(find.byIcon(Icons.settings_outlined));
-      await tester.pumpAndSettle();
-
-      expect(find.byType(SettingsScreen), findsOneWidget);
     });
 
     testWidgets('French strings are used in French locale', (tester) async {

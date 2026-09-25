@@ -691,15 +691,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String feedbackEmailSubject(String version) {
-    return 'Rentable $version feedback';
+    return 'Facture $version feedback';
   }
 
   @override
   String get feedbackEmailCopied =>
-      'No mail app available — the support address was copied to your clipboard.';
+      'Support address copied — paste it into your mail app.';
 
   @override
-  String get feedbackSubtitle => 'Report a bug or suggest an improvement';
+  String get feedbackSubtitle => 'Report a bug or suggest a feature.';
 
   @override
   String get feedbackTitle => 'Send feedback';
@@ -778,11 +778,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get guideScenariosTitle => 'Scenarios';
 
   @override
-  String get howItWorks => 'How the app works';
+  String get howItWorks => 'How Facture works';
 
   @override
-  String get howItWorksSubtitle =>
-      'Properties, scenarios, and cash flow basics';
+  String get howItWorksSubtitle => 'Clients, invoices and Québec taxes.';
 
   @override
   String get hypotheticalTerms => 'Hypothetical refinance terms';
@@ -1194,11 +1193,10 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get rateAppSubtitle =>
-      'Enjoying the app? Leave a review on the App Store';
+  String get rateAppSubtitle => 'Enjoying the app? Leave a rating.';
 
   @override
-  String get rateAppTitle => 'Rate Rentable';
+  String get rateAppTitle => 'Rate Facture';
 
   @override
   String get rateCompounding => 'Rate compounding';
@@ -1655,4 +1653,64 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsTitle => 'Settings';
+
+  @override
+  String get navInvoices => 'Invoices';
+
+  @override
+  String get guideStep1Title => 'Add your client';
+
+  @override
+  String get guideStep1Text =>
+      'Save the businesses you bill, with their contact details.';
+
+  @override
+  String get guideStep2Title => 'Create an invoice';
+
+  @override
+  String get guideStep2Text =>
+      'Add line items — TPS and TVQ are computed automatically.';
+
+  @override
+  String get guideStep3Title => 'Send the PDF';
+
+  @override
+  String get guideStep3Text =>
+      'Export a clean PDF and share it with your client.';
+
+  @override
+  String get tpsTvqTitle => 'Understanding TPS/TVQ';
+
+  @override
+  String get tpsTvqSubtitle => 'How Québec sales taxes work.';
+
+  @override
+  String get tpsTvqBody1 =>
+      'TPS (5%) applies to the pre-tax amount of each line.';
+
+  @override
+  String get tpsTvqBody2 =>
+      'TVQ (9.975%) applies to the amount including TPS — a tax on a tax. This is the Québec rule most generic tools get wrong.';
+
+  @override
+  String get tpsTvqBody3 =>
+      'Each tax is rounded to the nearest cent per line, then summed. If your taxable sales are \$30,000 or less, you may not need to register or charge taxes at all.';
+
+  @override
+  String get toolsComingSoon => 'More tools coming soon.';
+
+  @override
+  String get dashboardUnpaid => 'Unpaid';
+
+  @override
+  String get dashboardPaidMonth => 'Paid this month';
+
+  @override
+  String get dashboardClients => 'Clients';
+
+  @override
+  String get dashboardRecent => 'Recent invoices';
+
+  @override
+  String get dashboardRecentEmpty => 'Your latest invoices will appear here.';
 }

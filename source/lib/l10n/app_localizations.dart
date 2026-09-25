@@ -1271,19 +1271,19 @@ abstract class AppLocalizations {
   /// No description provided for @feedbackEmailSubject.
   ///
   /// In en, this message translates to:
-  /// **'Rentable {version} feedback'**
+  /// **'Facture {version} feedback'**
   String feedbackEmailSubject(String version);
 
   /// No description provided for @feedbackEmailCopied.
   ///
   /// In en, this message translates to:
-  /// **'No mail app available — the support address was copied to your clipboard.'**
+  /// **'Support address copied — paste it into your mail app.'**
   String get feedbackEmailCopied;
 
   /// No description provided for @feedbackSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Report a bug or suggest an improvement'**
+  /// **'Report a bug or suggest a feature.'**
   String get feedbackSubtitle;
 
   /// No description provided for @feedbackTitle.
@@ -1427,13 +1427,13 @@ abstract class AppLocalizations {
   /// No description provided for @howItWorks.
   ///
   /// In en, this message translates to:
-  /// **'How the app works'**
+  /// **'How Facture works'**
   String get howItWorks;
 
   /// No description provided for @howItWorksSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Properties, scenarios, and cash flow basics'**
+  /// **'Clients, invoices and Québec taxes.'**
   String get howItWorksSubtitle;
 
   /// No description provided for @hypotheticalTerms.
@@ -2171,13 +2171,13 @@ abstract class AppLocalizations {
   /// No description provided for @rateAppSubtitle.
   ///
   /// In en, this message translates to:
-  /// **'Enjoying the app? Leave a review on the App Store'**
+  /// **'Enjoying the app? Leave a rating.'**
   String get rateAppSubtitle;
 
   /// No description provided for @rateAppTitle.
   ///
   /// In en, this message translates to:
-  /// **'Rate Rentable'**
+  /// **'Rate Facture'**
   String get rateAppTitle;
 
   /// No description provided for @rateCompounding.
@@ -2989,6 +2989,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get settingsTitle;
+
+  /// No description provided for @navInvoices.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoices'**
+  String get navInvoices;
+
+  /// No description provided for @guideStep1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your client'**
+  String get guideStep1Title;
+
+  /// No description provided for @guideStep1Text.
+  ///
+  /// In en, this message translates to:
+  /// **'Save the businesses you bill, with their contact details.'**
+  String get guideStep1Text;
+
+  /// No description provided for @guideStep2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Create an invoice'**
+  String get guideStep2Title;
+
+  /// No description provided for @guideStep2Text.
+  ///
+  /// In en, this message translates to:
+  /// **'Add line items — TPS and TVQ are computed automatically.'**
+  String get guideStep2Text;
+
+  /// No description provided for @guideStep3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Send the PDF'**
+  String get guideStep3Title;
+
+  /// No description provided for @guideStep3Text.
+  ///
+  /// In en, this message translates to:
+  /// **'Export a clean PDF and share it with your client.'**
+  String get guideStep3Text;
+
+  /// No description provided for @tpsTvqTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Understanding TPS/TVQ'**
+  String get tpsTvqTitle;
+
+  /// No description provided for @tpsTvqSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How Québec sales taxes work.'**
+  String get tpsTvqSubtitle;
+
+  /// No description provided for @tpsTvqBody1.
+  ///
+  /// In en, this message translates to:
+  /// **'TPS (5%) applies to the pre-tax amount of each line.'**
+  String get tpsTvqBody1;
+
+  /// No description provided for @tpsTvqBody2.
+  ///
+  /// In en, this message translates to:
+  /// **'TVQ (9.975%) applies to the amount including TPS — a tax on a tax. This is the Québec rule most generic tools get wrong.'**
+  String get tpsTvqBody2;
+
+  /// No description provided for @tpsTvqBody3.
+  ///
+  /// In en, this message translates to:
+  /// **'Each tax is rounded to the nearest cent per line, then summed. If your taxable sales are \$30,000 or less, you may not need to register or charge taxes at all.'**
+  String get tpsTvqBody3;
+
+  /// No description provided for @toolsComingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'More tools coming soon.'**
+  String get toolsComingSoon;
+
+  /// No description provided for @dashboardUnpaid.
+  ///
+  /// In en, this message translates to:
+  /// **'Unpaid'**
+  String get dashboardUnpaid;
+
+  /// No description provided for @dashboardPaidMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid this month'**
+  String get dashboardPaidMonth;
+
+  /// No description provided for @dashboardClients.
+  ///
+  /// In en, this message translates to:
+  /// **'Clients'**
+  String get dashboardClients;
+
+  /// No description provided for @dashboardRecent.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent invoices'**
+  String get dashboardRecent;
+
+  /// No description provided for @dashboardRecentEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Your latest invoices will appear here.'**
+  String get dashboardRecentEmpty;
 }
 
 class _AppLocalizationsDelegate
