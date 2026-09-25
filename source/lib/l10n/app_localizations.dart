@@ -2996,6 +2996,102 @@ abstract class AppLocalizations {
   /// **'Invoices'**
   String get navInvoices;
 
+  /// No description provided for @navClients.
+  ///
+  /// In en, this message translates to:
+  /// **'Clients'**
+  String get navClients;
+
+  /// No description provided for @clientsEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No clients yet'**
+  String get clientsEmptyTitle;
+
+  /// No description provided for @clientsEmptyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Add your first client to start billing them.'**
+  String get clientsEmptyMessage;
+
+  /// No description provided for @clientsAddClient.
+  ///
+  /// In en, this message translates to:
+  /// **'Add client'**
+  String get clientsAddClient;
+
+  /// No description provided for @clientNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New client'**
+  String get clientNewTitle;
+
+  /// No description provided for @clientEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit client'**
+  String get clientEditTitle;
+
+  /// No description provided for @clientNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get clientNameLabel;
+
+  /// No description provided for @clientNameRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter the client\'s name.'**
+  String get clientNameRequired;
+
+  /// No description provided for @clientEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get clientEmailLabel;
+
+  /// No description provided for @clientPhoneLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get clientPhoneLabel;
+
+  /// No description provided for @clientAddressLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Address'**
+  String get clientAddressLabel;
+
+  /// No description provided for @clientNotesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get clientNotesLabel;
+
+  /// No description provided for @clientNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Payment terms, contact person…'**
+  String get clientNotesHint;
+
+  /// No description provided for @clientDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete client?'**
+  String get clientDeleteTitle;
+
+  /// No description provided for @clientDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'\"{name}\" will be permanently deleted.'**
+  String clientDeleteMessage(Object name);
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
   /// No description provided for @guideStep1Title.
   ///
   /// In en, this message translates to:

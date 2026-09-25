@@ -1658,6 +1658,57 @@ class AppLocalizationsEn extends AppLocalizations {
   String get navInvoices => 'Invoices';
 
   @override
+  String get navClients => 'Clients';
+
+  @override
+  String get clientsEmptyTitle => 'No clients yet';
+
+  @override
+  String get clientsEmptyMessage =>
+      'Add your first client to start billing them.';
+
+  @override
+  String get clientsAddClient => 'Add client';
+
+  @override
+  String get clientNewTitle => 'New client';
+
+  @override
+  String get clientEditTitle => 'Edit client';
+
+  @override
+  String get clientNameLabel => 'Name';
+
+  @override
+  String get clientNameRequired => 'Please enter the client\'s name.';
+
+  @override
+  String get clientEmailLabel => 'Email';
+
+  @override
+  String get clientPhoneLabel => 'Phone';
+
+  @override
+  String get clientAddressLabel => 'Address';
+
+  @override
+  String get clientNotesLabel => 'Notes';
+
+  @override
+  String get clientNotesHint => 'Payment terms, contact person…';
+
+  @override
+  String get clientDeleteTitle => 'Delete client?';
+
+  @override
+  String clientDeleteMessage(Object name) {
+    return '\"$name\" will be permanently deleted.';
+  }
+
+  @override
+  String get save => 'Save';
+
+  @override
   String get guideStep1Title => 'Add your client';
 
   @override

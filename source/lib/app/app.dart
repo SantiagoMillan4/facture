@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../features/clients/presentation/clients_screen.dart';
 import '../features/dashboard/presentation/dashboard_screen.dart';
 import '../features/invoices/presentation/invoices_screen.dart';
 import '../features/settings/presentation/settings_screen.dart';
@@ -79,6 +80,11 @@ class HomeShell extends ConsumerWidget {
             label: l10n.navInvoices,
           ),
           NavigationDestination(
+            icon: const Icon(Icons.people_outline),
+            selectedIcon: const Icon(Icons.people_rounded),
+            label: l10n.navClients,
+          ),
+          NavigationDestination(
             icon: const Icon(Icons.settings_outlined),
             selectedIcon: const Icon(Icons.settings_rounded),
             label: l10n.navSettings,
@@ -92,6 +98,7 @@ class HomeShell extends ConsumerWidget {
     return switch (index) {
       0 => const DashboardScreen(),
       1 => const InvoicesScreen(),
+      2 => const ClientsScreen(),
       _ => const SettingsScreen(),
     };
   }

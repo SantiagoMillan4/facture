@@ -1,12 +1,20 @@
 import 'package:facture/app/app.dart';
+import 'package:facture/features/clients/presentation/clients_screen.dart';
 import 'package:facture/features/dashboard/presentation/dashboard_screen.dart';
 import 'package:facture/features/invoices/presentation/invoices_screen.dart';
 import 'package:facture/features/settings/presentation/how_it_works_screen.dart';
 import 'package:facture/features/settings/presentation/settings_screen.dart';
 import 'package:facture/features/settings/presentation/tax_explainer_screen.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  setUpAll(() {
+    // The client directory reads from disk on first load; without this the
+    // Future never completes in tests and the loading spinner spins forever.
+    SharedPreferences.setMockInitialValues({});
+  });
+
   Future<void> pumpShell(WidgetTester tester) {
     return tester.pumpWidget(const FactureApp());
   }
@@ -28,6 +36,10 @@ void main() {
       await tester.tap(find.text('Invoices'));
       await tester.pumpAndSettle();
       expect(find.byType(InvoicesScreen), findsOneWidget);
+
+      await tester.tap(find.text('Clients'));
+      await tester.pumpAndSettle();
+      expect(find.byType(ClientsScreen), findsOneWidget);
 
       await tester.tap(find.text('Settings'));
       await tester.pumpAndSettle();

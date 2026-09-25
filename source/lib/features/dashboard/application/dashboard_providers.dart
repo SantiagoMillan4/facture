@@ -1,15 +1,18 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../clients/application/clients_providers.dart';
 import '../domain/dashboard_summary.dart';
 
 /// Dashboard totals.
 ///
-/// TODO: derive from the invoice and client repositories once persistence
-/// lands. Until then the stub is honest: no invoices means $0 unpaid.
+/// Unpaid / paid-this-month stay at honest zero until invoice persistence
+/// lands; the client count is already real, derived from the on-device
+/// client directory.
 final dashboardSummaryProvider = Provider<DashboardSummary>((ref) {
-  return const DashboardSummary(
+  final clientCount = ref.watch(clientsProvider).valueOrNull?.length ?? 0;
+  return DashboardSummary(
     unpaidCents: 0,
     paidThisMonthCents: 0,
-    clientCount: 0,
+    clientCount: clientCount,
   );
 });
