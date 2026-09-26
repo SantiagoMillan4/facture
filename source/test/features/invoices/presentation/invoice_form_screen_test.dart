@@ -16,10 +16,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../test_helpers.dart';
 
-Finder fieldByLabel(String label) => find.ancestor(
-  of: find.text(label),
-  matching: find.byType(TextFormField),
-);
+Finder fieldByLabel(String label) =>
+    find.ancestor(of: find.text(label), matching: find.byType(TextFormField));
 
 void main() {
   setUpPrintingMock();
@@ -112,7 +110,10 @@ void main() {
       await tester.pump();
 
       expect(find.text('Please select a client.'), findsOneWidget);
-      expect(find.text('Add at least one line item.', skipOffstage: false), findsOneWidget);
+      expect(
+        find.text('Add at least one line item.', skipOffstage: false),
+        findsOneWidget,
+      );
       expect(container.read(invoicesProvider).value, isEmpty);
     });
 
@@ -194,7 +195,7 @@ void main() {
       // On the preview screen after saving.
       expect(find.byType(InvoiceFormScreen), findsNothing);
       expect(find.byType(InvoicePreviewScreen), findsOneWidget);
-      expect(find.text('Send invoice'), findsOneWidget);
+      expect(find.text('Share PDF'), findsOneWidget);
     });
 
     testWidgets('new invoice with no profile is saved without taxes', (

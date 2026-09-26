@@ -429,20 +429,6 @@
   "invoiceProfileNudgeAction": "Set up",
   "invoiceReopenAsSent": "Reopen as sent",
   "invoiceSharePdf": "Share PDF",
-  "emailTemplateTitle": "Email template",
-  "emailTemplateSubtitle": "Subject and message used when emailing an invoice — insert the placeholders below",
-  "emailTemplateSubjectLabel": "Subject",
-  "emailTemplateBodyLabel": "Message",
-  "emailTemplateSubjectRequired": "Enter a subject",
-  "emailTemplateBodyRequired": "Enter a message",
-  "emailTemplatePlaceholdersTitle": "Placeholders",
-  "emailTemplatePlaceholdersHint": "Replaced automatically when the email opens.",
-  "emailTemplateReset": "Reset to default",
-  "invoiceSendEmail": "Send by email",
-  "invoicePreviewSend": "Send invoice",
-  "@invoicePreviewSend": {
-    "description": "Primary button on the invoice preview screen"
-  },
   "invoicePreviewEdit": "Edit invoice",
   "@invoicePreviewEdit": {
     "description": "Tooltip for the edit button on the invoice preview screen"
@@ -450,31 +436,6 @@
   "invoicePreviewNotFound": "This invoice no longer exists.",
   "@invoicePreviewNotFound": {
     "description": "Message when the previewed invoice was deleted"
-  },
-  "@invoiceSendEmail": {
-    "description": "Tooltip for the button that emails the invoice"
-  },
-  "invoiceEmailFailed": "Couldn't open the email composer.",
-  "@invoiceEmailFailed": {
-    "description": "Snackbar when the native email composer cannot be opened"
-  },
-  "invoiceNoClientEmailTitle": "No email address",
-  "@invoiceNoClientEmailTitle": {
-    "description": "Dialog title when the client has no email address"
-  },
-  "invoiceNoClientEmailMessage": "Add an email address for {name} to send them the invoice.",
-  "@invoiceNoClientEmailMessage": {
-    "description": "Dialog message when the client has no email address",
-    "placeholders": {
-      "name": {
-        "type": "String",
-        "example": "Acme Inc."
-      }
-    }
-  },
-  "invoiceNoClientEmailAdd": "Add email",
-  "@invoiceNoClientEmailAdd": {
-    "description": "Dialog button opening the client editor to add an email"
   },
   "primaryScenarioSection": "Primary scenario",
   "primaryScenarioSectionSubtitle": "The primary scenario holds your main assumptions — you can add more later to compare.",

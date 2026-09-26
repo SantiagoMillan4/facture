@@ -7,7 +7,6 @@ import '../../../shared/widgets/app_page_route.dart';
 import '../../backup/presentation/backup_screen.dart';
 import '../../business/application/business_profile_providers.dart';
 import '../../catalog/presentation/catalog_screen.dart';
-import '../../email/presentation/email_template_screen.dart';
 import '../../logo/presentation/logo_creator_screen.dart';
 import 'tax_calculator_screen.dart';
 
@@ -31,13 +30,6 @@ class ToolsScreen extends ConsumerWidget {
             subtitle: l10n.toolsTaxCalculatorSubtitle,
             onTap: () =>
                 pushAppPage(context, (_) => const TaxCalculatorScreen()),
-          ),
-          _ToolTile(
-            icon: Icons.mail_outline,
-            title: l10n.emailTemplateTitle,
-            subtitle: l10n.emailTemplateSubtitle,
-            onTap: () =>
-                pushAppPage(context, (_) => const EmailTemplateScreen()),
           ),
           _ToolTile(
             icon: Icons.backup_outlined,

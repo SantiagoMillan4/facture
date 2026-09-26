@@ -16,11 +16,9 @@ import '../../business/domain/business_profile.dart';
 import '../../business/presentation/business_profile_screen.dart';
 import '../../clients/application/clients_providers.dart';
 import '../../clients/domain/client.dart';
-import '../../email/application/share_invoice_email.dart';
 import '../application/invoices_providers.dart';
 import '../domain/invoice.dart';
 import '../domain/quebec_tax.dart';
-import '../pdf/share_invoice_pdf.dart';
 import 'client_picker_screen.dart';
 import 'invoice_line_card.dart';
 import 'invoice_preview_screen.dart';
@@ -213,11 +211,15 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
     if (choice == 'catalog') {
       final picked = await CatalogPickerSheet.show(context, catalog);
       if (picked == null || !mounted) return;
-      setState(() => _lines.add(LineDraft(
+      setState(
+        () => _lines.add(
+          LineDraft(
             description: picked.description,
             quantity: '1',
             unitPrice: (picked.unitPriceCents / 100).toStringAsFixed(2),
-          )));
+          ),
+        ),
+      );
     } else if (choice == 'blank') {
       setState(() => _lines.add(LineDraft()));
     }
@@ -231,48 +233,12 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
     await ref.read(invoicesProvider.notifier).saveInvoice(invoice);
     if (mounted) {
       // Saving lands on the invoice preview: the PDF as the client will see
-      // it, with Send / Edit / Share right there.
+      // it, with Share and Edit right there.
       pushReplacementAppPage(
         context,
         (_) => InvoicePreviewScreen(invoiceId: invoice.id),
       );
     }
-  }
-
-  /// Renders the current form state as a PDF and opens the share sheet.
-  /// The invoice doesn't need to be saved first.
-  Future<void> _sharePdf() async {
-    final invoice = _validate();
-    if (invoice == null) return;
-    final clients = ref.read(clientsProvider).value ?? [];
-    final client = clients.where((c) => c.id == invoice.clientId).firstOrNull;
-    if (client == null || !mounted) return;
-    final l10n = context.l10n;
-    final profile = ref.read(businessProfileProvider).value;
-    AppHaptics.confirm();
-    await shareInvoicePdf(
-      invoice: invoice,
-      client: client,
-      profile: profile,
-      l10n: l10n,
-    );
-  }
-
-  /// Opens the native email composer sheet with the client prefilled,
-  /// the template rendered as subject/message, and the invoice PDF attached.
-  /// The invoice doesn't need to be saved first.
-  Future<void> _sendEmail() async {
-    final invoice = _validate();
-    if (invoice == null) return;
-    final clients = ref.read(clientsProvider).value ?? [];
-    final client = clients.where((c) => c.id == invoice.clientId).firstOrNull;
-    if (client == null || !mounted) return;
-    await shareInvoiceEmail(
-      context: context,
-      ref: ref,
-      invoice: invoice,
-      client: client,
-    );
   }
 
   @override
@@ -288,20 +254,7 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
           widget.invoice == null ? l10n.invoiceNewTitle : l10n.invoiceEditTitle,
         ),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.mail_outline),
-            tooltip: l10n.invoiceSendEmail,
-            onPressed: _saving ? null : _sendEmail,
-          ),
-          IconButton(
-            icon: const Icon(Icons.share_outlined),
-            tooltip: l10n.invoiceSharePdf,
-            onPressed: _saving ? null : _sharePdf,
-          ),
-          TextButton(
-            onPressed: _saving ? null : _save,
-            child: Text(l10n.save),
-          ),
+          TextButton(onPressed: _saving ? null : _save, child: Text(l10n.save)),
         ],
       ),
       body: GestureDetector(
@@ -312,10 +265,8 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
           children: [
             if (ref.watch(businessProfileProvider).value == null)
               _ProfileNudge(
-                onTap: () => pushAppPage(
-                  context,
-                  (_) => const BusinessProfileScreen(),
-                ),
+                onTap: () =>
+                    pushAppPage(context, (_) => const BusinessProfileScreen()),
               ),
             _ClientField(
               clientName: client?.name,
@@ -354,11 +305,11 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
               onChanged: (s) => setState(() => _status = s),
               options: [
                 ChoiceOption(
-                    value: InvoiceStatus.draft, label: l10n.statusDraft),
-                ChoiceOption(
-                    value: InvoiceStatus.sent, label: l10n.statusSent),
-                ChoiceOption(
-                    value: InvoiceStatus.paid, label: l10n.statusPaid),
+                  value: InvoiceStatus.draft,
+                  label: l10n.statusDraft,
+                ),
+                ChoiceOption(value: InvoiceStatus.sent, label: l10n.statusSent),
+                ChoiceOption(value: InvoiceStatus.paid, label: l10n.statusPaid),
               ],
             ),
             SwitchListTile(
@@ -372,8 +323,10 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
               contentPadding: EdgeInsets.zero,
             ),
             const SizedBox(height: AppSpacing.md),
-            Text(l10n.invoiceLinesLabel,
-                style: Theme.of(context).textTheme.bodyMedium),
+            Text(
+              l10n.invoiceLinesLabel,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
             const SizedBox(height: AppSpacing.xs),
             for (var i = 0; i < _lines.length; i++)
               InvoiceLineCard(
@@ -391,9 +344,8 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
                 padding: const EdgeInsets.only(top: AppSpacing.xs),
                 child: Text(
                   _linesError!,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context).colorScheme.error,
-                  ),
+                  style: Theme.of(context).textTheme.bodySmall
+                      ?.copyWith(color: Theme.of(context).colorScheme.error),
                 ),
               ),
             const SizedBox(height: AppSpacing.xs),
@@ -439,8 +391,10 @@ class _ClientField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(l10n.invoiceClientLabel,
-            style: Theme.of(context).textTheme.bodyMedium),
+        Text(
+          l10n.invoiceClientLabel,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
         const SizedBox(height: AppSpacing.xs),
         InkWell(
           onTap: onTap,

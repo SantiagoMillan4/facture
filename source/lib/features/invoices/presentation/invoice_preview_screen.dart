@@ -11,7 +11,6 @@ import '../../business/application/business_profile_providers.dart';
 import '../../business/domain/business_profile.dart';
 import '../../clients/application/clients_providers.dart';
 import '../../clients/domain/client.dart';
-import '../../email/application/share_invoice_email.dart';
 import '../application/invoices_providers.dart';
 import '../domain/invoice.dart';
 import '../pdf/invoice_pdf.dart';
@@ -20,9 +19,9 @@ import 'invoice_form_screen.dart';
 
 /// Full-screen preview of a saved invoice.
 ///
-/// Shows the invoice exactly as the client will receive it, with the three
-/// actions that matter at this point: send it by email (PDF attached),
-/// edit it, or share the PDF another way. Closing returns to the list.
+/// Shows the invoice exactly as the client will receive it, with the two
+/// actions that matter at this point: share the PDF wherever the user
+/// wants, or go back and edit it. Closing returns to the list.
 ///
 /// The screen watches the invoice providers, so edits made through the form
 /// refresh the preview automatically when returning to it.
@@ -44,18 +43,6 @@ class InvoicePreviewScreen extends ConsumerWidget {
       client: client,
       profile: ref.read(businessProfileProvider).value,
       l10n: context.l10n,
-    );
-  }
-
-  Future<void> _send(BuildContext context, WidgetRef ref) async {
-    final invoice = _findInvoice(ref);
-    final client = _findClient(ref, invoice);
-    if (invoice == null || client == null || !context.mounted) return;
-    await shareInvoiceEmail(
-      context: context,
-      ref: ref,
-      invoice: invoice,
-      client: client,
     );
   }
 
@@ -84,11 +71,6 @@ class InvoicePreviewScreen extends ConsumerWidget {
         title: Text(_findInvoice(ref)?.number ?? l10n.invoicesTitle),
         actions: [
           IconButton(
-            tooltip: l10n.invoiceSharePdf,
-            icon: const Icon(Icons.share_outlined),
-            onPressed: () => _share(context, ref),
-          ),
-          IconButton(
             tooltip: l10n.invoicePreviewEdit,
             icon: const Icon(Icons.edit_outlined),
             onPressed: () {
@@ -107,8 +89,7 @@ class InvoicePreviewScreen extends ConsumerWidget {
           data: (_) => profileAsync.when(
             loading: () => const Center(child: CircularProgressIndicator()),
             error: (error, _) => Center(child: Text(error.toString())),
-            data: (profile) =>
-                _buildPreview(context, ref, l10n, profile),
+            data: (profile) => _buildPreview(context, ref, l10n, profile),
           ),
         ),
       ),
@@ -132,8 +113,7 @@ class InvoicePreviewScreen extends ConsumerWidget {
         Expanded(
           child: PdfPreview(
             build: (format) async {
-              final logoBytes =
-                  await BusinessLogo.readBytes(profile?.logoPath);
+              final logoBytes = await BusinessLogo.readBytes(profile?.logoPath);
               return buildInvoicePdf(
                 invoice: invoice,
                 client: client,
@@ -161,9 +141,9 @@ class InvoicePreviewScreen extends ConsumerWidget {
             child: SizedBox(
               width: double.infinity,
               child: FilledButton.icon(
-                onPressed: () => _send(context, ref),
-                icon: const Icon(Icons.mail_outline),
-                label: Text(l10n.invoicePreviewSend),
+                onPressed: () => _share(context, ref),
+                icon: const Icon(Icons.share_outlined),
+                label: Text(l10n.invoiceSharePdf),
               ),
             ),
           ),

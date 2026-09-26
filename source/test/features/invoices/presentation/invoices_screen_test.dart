@@ -20,19 +20,22 @@ Invoice _invoice({
   required DateTime issueDate,
   required DateTime dueDate,
   InvoiceStatus status = InvoiceStatus.draft,
-}) =>
-    Invoice(
-      id: id,
-      number: number,
-      clientId: clientId,
-      issueDate: issueDate,
-      dueDate: dueDate,
-      status: status,
-      lines: const [
-        InvoiceLineItem(
-            id: 'l1', description: 'Design', quantity: 1, unitPrice: 100),
-      ],
-    );
+}) => Invoice(
+  id: id,
+  number: number,
+  clientId: clientId,
+  issueDate: issueDate,
+  dueDate: dueDate,
+  status: status,
+  lines: const [
+    InvoiceLineItem(
+      id: 'l1',
+      description: 'Design',
+      quantity: 1,
+      unitPrice: 100,
+    ),
+  ],
+);
 
 void main() {
   setUpPrintingMock();
@@ -45,13 +48,15 @@ void main() {
     addTearDown(container.dispose);
     await container.read(invoicesProvider.future);
     await container.read(clientsProvider.future);
-    await container.read(clientsProvider.notifier).saveClient(
-          const Client(id: 'c1', name: 'Alice Tremblay'),
-        );
-    await container.read(clientsProvider.notifier).saveClient(
-          const Client(id: 'c2', name: 'Bob Bouchard'),
-        );
-    await container.read(invoicesProvider.notifier).saveInvoice(
+    await container
+        .read(clientsProvider.notifier)
+        .saveClient(const Client(id: 'c1', name: 'Alice Tremblay'));
+    await container
+        .read(clientsProvider.notifier)
+        .saveClient(const Client(id: 'c2', name: 'Bob Bouchard'));
+    await container
+        .read(invoicesProvider.notifier)
+        .saveInvoice(
           _invoice(
             id: 'i1',
             number: '2026-0001',
@@ -60,7 +65,9 @@ void main() {
             dueDate: DateTime(2026, 10, 20),
           ),
         );
-    await container.read(invoicesProvider.notifier).saveInvoice(
+    await container
+        .read(invoicesProvider.notifier)
+        .saveInvoice(
           _invoice(
             id: 'i2',
             number: '2026-0002',
@@ -70,7 +77,9 @@ void main() {
             status: InvoiceStatus.paid,
           ),
         );
-    await container.read(invoicesProvider.notifier).saveInvoice(
+    await container
+        .read(invoicesProvider.notifier)
+        .saveInvoice(
           _invoice(
             id: 'i3',
             number: '2026-0003',
@@ -99,7 +108,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 200));
     }
 
-    expect(find.text('Send invoice'), findsOneWidget);
+    expect(find.text('Share PDF'), findsOneWidget);
   });
 
   testWidgets('search filters by invoice number', (tester) async {
@@ -154,8 +163,7 @@ void main() {
   group('needs attention', () {
     DateTime day(int offset) {
       final now = DateTime.now();
-      return DateTime(now.year, now.month, now.day)
-          .add(Duration(days: offset));
+      return DateTime(now.year, now.month, now.day).add(Duration(days: offset));
     }
 
     Future<void> pumpAttention(WidgetTester tester) async {
@@ -164,28 +172,28 @@ void main() {
       addTearDown(container.dispose);
       await container.read(invoicesProvider.future);
       await container.read(clientsProvider.future);
-      await container.read(clientsProvider.notifier).saveClient(
-            const Client(id: 'c1', name: 'Alice Tremblay'),
-          );
+      await container
+          .read(clientsProvider.notifier)
+          .saveClient(const Client(id: 'c1', name: 'Alice Tremblay'));
       Future<void> addInvoice(
         String id,
         String number,
         InvoiceStatus status,
         int issueOffset,
         int dueOffset,
-      ) =>
-          container.read(invoicesProvider.notifier).saveInvoice(
-                _invoice(
-                  id: id,
-                  number: number,
-                  clientId: 'c1',
-                  issueDate: day(issueOffset),
-                  dueDate: day(dueOffset),
-                  status: status,
-                ),
-              );
-      await addInvoice(
-          'overdue', '2026-0010', InvoiceStatus.sent, -10, -3);
+      ) => container
+          .read(invoicesProvider.notifier)
+          .saveInvoice(
+            _invoice(
+              id: id,
+              number: number,
+              clientId: 'c1',
+              issueDate: day(issueOffset),
+              dueDate: day(dueOffset),
+              status: status,
+            ),
+          );
+      await addInvoice('overdue', '2026-0010', InvoiceStatus.sent, -10, -3);
       await addInvoice('due-soon', '2026-0011', InvoiceStatus.sent, -5, 2);
       await addInvoice('due-later', '2026-0012', InvoiceStatus.sent, -5, 30);
       await addInvoice('draft', '2026-0013', InvoiceStatus.draft, -5, 10);
@@ -199,26 +207,27 @@ void main() {
       await tester.pumpAndSettle();
     }
 
-    testWidgets('lists overdue and due-soon invoices, most urgent first',
-        (tester) async {
+    testWidgets('lists overdue and due-soon invoices, most urgent first', (
+      tester,
+    ) async {
       await pumpAttention(tester);
 
       expect(find.text('Needs attention'), findsOneWidget);
-      expect(
-          find.text('Alice Tremblay • 3 days overdue'), findsOneWidget);
+      expect(find.text('Alice Tremblay • 3 days overdue'), findsOneWidget);
       expect(find.text('Alice Tremblay • Due in 2 days'), findsOneWidget);
       // Draft, paid and far-future invoices need no chasing.
       expect(find.text('Due in 30 days'), findsNothing);
 
-      final overdueDy =
-          tester.getTopLeft(find.text('Alice Tremblay • 3 days overdue')).dy;
-      final dueSoonDy =
-          tester.getTopLeft(find.text('Alice Tremblay • Due in 2 days')).dy;
+      final overdueDy = tester
+          .getTopLeft(find.text('Alice Tremblay • 3 days overdue'))
+          .dy;
+      final dueSoonDy = tester
+          .getTopLeft(find.text('Alice Tremblay • Due in 2 days'))
+          .dy;
       expect(overdueDy, lessThan(dueSoonDy));
     });
 
-    testWidgets('tapping an attention row opens the preview',
-        (tester) async {
+    testWidgets('tapping an attention row opens the preview', (tester) async {
       await pumpAttention(tester);
 
       await tester.tap(find.text('Alice Tremblay • 3 days overdue'));
@@ -226,7 +235,7 @@ void main() {
         await tester.pump(const Duration(milliseconds: 200));
       }
 
-      expect(find.text('Send invoice'), findsOneWidget);
+      expect(find.text('Share PDF'), findsOneWidget);
     });
 
     testWidgets('hidden when nothing needs chasing', (tester) async {
@@ -235,7 +244,9 @@ void main() {
       addTearDown(container.dispose);
       await container.read(invoicesProvider.future);
       await container.read(clientsProvider.future);
-      await container.read(invoicesProvider.notifier).saveInvoice(
+      await container
+          .read(invoicesProvider.notifier)
+          .saveInvoice(
             _invoice(
               id: 'paid',
               number: '2026-0014',
@@ -317,23 +328,24 @@ void main() {
     }
 
     Invoice draftInvoice() => Invoice(
-          id: 'i1',
-          number: '2026-0001',
-          clientId: 'c1',
-          issueDate: DateTime(2026, 9, 1),
-          dueDate: DateTime(2026, 10, 1),
-          status: InvoiceStatus.draft,
-        );
+      id: 'i1',
+      number: '2026-0001',
+      clientId: 'c1',
+      issueDate: DateTime(2026, 9, 1),
+      dueDate: DateTime(2026, 10, 1),
+      status: InvoiceStatus.draft,
+    );
 
     /// The tile's status chip — scoped to the list tile so the status
     /// filter chips at the top of the screen don't match.
     Finder tileChip(String label) => find.descendant(
-          of: find.byType(InvoiceListTile),
-          matching: find.text(label),
-        );
+      of: find.byType(InvoiceListTile),
+      matching: find.text(label),
+    );
 
-    testWidgets('tapping the status chip offers the draft transitions',
-        (tester) async {
+    testWidgets('tapping the status chip offers the draft transitions', (
+      tester,
+    ) async {
       await seedChipInvoice(tester, draftInvoice());
 
       await tester.tap(tileChip('Draft'));
@@ -345,8 +357,9 @@ void main() {
       expect(find.text('Back to draft'), findsNothing);
     });
 
-    testWidgets('marking as sent updates the chip and stamps the date',
-        (tester) async {
+    testWidgets('marking as sent updates the chip and stamps the date', (
+      tester,
+    ) async {
       final seeded = await seedChipInvoice(tester, draftInvoice());
 
       await tester.tap(tileChip('Draft'));
@@ -355,10 +368,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(tileChip('Sent'), findsOneWidget);
-      expect(
-        seeded.read(invoicesProvider).value!.single.sentDate,
-        isNotNull,
-      );
+      expect(seeded.read(invoicesProvider).value!.single.sentDate, isNotNull);
     });
 
     testWidgets('paid invoice tile shows the paid date', (tester) async {

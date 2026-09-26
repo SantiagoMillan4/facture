@@ -292,59 +292,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get invoiceSharePdf => 'Share PDF';
 
   @override
-  String get emailTemplateTitle => 'Email template';
-
-  @override
-  String get emailTemplateSubtitle =>
-      'Subject and message used when emailing an invoice — insert the placeholders below';
-
-  @override
-  String get emailTemplateSubjectLabel => 'Subject';
-
-  @override
-  String get emailTemplateBodyLabel => 'Message';
-
-  @override
-  String get emailTemplateSubjectRequired => 'Enter a subject';
-
-  @override
-  String get emailTemplateBodyRequired => 'Enter a message';
-
-  @override
-  String get emailTemplatePlaceholdersTitle => 'Placeholders';
-
-  @override
-  String get emailTemplatePlaceholdersHint =>
-      'Replaced automatically when the email opens.';
-
-  @override
-  String get emailTemplateReset => 'Reset to default';
-
-  @override
-  String get invoiceSendEmail => 'Send by email';
-
-  @override
-  String get invoicePreviewSend => 'Send invoice';
-
-  @override
   String get invoicePreviewEdit => 'Edit invoice';
 
   @override
   String get invoicePreviewNotFound => 'This invoice no longer exists.';
-
-  @override
-  String get invoiceEmailFailed => 'Couldn\'t open the email composer.';
-
-  @override
-  String get invoiceNoClientEmailTitle => 'No email address';
-
-  @override
-  String invoiceNoClientEmailMessage(String name) {
-    return 'Add an email address for $name to send them the invoice.';
-  }
-
-  @override
-  String get invoiceNoClientEmailAdd => 'Add email';
 
   @override
   String get primaryScenarioSection => 'Primary scenario';

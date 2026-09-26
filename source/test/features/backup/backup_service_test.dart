@@ -9,8 +9,6 @@ import 'package:facture/features/catalog/domain/catalog_item.dart';
 import 'package:facture/features/business/domain/business_profile.dart';
 import 'package:facture/features/clients/data/clients_repository.dart';
 import 'package:facture/features/clients/domain/client.dart';
-import 'package:facture/features/email/data/email_template_repository.dart';
-import 'package:facture/features/email/domain/email_template.dart';
 import 'package:facture/features/invoices/data/invoices_repository.dart';
 import 'package:facture/features/invoices/domain/invoice.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +19,6 @@ BackupService _service() => BackupService(
   invoices: InvoicesRepository(),
   clients: ClientsRepository(),
   business: BusinessProfileRepository(),
-  email: EmailTemplateRepository(),
   catalog: CatalogRepository(),
 );
 
@@ -74,9 +71,6 @@ void main() {
       await BusinessProfileRepository().saveProfile(
         const BusinessProfile(name: 'Santiago'),
       );
-      await EmailTemplateRepository().saveTemplate(
-        const EmailTemplate(subject: 'Hi', body: 'Bye'),
-      );
       await CatalogRepository().saveItems([
         const CatalogItem(
           id: 'ci1',
@@ -104,10 +98,25 @@ void main() {
       expect(clients.single.name, 'Acme');
       final business = await BusinessProfileRepository().loadProfile();
       expect(business?.name, 'Santiago');
-      final template = await EmailTemplateRepository().loadTemplate();
-      expect(template?.subject, 'Hi');
       final catalog = await CatalogRepository().loadItems();
       expect(catalog.single.description, 'Design');
+    });
+
+    test('import ignores the removed emailTemplate key', () async {
+      // Backups written before the email template feature was removed
+      // still carry the key: restore must succeed and ignore it.
+      final raw = jsonEncode({
+        'format': 'facture-backup',
+        'version': 1,
+        'exportedAt': '2026-09-26T00:00:00.000',
+        'invoices': [],
+        'clients': [],
+        'emailTemplate': {'subject': 'Hi', 'body': 'Bye'},
+      });
+
+      final summary = await _service().restoreFromJson(raw);
+      expect(summary.invoiceCount, 0);
+      expect(summary.clientCount, 0);
     });
 
     test('restore rejects invalid documents', () async {

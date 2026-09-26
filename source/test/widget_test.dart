@@ -22,7 +22,7 @@ void main() {
     expect(find.text('New invoice'), findsWidgets); // center btn + empty state
     expect(find.text('Search invoices'), findsOneWidget); // list search
 
-    // The Tools tab lists the tax calculator and the email template.
+    // The Tools tab lists the tax calculator.
     await tester.tap(
       find.descendant(
         of: find.byType(NavigationBar),
@@ -31,7 +31,6 @@ void main() {
     );
     await tester.pumpAndSettle();
     expect(find.text('TPS/TVQ calculator'), findsOneWidget);
-    expect(find.text('Email template'), findsOneWidget);
 
     // Back on Invoices, the big button opens the invoice form.
     await tester.tap(

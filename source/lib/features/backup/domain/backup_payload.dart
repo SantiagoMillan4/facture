@@ -10,7 +10,6 @@ class BackupPayload {
     required this.invoices,
     required this.clients,
     this.businessProfile,
-    this.emailTemplate,
     this.catalogItems = const [],
   });
 
@@ -23,19 +22,17 @@ class BackupPayload {
   final List<Map<String, dynamic>> invoices;
   final List<Map<String, dynamic>> clients;
   final Map<String, dynamic>? businessProfile;
-  final Map<String, dynamic>? emailTemplate;
   final List<Map<String, dynamic>> catalogItems;
 
   Map<String, dynamic> toJson() => {
-        'format': format,
-        'version': version,
-        'exportedAt': exportedAt.toIso8601String(),
-        'invoices': invoices,
-        'clients': clients,
-        if (businessProfile != null) 'businessProfile': businessProfile,
-        if (emailTemplate != null) 'emailTemplate': emailTemplate,
-        if (catalogItems.isNotEmpty) 'catalogItems': catalogItems,
-      };
+    'format': format,
+    'version': version,
+    'exportedAt': exportedAt.toIso8601String(),
+    'invoices': invoices,
+    'clients': clients,
+    if (businessProfile != null) 'businessProfile': businessProfile,
+    if (catalogItems.isNotEmpty) 'catalogItems': catalogItems,
+  };
 
   /// Parses and validates a decoded backup document.
   ///
@@ -52,12 +49,12 @@ class BackupPayload {
       throw const FormatException('Unsupported backup version.');
     }
     return BackupPayload(
-      exportedAt: DateTime.tryParse(json['exportedAt'] as String? ?? '') ??
+      exportedAt:
+          DateTime.tryParse(json['exportedAt'] as String? ?? '') ??
           DateTime.fromMillisecondsSinceEpoch(0),
       invoices: _mapList(json, 'invoices'),
       clients: _mapList(json, 'clients'),
       businessProfile: _mapOrNull(json, 'businessProfile'),
-      emailTemplate: _mapOrNull(json, 'emailTemplate'),
       catalogItems: _mapList(json, 'catalogItems'),
     );
   }

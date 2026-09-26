@@ -13,7 +13,6 @@ import '../../../shared/widgets/form_section_title.dart';
 import '../../business/application/business_profile_providers.dart';
 import '../../catalog/application/catalog_providers.dart';
 import '../../clients/application/clients_providers.dart';
-import '../../email/application/email_template_providers.dart';
 import '../../invoices/application/invoices_providers.dart';
 import '../../invoices/domain/invoice.dart';
 import '../application/backup_providers.dart';
@@ -45,7 +44,9 @@ class _BackupScreenState extends ConsumerState<BackupScreen> {
     try {
       final l10n = context.l10n;
       final clients = await ref.read(clientsProvider.future);
-      final file = await ref.read(backupServiceProvider).writeInvoicesCsv(
+      final file = await ref
+          .read(backupServiceProvider)
+          .writeInvoicesCsv(
             headers: [
               l10n.csvNumber,
               l10n.csvClient,
@@ -104,7 +105,6 @@ class _BackupScreenState extends ConsumerState<BackupScreen> {
         ..invalidate(invoicesProvider)
         ..invalidate(clientsProvider)
         ..invalidate(businessProfileProvider)
-        ..invalidate(emailTemplateProvider)
         ..invalidate(catalogItemsProvider);
       _snack(context.l10n.backupRestored);
     } on FormatException {
@@ -115,7 +115,8 @@ class _BackupScreenState extends ConsumerState<BackupScreen> {
   }
 
   void _snack(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -126,7 +127,10 @@ class _BackupScreenState extends ConsumerState<BackupScreen> {
       body: ListView(
         padding: AppSpacing.screenPadding,
         children: [
-          Text(l10n.backupExplainer, style: Theme.of(context).textTheme.bodyMedium),
+          Text(
+            l10n.backupExplainer,
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
           const SizedBox(height: AppSpacing.lg),
           FormSectionTitle(title: l10n.backupSection),
           _BackupTile(

@@ -4,16 +4,15 @@ import 'package:facture/features/backup/domain/backup_payload.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 BackupPayload _payload() => BackupPayload(
-      exportedAt: DateTime(2026, 9, 25, 12),
-      invoices: [
-        {'id': 'i1', 'number': '2026-0001'},
-      ],
-      clients: [
-        {'id': 'c1', 'name': 'Acme'},
-      ],
-      businessProfile: {'name': 'Santiago'},
-      emailTemplate: {'subject': 'Hi', 'body': 'Bye'},
-    );
+  exportedAt: DateTime(2026, 9, 25, 12),
+  invoices: [
+    {'id': 'i1', 'number': '2026-0001'},
+  ],
+  clients: [
+    {'id': 'c1', 'name': 'Acme'},
+  ],
+  businessProfile: {'name': 'Santiago'},
+);
 
 void main() {
   group('BackupPayload', () {
@@ -24,8 +23,21 @@ void main() {
       expect(parsed.invoices, hasLength(1));
       expect(parsed.clients, hasLength(1));
       expect(parsed.businessProfile?['name'], 'Santiago');
-      expect(parsed.emailTemplate?['subject'], 'Hi');
       expect(parsed.exportedAt, DateTime(2026, 9, 25, 12));
+    });
+
+    test('ignores the removed emailTemplate key', () {
+      // Backups written before the email template feature was removed
+      // still carry the key: parse must succeed and ignore it.
+      final parsed = BackupPayload.parse({
+        'format': 'facture-backup',
+        'version': 1,
+        'invoices': [],
+        'clients': [],
+        'emailTemplate': {'subject': 'Hi', 'body': 'Bye'},
+      });
+      expect(parsed.invoices, isEmpty);
+      expect(parsed.clients, isEmpty);
     });
 
     test('optional sections may be absent', () {
@@ -36,7 +48,6 @@ void main() {
         'clients': [],
       });
       expect(parsed.businessProfile, isNull);
-      expect(parsed.emailTemplate, isNull);
     });
 
     test('rejects a foreign document', () {

@@ -95,7 +95,7 @@ void main() {
   });
 
   group('ToolsScreen', () {
-    testWidgets('lists the tax calculator and email template', (tester) async {
+    testWidgets('lists the tax calculator', (tester) async {
       await pumpShell(tester);
       await tester.pumpAndSettle();
 
@@ -107,7 +107,6 @@ void main() {
         find.text('Add taxes or extract them from a total.'),
         findsOneWidget,
       );
-      expect(find.text('Email template'), findsOneWidget);
     });
 
     testWidgets('calculator tile opens the tax calculator', (tester) async {

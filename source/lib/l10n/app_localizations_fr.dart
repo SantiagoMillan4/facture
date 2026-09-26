@@ -293,60 +293,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get invoiceSharePdf => 'Partager le PDF';
 
   @override
-  String get emailTemplateTitle => 'Modèle de courriel';
-
-  @override
-  String get emailTemplateSubtitle =>
-      'Objet et message utilisés pour envoyer une facture par courriel — insérez les variables ci-dessous';
-
-  @override
-  String get emailTemplateSubjectLabel => 'Objet';
-
-  @override
-  String get emailTemplateBodyLabel => 'Message';
-
-  @override
-  String get emailTemplateSubjectRequired => 'Saisissez un objet';
-
-  @override
-  String get emailTemplateBodyRequired => 'Saisissez un message';
-
-  @override
-  String get emailTemplatePlaceholdersTitle => 'Variables';
-
-  @override
-  String get emailTemplatePlaceholdersHint =>
-      'Remplacées automatiquement à l\'ouverture du courriel.';
-
-  @override
-  String get emailTemplateReset => 'Réinitialiser';
-
-  @override
-  String get invoiceSendEmail => 'Envoyer par courriel';
-
-  @override
-  String get invoicePreviewSend => 'Envoyer la facture';
-
-  @override
   String get invoicePreviewEdit => 'Modifier la facture';
 
   @override
   String get invoicePreviewNotFound => 'Cette facture n\'existe plus.';
-
-  @override
-  String get invoiceEmailFailed =>
-      'Impossible d\'ouvrir l\'éditeur de courriel.';
-
-  @override
-  String get invoiceNoClientEmailTitle => 'Aucune adresse courriel';
-
-  @override
-  String invoiceNoClientEmailMessage(String name) {
-    return 'Ajoutez une adresse courriel pour $name afin de lui envoyer la facture.';
-  }
-
-  @override
-  String get invoiceNoClientEmailAdd => 'Ajouter le courriel';
 
   @override
   String get primaryScenarioSection => 'Scénario principal';

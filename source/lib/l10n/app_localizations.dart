@@ -590,72 +590,6 @@ abstract class AppLocalizations {
   /// **'Share PDF'**
   String get invoiceSharePdf;
 
-  /// No description provided for @emailTemplateTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Email template'**
-  String get emailTemplateTitle;
-
-  /// No description provided for @emailTemplateSubtitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Subject and message used when emailing an invoice — insert the placeholders below'**
-  String get emailTemplateSubtitle;
-
-  /// No description provided for @emailTemplateSubjectLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Subject'**
-  String get emailTemplateSubjectLabel;
-
-  /// No description provided for @emailTemplateBodyLabel.
-  ///
-  /// In en, this message translates to:
-  /// **'Message'**
-  String get emailTemplateBodyLabel;
-
-  /// No description provided for @emailTemplateSubjectRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter a subject'**
-  String get emailTemplateSubjectRequired;
-
-  /// No description provided for @emailTemplateBodyRequired.
-  ///
-  /// In en, this message translates to:
-  /// **'Enter a message'**
-  String get emailTemplateBodyRequired;
-
-  /// No description provided for @emailTemplatePlaceholdersTitle.
-  ///
-  /// In en, this message translates to:
-  /// **'Placeholders'**
-  String get emailTemplatePlaceholdersTitle;
-
-  /// No description provided for @emailTemplatePlaceholdersHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Replaced automatically when the email opens.'**
-  String get emailTemplatePlaceholdersHint;
-
-  /// No description provided for @emailTemplateReset.
-  ///
-  /// In en, this message translates to:
-  /// **'Reset to default'**
-  String get emailTemplateReset;
-
-  /// Tooltip for the button that emails the invoice
-  ///
-  /// In en, this message translates to:
-  /// **'Send by email'**
-  String get invoiceSendEmail;
-
-  /// Primary button on the invoice preview screen
-  ///
-  /// In en, this message translates to:
-  /// **'Send invoice'**
-  String get invoicePreviewSend;
-
   /// Tooltip for the edit button on the invoice preview screen
   ///
   /// In en, this message translates to:
@@ -667,30 +601,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This invoice no longer exists.'**
   String get invoicePreviewNotFound;
-
-  /// Snackbar when the native email composer cannot be opened
-  ///
-  /// In en, this message translates to:
-  /// **'Couldn\'t open the email composer.'**
-  String get invoiceEmailFailed;
-
-  /// Dialog title when the client has no email address
-  ///
-  /// In en, this message translates to:
-  /// **'No email address'**
-  String get invoiceNoClientEmailTitle;
-
-  /// Dialog message when the client has no email address
-  ///
-  /// In en, this message translates to:
-  /// **'Add an email address for {name} to send them the invoice.'**
-  String invoiceNoClientEmailMessage(String name);
-
-  /// Dialog button opening the client editor to add an email
-  ///
-  /// In en, this message translates to:
-  /// **'Add email'**
-  String get invoiceNoClientEmailAdd;
 
   /// No description provided for @primaryScenarioSection.
   ///

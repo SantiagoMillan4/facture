@@ -8,8 +8,6 @@ import '../../catalog/data/catalog_repository.dart';
 import '../../catalog/domain/catalog_item.dart';
 import '../../clients/data/clients_repository.dart';
 import '../../clients/domain/client.dart';
-import '../../email/data/email_template_repository.dart';
-import '../../email/domain/email_template.dart';
 import '../../invoices/data/invoices_repository.dart';
 import '../../invoices/domain/invoice.dart';
 import '../../invoices/domain/quebec_tax.dart';
@@ -32,7 +30,6 @@ class BackupService {
     required this.invoices,
     required this.clients,
     required this.business,
-    required this.email,
     required this.catalog,
   });
 
@@ -47,7 +44,6 @@ class BackupService {
   final InvoicesRepository invoices;
   final ClientsRepository clients;
   final BusinessProfileRepository business;
-  final EmailTemplateRepository email;
   final CatalogRepository catalog;
 
   /// Writes the whole local database to a JSON backup file in the temp
@@ -56,7 +52,6 @@ class BackupService {
     final savedInvoices = await invoices.loadInvoices();
     final savedClients = await clients.loadClients();
     final savedBusiness = await business.loadProfile();
-    final savedEmail = await email.loadTemplate();
     final savedCatalog = await catalog.loadItems();
     Map<String, dynamic>? businessJson;
     if (savedBusiness != null) {
@@ -71,7 +66,6 @@ class BackupService {
       invoices: savedInvoices.map((i) => i.toJson()).toList(),
       clients: savedClients.map((c) => c.toJson()).toList(),
       businessProfile: businessJson,
-      emailTemplate: savedEmail?.toJson(),
       catalogItems: savedCatalog.map((i) => i.toJson()).toList(),
     );
     final file = await _tempFile('facture-backup', 'json');
@@ -115,10 +109,8 @@ class BackupService {
       }
       await business.saveProfile(profile);
     }
-    final emailJson = payload.emailTemplate;
-    if (emailJson != null) {
-      await email.saveTemplate(EmailTemplate.fromJson(emailJson));
-    }
+    // Old backups may still carry an emailTemplate key (feature removed);
+    // unknown keys are ignored by BackupPayload.parse.
     await catalog.saveItems(
       payload.catalogItems.map(CatalogItem.fromJson).toList(growable: false),
     );
