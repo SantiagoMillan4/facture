@@ -2359,4 +2359,75 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get logoCreatorEmptyName =>
       'Entrez le nom de votre entreprise pour voir un aperçu du logo.';
+
+  @override
+  String get onboardingGetStarted => 'Commencer';
+
+  @override
+  String get onboardingTagline =>
+      'La facturation pour les travailleurs autonomes du Québec — sans abonnement.';
+
+  @override
+  String get onboardingBusinessTitle => 'Votre entreprise';
+
+  @override
+  String get onboardingBusinessSubtitle =>
+      'Ces informations apparaîtront sur vos factures. Modifiables à tout moment dans Réglages.';
+
+  @override
+  String get onboardingBusinessContinue => 'Continuer';
+
+  @override
+  String get onboardingTaxRequired =>
+      'Choisissez votre statut fiscal pour continuer';
+
+  @override
+  String get onboardingHowTitle => 'Comment ça marche';
+
+  @override
+  String get onboardingHow1Title => 'Créez des factures en quelques secondes';
+
+  @override
+  String get onboardingHow1Body =>
+      'Ajoutez un client, des lignes, envoyez le PDF. C\'est tout.';
+
+  @override
+  String get onboardingHow2Title => 'Des taxes conformes au Québec';
+
+  @override
+  String get onboardingHow2Body =>
+      'TPS 5 % et TVQ 9,975 % calculées à la québécoise — TVQ sur le montant incluant la TPS — automatiquement.';
+
+  @override
+  String get onboardingHow3Title => 'Vos données restent sur votre téléphone';
+
+  @override
+  String get onboardingHow3Body =>
+      'Pas de compte, pas de nuage, pas de suivi. Vos factures ne quittent jamais votre appareil.';
+
+  @override
+  String get onboardingHowNext => 'Suivant';
+
+  @override
+  String get onboardingPricingTitle => 'Un prix simple';
+
+  @override
+  String get onboardingPricingSubtitle =>
+      'Commencez gratuitement. Passez à Pro une fois, pour toujours.';
+
+  @override
+  String get onboardingFreeTitle => 'Gratuit';
+
+  @override
+  String get onboardingFreeBody => '3 factures — essayez toute l\'app.';
+
+  @override
+  String get onboardingStartFree => 'Commencer gratuitement';
+
+  @override
+  String get onboardingProBody =>
+      'Factures illimitées. Achat unique, sans abonnement.';
+
+  @override
+  String get onboardingGetPro => 'Obtenir Facture Pro';
 }

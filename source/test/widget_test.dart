@@ -1,5 +1,6 @@
 import 'package:facture/app/app.dart';
 import 'package:facture/features/invoices/presentation/invoice_form_screen.dart';
+import 'package:facture/features/onboarding/application/onboarding_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,8 +8,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   testWidgets('app launches on Invoices with the new tab bar', (tester) async {
     // Providers read on-device storage; the mock keeps them resolving
-    // instead of hanging on the real method channel.
-    SharedPreferences.setMockInitialValues({});
+    // instead of hanging on the real method channel. The onboarding flag
+    // simulates a returning user, straight into the tab shell.
+    SharedPreferences.setMockInitialValues({OnboardingService.doneKey: true});
     await tester.pumpWidget(const FactureApp());
     await tester.pumpAndSettle();
 

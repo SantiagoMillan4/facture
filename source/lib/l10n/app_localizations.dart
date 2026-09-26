@@ -4237,6 +4237,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter your business name to preview your logo.'**
   String get logoCreatorEmptyName;
+
+  /// No description provided for @onboardingGetStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Get started'**
+  String get onboardingGetStarted;
+
+  /// No description provided for @onboardingTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoicing for Québec freelancers — without the subscription.'**
+  String get onboardingTagline;
+
+  /// No description provided for @onboardingBusinessTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your business'**
+  String get onboardingBusinessTitle;
+
+  /// No description provided for @onboardingBusinessSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This appears on your invoices. You can edit everything later in Settings.'**
+  String get onboardingBusinessSubtitle;
+
+  /// No description provided for @onboardingBusinessContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get onboardingBusinessContinue;
+
+  /// No description provided for @onboardingTaxRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your tax status to continue'**
+  String get onboardingTaxRequired;
+
+  /// No description provided for @onboardingHowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How it works'**
+  String get onboardingHowTitle;
+
+  /// No description provided for @onboardingHow1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Create invoices in seconds'**
+  String get onboardingHow1Title;
+
+  /// No description provided for @onboardingHow1Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a client, add line items, send the PDF. That\'s the whole workflow.'**
+  String get onboardingHow1Body;
+
+  /// No description provided for @onboardingHow2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Québec-correct taxes'**
+  String get onboardingHow2Title;
+
+  /// No description provided for @onboardingHow2Body.
+  ///
+  /// In en, this message translates to:
+  /// **'TPS 5% and TVQ 9.975% computed the Québec way — TVQ on the TPS-inclusive amount — automatically.'**
+  String get onboardingHow2Body;
+
+  /// No description provided for @onboardingHow3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data stays on your phone'**
+  String get onboardingHow3Title;
+
+  /// No description provided for @onboardingHow3Body.
+  ///
+  /// In en, this message translates to:
+  /// **'No account, no cloud, no tracking. Your invoices never leave your device.'**
+  String get onboardingHow3Body;
+
+  /// No description provided for @onboardingHowNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get onboardingHowNext;
+
+  /// No description provided for @onboardingPricingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple pricing'**
+  String get onboardingPricingTitle;
+
+  /// No description provided for @onboardingPricingSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Start free. Upgrade once, keep it forever.'**
+  String get onboardingPricingSubtitle;
+
+  /// No description provided for @onboardingFreeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get onboardingFreeTitle;
+
+  /// No description provided for @onboardingFreeBody.
+  ///
+  /// In en, this message translates to:
+  /// **'3 invoices — try the whole app.'**
+  String get onboardingFreeBody;
+
+  /// No description provided for @onboardingStartFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Start free'**
+  String get onboardingStartFree;
+
+  /// No description provided for @onboardingProBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlimited invoices. One-time purchase, no subscription.'**
+  String get onboardingProBody;
+
+  /// No description provided for @onboardingGetPro.
+  ///
+  /// In en, this message translates to:
+  /// **'Get Facture Pro'**
+  String get onboardingGetPro;
 }
 
 class _AppLocalizationsDelegate

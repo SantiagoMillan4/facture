@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../features/clients/presentation/clients_screen.dart';
 import '../features/invoices/presentation/invoices_screen.dart';
+import '../features/onboarding/application/onboarding_service.dart';
+import '../features/onboarding/presentation/onboarding_screen.dart';
 import '../features/settings/presentation/settings_screen.dart';
 import '../features/tools/presentation/tools_screen.dart';
 import '../l10n/app_l10n.dart';
@@ -14,8 +16,9 @@ import 'splash_screen.dart';
 /// Index of the bottom-navigation tab. A provider (rather than local state)
 /// so a pushed page can switch tabs — e.g. jumping to Invoices after
 /// creating one.
-final homeTabIndexProvider =
-    NotifierProvider<HomeTabIndexNotifier, int>(HomeTabIndexNotifier.new);
+final homeTabIndexProvider = NotifierProvider<HomeTabIndexNotifier, int>(
+  HomeTabIndexNotifier.new,
+);
 
 class HomeTabIndexNotifier extends Notifier<int> {
   @override
@@ -56,7 +59,8 @@ class FactureApp extends StatelessWidget {
   }
 }
 
-/// Shows the animated splash first, then crossfades into the tab shell.
+/// Shows the animated splash first, then the first-launch onboarding when
+/// needed, then crossfades into the tab shell.
 class _SplashGate extends StatefulWidget {
   const _SplashGate();
 
@@ -65,15 +69,32 @@ class _SplashGate extends StatefulWidget {
 }
 
 class _SplashGateState extends State<_SplashGate> {
-  var _ready = false;
+  var _splashDone = false;
+  bool? _needsOnboarding;
+
+  Future<void> _onSplashReady() async {
+    final needs = await OnboardingService.needsOnboarding();
+    if (!mounted) return;
+    setState(() {
+      _splashDone = true;
+      _needsOnboarding = needs;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final needsOnboarding = _needsOnboarding;
     return AnimatedSwitcher(
       duration: AppMotion.pageTransition,
-      child: _ready
-          ? const HomeShell()
-          : SplashScreen(onReady: () => setState(() => _ready = true)),
+      child: !_splashDone || needsOnboarding == null
+          ? SplashScreen(onReady: _onSplashReady)
+          // While the onboarding check runs, the splash stays up: no flash
+          // of the tab shell on first launch.
+          : needsOnboarding
+          ? OnboardingScreen(
+              onDone: () => setState(() => _needsOnboarding = false),
+            )
+          : const HomeShell(),
     );
   }
 }

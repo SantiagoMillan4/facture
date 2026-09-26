@@ -2337,4 +2337,74 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get logoCreatorEmptyName =>
       'Enter your business name to preview your logo.';
+
+  @override
+  String get onboardingGetStarted => 'Get started';
+
+  @override
+  String get onboardingTagline =>
+      'Invoicing for Québec freelancers — without the subscription.';
+
+  @override
+  String get onboardingBusinessTitle => 'Your business';
+
+  @override
+  String get onboardingBusinessSubtitle =>
+      'This appears on your invoices. You can edit everything later in Settings.';
+
+  @override
+  String get onboardingBusinessContinue => 'Continue';
+
+  @override
+  String get onboardingTaxRequired => 'Choose your tax status to continue';
+
+  @override
+  String get onboardingHowTitle => 'How it works';
+
+  @override
+  String get onboardingHow1Title => 'Create invoices in seconds';
+
+  @override
+  String get onboardingHow1Body =>
+      'Add a client, add line items, send the PDF. That\'s the whole workflow.';
+
+  @override
+  String get onboardingHow2Title => 'Québec-correct taxes';
+
+  @override
+  String get onboardingHow2Body =>
+      'TPS 5% and TVQ 9.975% computed the Québec way — TVQ on the TPS-inclusive amount — automatically.';
+
+  @override
+  String get onboardingHow3Title => 'Your data stays on your phone';
+
+  @override
+  String get onboardingHow3Body =>
+      'No account, no cloud, no tracking. Your invoices never leave your device.';
+
+  @override
+  String get onboardingHowNext => 'Next';
+
+  @override
+  String get onboardingPricingTitle => 'Simple pricing';
+
+  @override
+  String get onboardingPricingSubtitle =>
+      'Start free. Upgrade once, keep it forever.';
+
+  @override
+  String get onboardingFreeTitle => 'Free';
+
+  @override
+  String get onboardingFreeBody => '3 invoices — try the whole app.';
+
+  @override
+  String get onboardingStartFree => 'Start free';
+
+  @override
+  String get onboardingProBody =>
+      'Unlimited invoices. One-time purchase, no subscription.';
+
+  @override
+  String get onboardingGetPro => 'Get Facture Pro';
 }

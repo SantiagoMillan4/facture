@@ -2,6 +2,7 @@ import 'package:facture/app/app.dart';
 import 'package:facture/features/clients/presentation/clients_screen.dart';
 import 'package:facture/features/invoices/presentation/invoice_form_screen.dart';
 import 'package:facture/features/invoices/presentation/invoices_screen.dart';
+import 'package:facture/features/onboarding/application/onboarding_service.dart';
 import 'package:facture/features/settings/presentation/how_it_works_screen.dart';
 import 'package:facture/features/settings/presentation/settings_screen.dart';
 import 'package:facture/features/settings/presentation/tax_explainer_screen.dart';
@@ -24,7 +25,9 @@ void main() {
   setUpAll(() {
     // The client directory reads from disk on first load; without this the
     // Future never completes in tests and the loading spinner spins forever.
-    SharedPreferences.setMockInitialValues({});
+    // The onboarding flag simulates a returning user, straight into the
+    // tab shell.
+    SharedPreferences.setMockInitialValues({OnboardingService.doneKey: true});
   });
 
   Future<void> pumpShell(WidgetTester tester) {
