@@ -293,6 +293,38 @@ class AppLocalizationsFr extends AppLocalizations {
   String get invoiceSharePdf => 'Partager le PDF';
 
   @override
+  String get emailTemplateTitle => 'Modèle de courriel';
+
+  @override
+  String get emailTemplateSubtitle =>
+      'Objet et message utilisés pour envoyer une facture par courriel — insérez les variables ci-dessous';
+
+  @override
+  String get emailTemplateSubjectLabel => 'Objet';
+
+  @override
+  String get emailTemplateBodyLabel => 'Message';
+
+  @override
+  String get emailTemplateSubjectRequired => 'Saisissez un objet';
+
+  @override
+  String get emailTemplateBodyRequired => 'Saisissez un message';
+
+  @override
+  String get emailTemplatePlaceholdersTitle => 'Variables';
+
+  @override
+  String get emailTemplatePlaceholdersHint =>
+      'Remplacées automatiquement à l\'ouverture du courriel.';
+
+  @override
+  String get emailTemplateReset => 'Réinitialiser';
+
+  @override
+  String get invoiceSendEmail => 'Envoyer par courriel';
+
+  @override
   String get primaryScenarioSection => 'Scénario principal';
 
   @override

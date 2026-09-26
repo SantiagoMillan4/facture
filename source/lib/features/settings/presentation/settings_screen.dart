@@ -9,6 +9,7 @@ import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/form_section_title.dart';
 import '../../business/presentation/business_profile_screen.dart';
+import '../../email/presentation/email_template_screen.dart';
 import '../../purchase/application/purchase_providers.dart';
 import '../../purchase/domain/purchase_catalog.dart';
 import '../../purchase/presentation/paywall_sheet.dart';
@@ -90,6 +91,13 @@ class SettingsScreen extends ConsumerWidget {
             subtitle: l10n.businessProfileSubtitle,
             onTap: () =>
                 pushAppPage(context, (_) => const BusinessProfileScreen()),
+          ),
+          _SettingsTile(
+            icon: Icons.mail_outline,
+            title: l10n.emailTemplateTitle,
+            subtitle: l10n.emailTemplateSubtitle,
+            onTap: () =>
+                pushAppPage(context, (_) => const EmailTemplateScreen()),
           ),
           FormSectionTitle(title: l10n.settingsLearn),
           _SettingsTile(

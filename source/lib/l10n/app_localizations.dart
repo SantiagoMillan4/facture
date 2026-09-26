@@ -590,6 +590,66 @@ abstract class AppLocalizations {
   /// **'Share PDF'**
   String get invoiceSharePdf;
 
+  /// No description provided for @emailTemplateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Email template'**
+  String get emailTemplateTitle;
+
+  /// No description provided for @emailTemplateSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Subject and message used when emailing an invoice — insert the placeholders below'**
+  String get emailTemplateSubtitle;
+
+  /// No description provided for @emailTemplateSubjectLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Subject'**
+  String get emailTemplateSubjectLabel;
+
+  /// No description provided for @emailTemplateBodyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Message'**
+  String get emailTemplateBodyLabel;
+
+  /// No description provided for @emailTemplateSubjectRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a subject'**
+  String get emailTemplateSubjectRequired;
+
+  /// No description provided for @emailTemplateBodyRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a message'**
+  String get emailTemplateBodyRequired;
+
+  /// No description provided for @emailTemplatePlaceholdersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Placeholders'**
+  String get emailTemplatePlaceholdersTitle;
+
+  /// No description provided for @emailTemplatePlaceholdersHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Replaced automatically when the email opens.'**
+  String get emailTemplatePlaceholdersHint;
+
+  /// No description provided for @emailTemplateReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset to default'**
+  String get emailTemplateReset;
+
+  /// No description provided for @invoiceSendEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Send by email'**
+  String get invoiceSendEmail;
+
   /// No description provided for @primaryScenarioSection.
   ///
   /// In en, this message translates to:

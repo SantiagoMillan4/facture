@@ -13,6 +13,7 @@ import '../../business/domain/business_profile.dart';
 import '../../business/presentation/business_profile_screen.dart';
 import '../../clients/application/clients_providers.dart';
 import '../../clients/domain/client.dart';
+import '../../email/application/share_invoice_email.dart';
 import '../application/invoices_providers.dart';
 import '../domain/invoice.dart';
 import '../domain/quebec_tax.dart';
@@ -204,6 +205,23 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
     );
   }
 
+  /// Opens the share sheet with the invoice PDF attached and the email
+  /// template rendered as subject/message. The invoice doesn't need to be
+  /// saved first.
+  Future<void> _sendEmail() async {
+    final invoice = _validate();
+    if (invoice == null) return;
+    final clients = ref.read(clientsProvider).value ?? [];
+    final client = clients.where((c) => c.id == invoice.clientId).firstOrNull;
+    if (client == null || !mounted) return;
+    await shareInvoiceEmail(
+      context: context,
+      ref: ref,
+      invoice: invoice,
+      client: client,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
@@ -217,6 +235,11 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
           widget.invoice == null ? l10n.invoiceNewTitle : l10n.invoiceEditTitle,
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.mail_outline),
+            tooltip: l10n.invoiceSendEmail,
+            onPressed: _saving ? null : _sendEmail,
+          ),
           IconButton(
             icon: const Icon(Icons.share_outlined),
             tooltip: l10n.invoiceSharePdf,
