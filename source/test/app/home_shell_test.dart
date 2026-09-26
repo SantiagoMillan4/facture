@@ -11,9 +11,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Taps a bottom-bar tab by index: 0 Invoices, 1 Clients, 2 Tools, 3 Settings.
-Future<void> tapTab(WidgetTester tester, int index) =>
-    tester.tap(find.byKey(ValueKey('navTab$index')));
+/// Taps a bottom-bar tab by label, scoped to the NavigationBar so page
+/// content with the same text (e.g. the Clients summary stat) never matches.
+Future<void> tapTab(WidgetTester tester, String label) => tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text(label),
+      ),
+    );
 
 void main() {
   setUpAll(() {
@@ -34,7 +39,7 @@ void main() {
   Future<void> goToSettings(WidgetTester tester) async {
     await pumpShell(tester);
     await tester.pumpAndSettle();
-    await tapTab(tester, 3);
+    await tapTab(tester, 'Settings');
     await tester.pumpAndSettle();
   }
 
@@ -45,32 +50,44 @@ void main() {
 
       expect(find.byType(InvoicesScreen), findsOneWidget);
 
-      await tapTab(tester, 1);
+      await tapTab(tester, 'Clients');
       await tester.pumpAndSettle();
       expect(find.byType(ClientsScreen), findsOneWidget);
 
-      await tapTab(tester, 2);
+      await tapTab(tester, 'Tools');
       await tester.pumpAndSettle();
       expect(find.byType(ToolsScreen), findsOneWidget);
 
-      await tapTab(tester, 3);
+      await tapTab(tester, 'Settings');
       await tester.pumpAndSettle();
       expect(find.byType(SettingsScreen), findsOneWidget);
 
-      await tapTab(tester, 0);
+      await tapTab(tester, 'Invoices');
       await tester.pumpAndSettle();
       expect(find.byType(InvoicesScreen), findsOneWidget);
     });
 
-    testWidgets('center button opens the invoice form', (tester) async {
+    testWidgets('big add button opens the invoice form', (tester) async {
       await pumpShell(tester);
       await tester.pumpAndSettle();
 
       // Fresh install: free tier still has room, so the form opens directly.
-      await tester.tap(find.byKey(const ValueKey('newInvoiceButton')));
+      await tester.tap(find.byKey(const ValueKey('addInvoiceButton')));
       await tester.pumpAndSettle();
 
       expect(find.byType(InvoiceFormScreen), findsOneWidget);
+    });
+
+    testWidgets('clients page has the big add button, no FAB',
+        (tester) async {
+      await pumpShell(tester);
+      await tester.pumpAndSettle();
+
+      await tapTab(tester, 'Clients');
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(const ValueKey('addClientButton')), findsOneWidget);
+      expect(find.byType(FloatingActionButton), findsNothing);
     });
   });
 
@@ -79,7 +96,7 @@ void main() {
       await pumpShell(tester);
       await tester.pumpAndSettle();
 
-      await tapTab(tester, 2);
+      await tapTab(tester, 'Tools');
       await tester.pumpAndSettle();
 
       expect(find.text('TPS/TVQ calculator'), findsOneWidget);
@@ -94,7 +111,7 @@ void main() {
       await pumpShell(tester);
       await tester.pumpAndSettle();
 
-      await tapTab(tester, 2);
+      await tapTab(tester, 'Tools');
       await tester.pumpAndSettle();
       await tester.tap(find.text('TPS/TVQ calculator'));
       await tester.pumpAndSettle();

@@ -21,15 +21,25 @@ void main() {
     expect(find.text('Search invoices'), findsOneWidget); // list search
 
     // The Tools tab lists the tax calculator and the email template.
-    await tester.tap(find.byKey(const ValueKey('navTab2')));
+    await tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('Tools'),
+      ),
+    );
     await tester.pumpAndSettle();
     expect(find.text('TPS/TVQ calculator'), findsOneWidget);
     expect(find.text('Email template'), findsOneWidget);
 
-    // Back on Invoices, the center button opens the invoice form.
-    await tester.tap(find.byKey(const ValueKey('navTab0')));
+    // Back on Invoices, the big button opens the invoice form.
+    await tester.tap(
+      find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.text('Invoices'),
+      ),
+    );
     await tester.pumpAndSettle();
-    await tester.tap(find.byKey(const ValueKey('newInvoiceButton')));
+    await tester.tap(find.byKey(const ValueKey('addInvoiceButton')));
     await tester.pumpAndSettle();
     expect(find.byType(InvoiceFormScreen), findsOneWidget);
 

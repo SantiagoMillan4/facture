@@ -5,6 +5,7 @@ import '../../../l10n/app_l10n.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/utils/currency_formatter.dart';
 import '../../../shared/widgets/animated_money.dart';
+import '../../../shared/widgets/big_add_button.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/empty_state.dart';
 import '../../../shared/widgets/staggered_entrance.dart';
@@ -159,6 +160,19 @@ class _InvoicesScreenState extends ConsumerState<InvoicesScreen> {
                   AppSpacing.lg,
                   AppSpacing.xs,
                 ),
+                child: BigAddButton(
+                  key: const ValueKey('addInvoiceButton'),
+                  label: l10n.newInvoice,
+                  onPressed: _openFormOrPaywall,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.lg,
+                  AppSpacing.xs,
+                  AppSpacing.lg,
+                  AppSpacing.xs,
+                ),
                 child: _SummaryCard(
                   unpaid: centsToDollars(summary.unpaidCents),
                   paidThisMonth: centsToDollars(summary.paidThisMonthCents),
@@ -262,8 +276,6 @@ class _InvoicesScreenState extends ConsumerState<InvoicesScreen> {
               icon: Icons.receipt_long_outlined,
               title: l10n.invoicesEmptyTitle,
               message: l10n.invoicesEmptySubtitle,
-              actionLabel: l10n.newInvoice,
-              onAction: _openFormOrPaywall,
             );
     }
     return ListView.separated(

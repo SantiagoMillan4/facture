@@ -6,6 +6,7 @@ import '../../../l10n/app_l10n.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/adaptive_action_sheet.dart';
 import '../../../shared/widgets/app_page_route.dart';
+import '../../../shared/widgets/big_add_button.dart';
 import '../../../shared/widgets/empty_state.dart';
 import '../../../shared/widgets/staggered_entrance.dart';
 import '../../../shared/widgets/swipe_to_delete_tile.dart';
@@ -108,12 +109,6 @@ class _ClientsScreenState extends ConsumerState<ClientsScreen> {
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.navClients)),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _openEditor(),
-        tooltip: l10n.clientsAddClient,
-        icon: const Icon(Icons.add),
-        label: Text(l10n.clientsAddClient),
-      ),
       body: clientsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, _) => Center(
@@ -131,6 +126,20 @@ class _ClientsScreenState extends ConsumerState<ClientsScreen> {
                 padding: const EdgeInsets.fromLTRB(
                   AppSpacing.lg,
                   AppSpacing.sm,
+                  AppSpacing.lg,
+                  AppSpacing.xs,
+                ),
+                child: BigAddButton(
+                  key: const ValueKey('addClientButton'),
+                  label: l10n.clientsAddClient,
+                  icon: Icons.person_add_outlined,
+                  onPressed: () => _openEditor(),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.lg,
+                  AppSpacing.xs,
                   AppSpacing.lg,
                   AppSpacing.sm,
                 ),
