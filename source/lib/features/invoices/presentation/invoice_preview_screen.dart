@@ -6,6 +6,7 @@ import '../../../l10n/app_l10n.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_page_route.dart';
+import '../../business/application/business_logo.dart';
 import '../../business/application/business_profile_providers.dart';
 import '../../business/domain/business_profile.dart';
 import '../../clients/application/clients_providers.dart';
@@ -130,12 +131,17 @@ class InvoicePreviewScreen extends ConsumerWidget {
       children: [
         Expanded(
           child: PdfPreview(
-            build: (format) => buildInvoicePdf(
-              invoice: invoice,
-              client: client,
-              profile: profile,
-              french: french,
-            ),
+            build: (format) async {
+              final logoBytes =
+                  await BusinessLogo.readBytes(profile?.logoPath);
+              return buildInvoicePdf(
+                invoice: invoice,
+                client: client,
+                profile: profile,
+                french: french,
+                logoBytes: logoBytes,
+              );
+            },
             allowPrinting: false,
             allowSharing: false,
             canChangePageFormat: false,

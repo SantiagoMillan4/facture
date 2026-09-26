@@ -2308,4 +2308,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get invoiceAddFromCatalog => 'Depuis le catalogue…';
+
+  @override
+  String get businessLogoLabel => 'Logo';
+
+  @override
+  String get businessLogoHint => 'Affiché sur vos factures PDF';
+
+  @override
+  String get businessLogoRemove => 'Retirer le logo';
 }

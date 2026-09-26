@@ -6,6 +6,9 @@ import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_haptics.dart';
 import '../../../shared/widgets/labeled_choice_field.dart';
 import '../../../shared/widgets/labeled_fields.dart';
+import 'dart:typed_data';
+
+import '../application/business_logo.dart';
 import '../application/business_profile_providers.dart';
 import '../domain/business_profile.dart';
 
@@ -33,6 +36,8 @@ class _BusinessProfileScreenState
   late final TextEditingController _tpsController;
   late final TextEditingController _tvqController;
   late TaxRegistrationStatus _taxStatus;
+  String? _logoPath;
+  Uint8List? _logoBytes;
   var _saving = false;
 
   @override
@@ -47,6 +52,31 @@ class _BusinessProfileScreenState
     _tvqController = TextEditingController(text: profile?.tvqNumber ?? '');
     _taxStatus =
         profile?.taxStatus ?? TaxRegistrationStatus.registered;
+    _logoPath = profile?.logoPath;
+    _loadLogoBytes();
+  }
+
+  Future<void> _loadLogoBytes() async {
+    final bytes = await BusinessLogo.readBytes(_logoPath);
+    if (mounted) setState(() => _logoBytes = bytes);
+  }
+
+  Future<void> _pickLogo() async {
+    final path = await BusinessLogo.pickAndStore();
+    if (path == null || !mounted) return;
+    await BusinessLogo.delete(_logoPath);
+    setState(() => _logoPath = path);
+    await _loadLogoBytes();
+  }
+
+  Future<void> _removeLogo() async {
+    await BusinessLogo.delete(_logoPath);
+    if (mounted) {
+      setState(() {
+        _logoPath = null;
+        _logoBytes = null;
+      });
+    }
   }
 
   @override
@@ -72,6 +102,7 @@ class _BusinessProfileScreenState
       taxStatus: _taxStatus,
       tpsNumber: registered ? _tpsController.text.trim() : '',
       tvqNumber: registered ? _tvqController.text.trim() : '',
+      logoPath: _logoPath,
     );
     AppHaptics.confirm();
     await ref.read(businessProfileProvider.notifier).saveProfile(profile);
@@ -100,6 +131,13 @@ class _BusinessProfileScreenState
           child: ListView(
             padding: const EdgeInsets.all(AppSpacing.lg),
             children: [
+              _LogoTile(
+                logoBytes: _logoBytes,
+                hasLogo: _logoPath != null,
+                onPick: _pickLogo,
+                onRemove: _removeLogo,
+              ),
+              const SizedBox(height: AppSpacing.md),
               LabeledTextField(
                 controller: _nameController,
                 label: l10n.businessNameLabel,
@@ -188,6 +226,63 @@ class _BusinessProfileScreenState
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+/// Logo picker row: thumbnail (or placeholder), tap to choose, trash to
+/// remove. The logo is shown on invoice PDFs.
+class _LogoTile extends StatelessWidget {
+  const _LogoTile({
+    required this.logoBytes,
+    required this.hasLogo,
+    required this.onPick,
+    required this.onRemove,
+  });
+
+  final Uint8List? logoBytes;
+  final bool hasLogo;
+  final VoidCallback onPick;
+  final VoidCallback onRemove;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final theme = Theme.of(context);
+    final bytes = logoBytes;
+    return Card(
+      margin: EdgeInsets.zero,
+      child: ListTile(
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(12),
+          child: bytes == null
+              ? Container(
+                  width: 52,
+                  height: 52,
+                  color: theme.colorScheme.surfaceContainerHighest,
+                  child: Icon(
+                    Icons.image_outlined,
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                )
+              : Image.memory(
+                  bytes,
+                  width: 52,
+                  height: 52,
+                  fit: BoxFit.cover,
+                ),
+        ),
+        title: Text(l10n.businessLogoLabel),
+        subtitle: Text(l10n.businessLogoHint),
+        trailing: hasLogo
+            ? IconButton(
+                tooltip: l10n.businessLogoRemove,
+                icon: const Icon(Icons.delete_outline),
+                onPressed: onRemove,
+              )
+            : const Icon(Icons.chevron_right),
+        onTap: onPick,
       ),
     );
   }

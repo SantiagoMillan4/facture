@@ -4,6 +4,7 @@ import 'package:share_plus/share_plus.dart';
 
 import '../../../l10n/app_localizations.dart';
 import '../../../shared/utils/currency_formatter.dart';
+import '../../business/application/business_logo.dart';
 import '../../business/domain/business_profile.dart';
 import '../../clients/domain/client.dart';
 import '../domain/invoice.dart';
@@ -23,6 +24,7 @@ Future<File> writeInvoicePdfToTemp({
     client: client,
     profile: profile,
     french: french,
+    logoBytes: await BusinessLogo.readBytes(profile?.logoPath),
   );
   final safeNumber = invoice.number.replaceAll(RegExp('[^A-Za-z0-9-_]'), '_');
   final file = File('${Directory.systemTemp.path}/facture-$safeNumber.pdf');

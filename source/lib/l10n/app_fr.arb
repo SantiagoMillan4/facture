@@ -1128,5 +1128,8 @@
   "catalogEmptyMessage": "Enregistrez les services et articles que vous facturez souvent, puis ajoutez-les à une facture en un toucher.",
   "catalogPickTitle": "Choisir au catalogue",
   "invoiceAddBlankLine": "Ligne vide",
-  "invoiceAddFromCatalog": "Depuis le catalogue…"
+  "invoiceAddFromCatalog": "Depuis le catalogue…",
+  "businessLogoLabel": "Logo",
+  "businessLogoHint": "Affiché sur vos factures PDF",
+  "businessLogoRemove": "Retirer le logo"
 }

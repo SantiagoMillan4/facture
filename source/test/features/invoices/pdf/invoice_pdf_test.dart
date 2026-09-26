@@ -2,6 +2,8 @@ import 'package:facture/features/business/domain/business_profile.dart';
 import 'package:facture/features/clients/domain/client.dart';
 import 'package:facture/features/invoices/domain/invoice.dart';
 import 'package:facture/features/invoices/pdf/invoice_pdf.dart';
+import 'dart:typed_data';
+
 import 'package:flutter_test/flutter_test.dart';
 
 Invoice _invoice({bool chargeTaxes = true}) => Invoice(
@@ -28,6 +30,16 @@ const _client = Client(
   name: 'Client Inc.',
   email: 'client@example.com',
 );
+
+/// A minimal 1x1 transparent PNG, valid for the PDF image decoder.
+final _tinyPng = Uint8List.fromList([
+  0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00, 0x00, 0x0D,
+  0x49, 0x48, 0x44, 0x52, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01,
+  0x08, 0x06, 0x00, 0x00, 0x00, 0x1F, 0x15, 0xC4, 0x89, 0x00, 0x00, 0x00,
+  0x0A, 0x49, 0x44, 0x41, 0x54, 0x78, 0x9C, 0x63, 0x00, 0x01, 0x00, 0x00,
+  0x05, 0x00, 0x01, 0x0D, 0x0A, 0x2D, 0xB4, 0x00, 0x00, 0x00, 0x00, 0x49,
+  0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82,
+]);
 
 void main() {
   group('buildInvoicePdf', () {
@@ -56,6 +68,25 @@ void main() {
       );
       expect(bytes, isNotEmpty);
       expect(String.fromCharCodes(bytes.take(5)), '%PDF-');
+    });
+
+    test('renders the business logo in the header when provided', () async {
+      final withLogo = await buildInvoicePdf(
+        invoice: _invoice(),
+        client: _client,
+        profile: const BusinessProfile(name: 'Atelier Nord'),
+        french: true,
+        logoBytes: _tinyPng,
+      );
+      final withoutLogo = await buildInvoicePdf(
+        invoice: _invoice(),
+        client: _client,
+        profile: const BusinessProfile(name: 'Atelier Nord'),
+        french: true,
+      );
+      expect(withLogo, isNotEmpty);
+      // The embedded image makes the logo'd PDF larger.
+      expect(withLogo.length, greaterThan(withoutLogo.length));
     });
 
     test('handles paid status and empty notes', () async {

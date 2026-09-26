@@ -2286,4 +2286,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get invoiceAddFromCatalog => 'From catalog…';
+
+  @override
+  String get businessLogoLabel => 'Logo';
+
+  @override
+  String get businessLogoHint => 'Shown on your invoice PDFs';
+
+  @override
+  String get businessLogoRemove => 'Remove logo';
 }

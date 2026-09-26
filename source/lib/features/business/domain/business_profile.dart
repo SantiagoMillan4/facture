@@ -25,6 +25,7 @@ class BusinessProfile {
     this.taxStatus = TaxRegistrationStatus.registered,
     this.tpsNumber = '',
     this.tvqNumber = '',
+    this.logoPath,
   });
 
   final String name;
@@ -34,6 +35,10 @@ class BusinessProfile {
   final TaxRegistrationStatus taxStatus;
   final String tpsNumber;
   final String tvqNumber;
+
+  /// On-device path of the business logo image shown on invoice PDFs.
+  /// Null when the user hasn't chosen one.
+  final String? logoPath;
 
   /// True once the user has filled in at least a business name.
   bool get isSetUp => name.trim().isNotEmpty;
@@ -55,6 +60,7 @@ class BusinessProfile {
     TaxRegistrationStatus? taxStatus,
     String? tpsNumber,
     String? tvqNumber,
+    String? logoPath,
   }) {
     return BusinessProfile(
       name: name ?? this.name,
@@ -64,8 +70,20 @@ class BusinessProfile {
       taxStatus: taxStatus ?? this.taxStatus,
       tpsNumber: tpsNumber ?? this.tpsNumber,
       tvqNumber: tvqNumber ?? this.tvqNumber,
+      logoPath: logoPath ?? this.logoPath,
     );
   }
+
+  /// Clears the logo (copyWith can't null a field out).
+  BusinessProfile withoutLogo() => BusinessProfile(
+        name: name,
+        address: address,
+        phone: phone,
+        email: email,
+        taxStatus: taxStatus,
+        tpsNumber: tpsNumber,
+        tvqNumber: tvqNumber,
+      );
 
   Map<String, dynamic> toJson() => {
     'name': name,
@@ -75,6 +93,7 @@ class BusinessProfile {
     'taxStatus': taxStatus.name,
     'tpsNumber': tpsNumber,
     'tvqNumber': tvqNumber,
+    if (logoPath != null) 'logoPath': logoPath,
   };
 
   factory BusinessProfile.fromJson(Map<String, dynamic> json) {
@@ -91,6 +110,7 @@ class BusinessProfile {
       taxStatus: status,
       tpsNumber: json['tpsNumber'] as String? ?? '',
       tvqNumber: json['tvqNumber'] as String? ?? '',
+      logoPath: json['logoPath'] as String?,
     );
   }
 
@@ -104,7 +124,8 @@ class BusinessProfile {
           email == other.email &&
           taxStatus == other.taxStatus &&
           tpsNumber == other.tpsNumber &&
-          tvqNumber == other.tvqNumber;
+          tvqNumber == other.tvqNumber &&
+          logoPath == other.logoPath;
 
   @override
   int get hashCode => Object.hash(
@@ -115,5 +136,6 @@ class BusinessProfile {
     taxStatus,
     tpsNumber,
     tvqNumber,
+    logoPath,
   );
 }

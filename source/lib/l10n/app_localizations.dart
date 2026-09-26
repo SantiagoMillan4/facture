@@ -4141,6 +4141,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'From catalog…'**
   String get invoiceAddFromCatalog;
+
+  /// No description provided for @businessLogoLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Logo'**
+  String get businessLogoLabel;
+
+  /// No description provided for @businessLogoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Shown on your invoice PDFs'**
+  String get businessLogoHint;
+
+  /// No description provided for @businessLogoRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove logo'**
+  String get businessLogoRemove;
 }
 
 class _AppLocalizationsDelegate

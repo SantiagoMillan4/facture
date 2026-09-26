@@ -59,6 +59,20 @@ void main() {
     );
   });
 
+  testWidgets('shows the logo tile and keeps the logo on save', (tester) async {
+    await pumpScreen(tester);
+
+    expect(find.text('Logo'), findsOneWidget);
+
+    // Saving without touching the logo keeps a null logoPath.
+    await tester.enterText(fieldByLabel('Business name'), 'Atelier Nord');
+    await tester.tap(find.text('Save'));
+    await tester.pumpAndSettle();
+
+    final saved = await container.read(businessProfileProvider.future);
+    expect(saved?.logoPath, isNull);
+  });
+
   testWidgets('registered status shows tax number fields', (tester) async {
     await pumpScreen(tester);
 

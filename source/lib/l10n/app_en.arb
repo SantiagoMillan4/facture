@@ -1138,5 +1138,8 @@
   "catalogEmptyMessage": "Save the services and items you bill often, then add them to an invoice in one tap.",
   "catalogPickTitle": "Choose from catalog",
   "invoiceAddBlankLine": "Blank line",
-  "invoiceAddFromCatalog": "From catalog…"
+  "invoiceAddFromCatalog": "From catalog…",
+  "businessLogoLabel": "Logo",
+  "businessLogoHint": "Shown on your invoice PDFs",
+  "businessLogoRemove": "Remove logo"
 }

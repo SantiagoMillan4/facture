@@ -21,6 +21,7 @@ Future<Uint8List> buildInvoicePdf({
   required Client client,
   required BusinessProfile? profile,
   required bool french,
+  Uint8List? logoBytes,
 }) async {
   final doc = pw.Document();
   final t = InvoicePdfStrings(french);
@@ -92,6 +93,17 @@ Future<Uint8List> buildInvoicePdf({
                 child: pw.Column(
                   crossAxisAlignment: pw.CrossAxisAlignment.start,
                   children: [
+                    if (logoBytes != null)
+                      pw.Container(
+                        width: 96,
+                        height: 48,
+                        margin: const pw.EdgeInsets.only(bottom: 8),
+                        child: pw.Image(
+                          pw.MemoryImage(logoBytes),
+                          fit: pw.BoxFit.contain,
+                          alignment: pw.Alignment.centerLeft,
+                        ),
+                      ),
                     if (profile != null && profile.name.isNotEmpty)
                       pw.Text(profile.name, style: headerStyle),
                     if (profile != null && profile.address.isNotEmpty)
