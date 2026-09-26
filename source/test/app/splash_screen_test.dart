@@ -8,10 +8,10 @@ void main() {
   // The splash is a direct child of an AnimatedSwitcher whose Stack lays
   // children out with loose constraints, so the background must actively
   // expand to fill the screen.
-  testWidgets('splash background fills the screen and logo is centered', (
-    tester,
-  ) async {
-    await tester.pumpWidget(MaterialApp(home: SplashScreen(onReady: () {})));
+  testWidgets('splash background fills the screen, logo centered', (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(home: SplashScreen(onReady: () {})),
+    );
     await tester.pump(const Duration(milliseconds: 700));
 
     final screen = tester.view.physicalSize / tester.view.devicePixelRatio;
@@ -22,9 +22,12 @@ void main() {
     );
     expect(bg, findsOneWidget);
     expect(tester.getSize(bg), screen);
-    // Logo is centered (not stuck in a corner).
+
+    // Logo horizontally centered, wordmark below it.
     final imageCenter = tester.getCenter(find.byType(Image));
     expect(imageCenter.dx, moreOrLessEquals(screen.width / 2, epsilon: 1));
-    expect(imageCenter.dy, moreOrLessEquals(screen.height / 2, epsilon: 1));
+    final wordmarkCenter = tester.getCenter(find.text('Facture'));
+    expect(wordmarkCenter.dx, moreOrLessEquals(screen.width / 2, epsilon: 1));
+    expect(wordmarkCenter.dy, greaterThan(imageCenter.dy));
   });
 }
