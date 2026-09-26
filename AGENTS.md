@@ -338,8 +338,15 @@ Stack and Scaffold.body do not. First the logo stuck top-left
 (Scaffold > Stack shrink-wrapped), then the background painted as a
 centered band (ColoredBox > SafeArea > Stack shrink-wrapped to the logo +
 SafeArea padding). Rentable's splash works because it is ColoredBox >
-SafeArea > Center. Guarded by `test/app/splash_screen_test.dart`, which
-asserts the background fills the screen and the logo is centered.
+SafeArea > Center. Final shape mirrors Rentable exactly: ColoredBox >
+SafeArea > Center > Column(min)[logo, wordmark], logo fade+scale 0.9->1
+over 0->0.55, wordmark fade over 0.25->0.7. Guarded by
+`test/app/splash_screen_test.dart` (background fills screen, logo
+horizontally centered, wordmark below it).
+Splash assets: dedicated `assets/brand/splash_logo(_dark).png`, derived
+from the app icons with the background flattened to exactly the screen
+color (edge deviation 0) so no seam shows; the launcher-icon sources are
+untouched.
 
 ## Legal notes (not legal advice)
 
