@@ -7,7 +7,9 @@ import '../features/invoices/presentation/invoices_screen.dart';
 import '../features/settings/presentation/settings_screen.dart';
 import '../l10n/app_l10n.dart';
 import '../l10n/app_localizations.dart';
+import '../shared/theme/app_motion.dart';
 import '../shared/theme/app_theme.dart';
+import 'splash_screen.dart';
 
 /// Index of the bottom-navigation tab. A provider (rather than local state)
 /// so a pushed page can switch tabs — e.g. jumping to Invoices after
@@ -40,8 +42,30 @@ class FactureApp extends StatelessWidget {
           }
           return const Locale('en');
         },
-        home: const HomeShell(),
+        home: const _SplashGate(),
       ),
+    );
+  }
+}
+
+/// Shows the animated splash first, then crossfades into the tab shell.
+class _SplashGate extends StatefulWidget {
+  const _SplashGate();
+
+  @override
+  State<_SplashGate> createState() => _SplashGateState();
+}
+
+class _SplashGateState extends State<_SplashGate> {
+  var _ready = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: AppMotion.pageTransition,
+      child: _ready
+          ? const HomeShell()
+          : SplashScreen(onReady: () => setState(() => _ready = true)),
     );
   }
 }

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../l10n/app_l10n.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/utils/currency_formatter.dart';
+import '../../../shared/widgets/animated_money.dart';
 import '../../../shared/widgets/form_section_title.dart';
 import '../../invoices/domain/quebec_tax.dart' show centsToDollars;
 import '../application/dashboard_providers.dart';
@@ -24,26 +25,10 @@ class DashboardScreen extends ConsumerWidget {
         padding: AppSpacing.screenPadding,
         children: [
           _SummaryCard(
-            stats: [
-              (
-                label: l10n.dashboardUnpaid,
-                value: formatCompactCurrency(
-                  centsToDollars(summary.unpaidCents),
-                  french: french,
-                ),
-              ),
-              (
-                label: l10n.dashboardPaidMonth,
-                value: formatCompactCurrency(
-                  centsToDollars(summary.paidThisMonthCents),
-                  french: french,
-                ),
-              ),
-              (
-                label: l10n.dashboardClients,
-                value: '${summary.clientCount}',
-              ),
-            ],
+            unpaid: centsToDollars(summary.unpaidCents),
+            paidThisMonth: centsToDollars(summary.paidThisMonthCents),
+            clientCount: summary.clientCount,
+            french: french,
           ),
           FormSectionTitle(title: l10n.dashboardRecent),
           Padding(
@@ -65,13 +50,25 @@ class DashboardScreen extends ConsumerWidget {
 }
 
 class _SummaryCard extends StatelessWidget {
-  const _SummaryCard({required this.stats});
+  const _SummaryCard({
+    required this.unpaid,
+    required this.paidThisMonth,
+    required this.clientCount,
+    required this.french,
+  });
 
-  final List<({String label, String value})> stats;
+  final double unpaid;
+  final double paidThisMonth;
+  final int clientCount;
+  final bool french;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final l10n = context.l10n;
+    final moneyStyle = theme.textTheme.titleLarge?.copyWith(
+      fontWeight: FontWeight.w700,
+    );
     return Card(
       margin: const EdgeInsets.only(bottom: AppSpacing.md),
       child: Padding(
@@ -81,33 +78,70 @@ class _SummaryCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            for (var i = 0; i < stats.length; i++) ...[
-              if (i > 0) const SizedBox(width: AppSpacing.sm),
-              Expanded(
-                child: Column(
-                  children: [
-                    Text(
-                      stats[i].value,
-                      style: theme.textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: AppSpacing.xs),
-                    Text(
-                      stats[i].label,
-                      style: theme.textTheme.bodySmall?.copyWith(
-                        color: theme.colorScheme.onSurfaceVariant,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+            Expanded(
+              child: _Stat(
+                label: l10n.dashboardUnpaid,
+                child: AnimatedMoney(
+                  value: unpaid,
+                  format: (v) =>
+                      formatCompactCurrency(v, french: french),
+                  style: moneyStyle,
+                  textAlign: TextAlign.center,
                 ),
               ),
-            ],
+            ),
+            const SizedBox(width: AppSpacing.sm),
+            Expanded(
+              child: _Stat(
+                label: l10n.dashboardPaidMonth,
+                child: AnimatedMoney(
+                  value: paidThisMonth,
+                  format: (v) =>
+                      formatCompactCurrency(v, french: french),
+                  style: moneyStyle,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+            const SizedBox(width: AppSpacing.sm),
+            Expanded(
+              child: _Stat(
+                label: l10n.dashboardClients,
+                child: Text(
+                  '$clientCount',
+                  style: moneyStyle,
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _Stat extends StatelessWidget {
+  const _Stat({required this.label, required this.child});
+
+  final String label;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Column(
+      children: [
+        child,
+        const SizedBox(height: AppSpacing.xs),
+        Text(
+          label,
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: theme.colorScheme.onSurfaceVariant,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ],
     );
   }
 }

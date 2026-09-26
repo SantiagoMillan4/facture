@@ -5,6 +5,7 @@ import '../../../l10n/app_l10n.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/empty_state.dart';
+import '../../../shared/widgets/staggered_entrance.dart';
 import '../../../shared/widgets/swipe_to_delete_tile.dart';
 import '../application/clients_providers.dart';
 import '../domain/client.dart';
@@ -69,18 +70,21 @@ class ClientsScreen extends ConsumerWidget {
                 if (client.email.isNotEmpty) client.email,
                 if (client.phone.isNotEmpty) client.phone,
               ].join(' · ');
-              return SwipeToDeleteTile(
-                confirmDelete: true,
-                deleteTitle: l10n.clientDeleteTitle,
-                deleteMessage: l10n.clientDeleteMessage(client.name),
-                onDelete: () => ref
-                    .read(clientsProvider.notifier)
-                    .deleteClient(client.id),
-                child: ListTile(
-                  title: Text(client.name),
-                  subtitle: subtitle.isEmpty ? null : Text(subtitle),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () => _openEditor(context, client),
+              return StaggeredEntrance(
+                index: index,
+                child: SwipeToDeleteTile(
+                  confirmDelete: true,
+                  deleteTitle: l10n.clientDeleteTitle,
+                  deleteMessage: l10n.clientDeleteMessage(client.name),
+                  onDelete: () => ref
+                      .read(clientsProvider.notifier)
+                      .deleteClient(client.id),
+                  child: ListTile(
+                    title: Text(client.name),
+                    subtitle: subtitle.isEmpty ? null : Text(subtitle),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () => _openEditor(context, client),
+                  ),
                 ),
               );
             },

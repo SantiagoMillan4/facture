@@ -10,6 +10,7 @@ import '../../../shared/widgets/adaptive_date_field.dart';
 import '../../../shared/widgets/app_haptics.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/empty_state.dart';
+import '../../../shared/widgets/staggered_entrance.dart';
 import '../../../shared/widgets/swipe_to_delete_tile.dart';
 import '../domain/quebec_tax.dart';
 import '../../clients/application/clients_providers.dart';
@@ -71,9 +72,12 @@ class InvoicesScreen extends ConsumerWidget {
                 const SizedBox(height: AppSpacing.sm),
             itemBuilder: (context, index) {
               final invoice = sorted[index];
-              return _InvoiceTile(
-                invoice: invoice,
-                onTap: () => _openForm(context, invoice),
+              return StaggeredEntrance(
+                index: index,
+                child: _InvoiceTile(
+                  invoice: invoice,
+                  onTap: () => _openForm(context, invoice),
+                ),
               );
             },
           );
