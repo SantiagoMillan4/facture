@@ -41,19 +41,6 @@ class CatalogScreen extends ConsumerWidget {
         ),
         data: (items) => Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(
-                AppSpacing.lg,
-                AppSpacing.sm,
-                AppSpacing.lg,
-                AppSpacing.xs,
-              ),
-              child: BigAddButton(
-                key: const ValueKey('addCatalogItemButton'),
-                label: l10n.catalogAddItem,
-                onPressed: () => _openEditor(context),
-              ),
-            ),
             Expanded(
               child: items.isEmpty
                   ? EmptyState(
@@ -64,9 +51,9 @@ class CatalogScreen extends ConsumerWidget {
                   : ListView.separated(
                       padding: const EdgeInsets.fromLTRB(
                         AppSpacing.lg,
+                        AppSpacing.sm,
+                        AppSpacing.lg,
                         AppSpacing.xs,
-                        AppSpacing.lg,
-                        AppSpacing.lg,
                       ),
                       itemCount: items.length,
                       separatorBuilder: (_, __) =>
@@ -98,6 +85,21 @@ class CatalogScreen extends ConsumerWidget {
                         );
                       },
                     ),
+            ),
+            // Pinned at the bottom like the other primary actions: the
+            // list scrolls above it so the add button is always in reach.
+            Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSpacing.lg,
+                AppSpacing.xs,
+                AppSpacing.lg,
+                AppSpacing.lg,
+              ),
+              child: BigAddButton(
+                key: const ValueKey('addCatalogItemButton'),
+                label: l10n.catalogAddItem,
+                onPressed: () => _openEditor(context),
+              ),
             ),
           ],
         ),
