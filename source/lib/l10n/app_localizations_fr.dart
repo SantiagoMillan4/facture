@@ -325,6 +325,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get invoiceSendEmail => 'Envoyer par courriel';
 
   @override
+  String get invoicePreviewSend => 'Envoyer la facture';
+
+  @override
+  String get invoicePreviewEdit => 'Modifier la facture';
+
+  @override
+  String get invoicePreviewNotFound => 'Cette facture n\'existe plus.';
+
+  @override
   String get invoiceEmailFailed =>
       'Impossible d\'ouvrir l\'éditeur de courriel.';
 

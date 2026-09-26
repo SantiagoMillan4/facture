@@ -31,10 +31,13 @@ dependencies:
   pdf: ^3.13.1
   in_app_purchase: ^3.3.1
   flutter_email_sender: ^10.0.1
+  printing: ^5.15.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  # Test-only: fakes the email plugin's platform in widget tests.
+  flutter_email_sender_platform_interface: ^1.0.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

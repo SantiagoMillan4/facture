@@ -324,6 +324,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get invoiceSendEmail => 'Send by email';
 
   @override
+  String get invoicePreviewSend => 'Send invoice';
+
+  @override
+  String get invoicePreviewEdit => 'Edit invoice';
+
+  @override
+  String get invoicePreviewNotFound => 'This invoice no longer exists.';
+
+  @override
   String get invoiceEmailFailed => 'Couldn\'t open the email composer.';
 
   @override

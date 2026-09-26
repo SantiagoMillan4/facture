@@ -439,6 +439,18 @@
   "emailTemplatePlaceholdersHint": "Replaced automatically when the email opens.",
   "emailTemplateReset": "Reset to default",
   "invoiceSendEmail": "Send by email",
+  "invoicePreviewSend": "Send invoice",
+  "@invoicePreviewSend": {
+    "description": "Primary button on the invoice preview screen"
+  },
+  "invoicePreviewEdit": "Edit invoice",
+  "@invoicePreviewEdit": {
+    "description": "Tooltip for the edit button on the invoice preview screen"
+  },
+  "invoicePreviewNotFound": "This invoice no longer exists.",
+  "@invoicePreviewNotFound": {
+    "description": "Message when the previewed invoice was deleted"
+  },
   "@invoiceSendEmail": {
     "description": "Tooltip for the button that emails the invoice"
   },

@@ -7,11 +7,14 @@ import 'package:facture/features/clients/domain/client.dart';
 import 'package:facture/features/invoices/application/invoices_providers.dart';
 import 'package:facture/features/invoices/domain/invoice.dart';
 import 'package:facture/features/invoices/presentation/invoice_form_screen.dart';
+import 'package:facture/features/invoices/presentation/invoice_preview_screen.dart';
 import 'package:facture/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../test_helpers.dart';
 
 Finder fieldByLabel(String label) => find.ancestor(
   of: find.text(label),
@@ -19,6 +22,8 @@ Finder fieldByLabel(String label) => find.ancestor(
 );
 
 void main() {
+  setUpPrintingMock();
+
   late ProviderContainer container;
 
   Future<void> pumpForm(
@@ -186,8 +191,10 @@ void main() {
       expect(saved.lines.single.unitPrice, 100);
       expect(saved.status, InvoiceStatus.draft);
       expect(saved.taxes().totalCents, 11547);
-      // Back on the previous screen after saving.
+      // On the preview screen after saving.
       expect(find.byType(InvoiceFormScreen), findsNothing);
+      expect(find.byType(InvoicePreviewScreen), findsOneWidget);
+      expect(find.text('Send invoice'), findsOneWidget);
     });
 
     testWidgets('new invoice with no profile is saved without taxes', (

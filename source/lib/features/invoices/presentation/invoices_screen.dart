@@ -19,14 +19,19 @@ import '../domain/invoice.dart';
 import '../../purchase/application/purchase_providers.dart';
 import '../../purchase/presentation/paywall_sheet.dart';
 import 'invoice_form_screen.dart';
+import 'invoice_preview_screen.dart';
 
 /// Invoice list — the app's main feature tab. Newest first, swipe to
-/// delete with confirmation, tap to edit.
+/// delete with confirmation, tap to preview.
 class InvoicesScreen extends ConsumerWidget {
   const InvoicesScreen({super.key});
 
   void _openForm(BuildContext context, [Invoice? invoice]) {
     pushAppPage(context, (_) => InvoiceFormScreen(invoice: invoice));
+  }
+
+  void _openPreview(BuildContext context, Invoice invoice) {
+    pushAppPage(context, (_) => InvoicePreviewScreen(invoiceId: invoice.id));
   }
 
   /// Opens the invoice form, or the paywall once the free tier is used up.
@@ -76,7 +81,7 @@ class InvoicesScreen extends ConsumerWidget {
                 index: index,
                 child: _InvoiceTile(
                   invoice: invoice,
-                  onTap: () => _openForm(context, invoice),
+                  onTap: () => _openPreview(context, invoice),
                 ),
               );
             },

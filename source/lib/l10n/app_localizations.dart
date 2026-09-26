@@ -650,6 +650,24 @@ abstract class AppLocalizations {
   /// **'Send by email'**
   String get invoiceSendEmail;
 
+  /// Primary button on the invoice preview screen
+  ///
+  /// In en, this message translates to:
+  /// **'Send invoice'**
+  String get invoicePreviewSend;
+
+  /// Tooltip for the edit button on the invoice preview screen
+  ///
+  /// In en, this message translates to:
+  /// **'Edit invoice'**
+  String get invoicePreviewEdit;
+
+  /// Message when the previewed invoice was deleted
+  ///
+  /// In en, this message translates to:
+  /// **'This invoice no longer exists.'**
+  String get invoicePreviewNotFound;
+
   /// Snackbar when the native email composer cannot be opened
   ///
   /// In en, this message translates to:

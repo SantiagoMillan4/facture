@@ -20,6 +20,7 @@ import '../domain/quebec_tax.dart';
 import '../pdf/share_invoice_pdf.dart';
 import 'client_picker_screen.dart';
 import 'invoice_line_card.dart';
+import 'invoice_preview_screen.dart';
 import 'invoice_totals_card.dart';
 import 'line_draft.dart';
 
@@ -183,7 +184,14 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
     setState(() => _saving = true);
     AppHaptics.confirm();
     await ref.read(invoicesProvider.notifier).saveInvoice(invoice);
-    if (mounted) Navigator.of(context).pop();
+    if (mounted) {
+      // Saving lands on the invoice preview: the PDF as the client will see
+      // it, with Send / Edit / Share right there.
+      pushReplacementAppPage(
+        context,
+        (_) => InvoicePreviewScreen(invoiceId: invoice.id),
+      );
+    }
   }
 
   /// Renders the current form state as a PDF and opens the share sheet.

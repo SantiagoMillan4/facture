@@ -429,6 +429,18 @@
   "emailTemplatePlaceholdersHint": "Remplacées automatiquement à l'ouverture du courriel.",
   "emailTemplateReset": "Réinitialiser",
   "invoiceSendEmail": "Envoyer par courriel",
+  "invoicePreviewSend": "Envoyer la facture",
+  "@invoicePreviewSend": {
+    "description": "Primary button on the invoice preview screen"
+  },
+  "invoicePreviewEdit": "Modifier la facture",
+  "@invoicePreviewEdit": {
+    "description": "Tooltip for the edit button on the invoice preview screen"
+  },
+  "invoicePreviewNotFound": "Cette facture n'existe plus.",
+  "@invoicePreviewNotFound": {
+    "description": "Message when the previewed invoice was deleted"
+  },
   "@invoiceSendEmail": {
     "description": "Tooltip for the button that emails the invoice"
   },
