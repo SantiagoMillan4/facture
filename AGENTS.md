@@ -330,6 +330,15 @@ iOS aggressively caches the launch screen: after changing splash assets,
 bump the build number and delete the app from the device before
 reinstalling, otherwise the old launch screen keeps showing.
 
+Layout gotcha (bit us 2026-09-25): never center content with
+`Scaffold(body: Stack(alignment: Alignment.center))`. Scaffold layers its
+body inside an internal Stack with loose constraints, so the inner Stack
+shrink-wraps to its child and sticks to the top-left — the logo rendered
+there instead of centered, and no test caught it until a position
+assertion was added (`test/app/splash_screen_test.dart`). Use
+`ColoredBox` + `SafeArea` + full-screen `Stack` (or `Center`) instead,
+like Rentable's splash does.
+
 ## Legal notes (not legal advice)
 
 Invoicing software is not a regulated product in Canada/Québec, but the

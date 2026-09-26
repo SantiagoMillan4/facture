@@ -78,39 +78,46 @@ class _SplashScreenState extends State<SplashScreen>
     return GestureDetector(
       onTap: _notifyReady,
       behavior: HitTestBehavior.opaque,
-      child: Scaffold(
-        backgroundColor: dark ? _bgDark : _bgLight,
-        body: Stack(
-          alignment: Alignment.center,
-          children: [
-            FadeTransition(
-              opacity: logoIn,
-              child: ScaleTransition(
-                scale: Tween<double>(begin: 0.85, end: 1.0).animate(logoIn),
-                child: Image.asset(
-                  dark ? _logoDark : _logoLight,
-                  width: 120,
-                  height: 120,
-                ),
-              ),
-            ),
-            Positioned(
-              bottom: MediaQuery.sizeOf(context).height * 0.30,
-              child: FadeTransition(
-                opacity: wordmarkIn,
-                child: const Text(
-                  'Facture',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 28,
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 0.5,
-                    decoration: TextDecoration.none,
+      // NOTE: do NOT use Scaffold(body: Stack(alignment: center)) here.
+      // Scaffold layers its body inside an internal Stack with loose
+      // constraints, so an inner Stack shrink-wraps to its child and sticks
+      // to the top-left (the logo rendered there instead of centered).
+      // ColoredBox fills the screen; the inner Stack then truly centers.
+      child: ColoredBox(
+        color: dark ? _bgDark : _bgLight,
+        child: SafeArea(
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              FadeTransition(
+                opacity: logoIn,
+                child: ScaleTransition(
+                  scale: Tween<double>(begin: 0.85, end: 1.0).animate(logoIn),
+                  child: Image.asset(
+                    dark ? _logoDark : _logoLight,
+                    width: 120,
+                    height: 120,
                   ),
                 ),
               ),
-            ),
-          ],
+              Positioned(
+                bottom: MediaQuery.sizeOf(context).height * 0.30,
+                child: FadeTransition(
+                  opacity: wordmarkIn,
+                  child: const Text(
+                    'Facture',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w700,
+                      letterSpacing: 0.5,
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
