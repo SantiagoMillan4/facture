@@ -2182,4 +2182,84 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsProSection => 'Abonnement';
+
+  @override
+  String get backupTitle => 'Sauvegarde et export';
+
+  @override
+  String get backupSubtitle => 'Enregistrez ou restaurez toutes vos données';
+
+  @override
+  String get backupExplainer =>
+      'Votre sauvegarde contient tout : factures, clients, profil d\'entreprise et modèle de courriel. Conservez le fichier en lieu sûr — Facture n\'envoie jamais vos données nulle part.';
+
+  @override
+  String get backupSection => 'Sauvegarde';
+
+  @override
+  String get backupExport => 'Exporter la sauvegarde';
+
+  @override
+  String get backupExportSubtitle =>
+      'Toutes vos données dans un seul fichier JSON';
+
+  @override
+  String get backupImport => 'Importer une sauvegarde';
+
+  @override
+  String get backupImportSubtitle =>
+      'Restaurez tout depuis un fichier de sauvegarde JSON';
+
+  @override
+  String get backupImportConfirmTitle => 'Remplacer toutes les données ?';
+
+  @override
+  String get backupImportConfirmMessage =>
+      'Vos factures, clients et réglages actuels seront remplacés par le contenu de la sauvegarde. Cette action est irréversible.';
+
+  @override
+  String get backupImportConfirmAction => 'Importer';
+
+  @override
+  String get backupRestored => 'Sauvegarde restaurée';
+
+  @override
+  String get backupInvalid =>
+      'Ce fichier n\'est pas une sauvegarde Facture valide.';
+
+  @override
+  String get backupExportSection => 'Export';
+
+  @override
+  String get backupCsv => 'Factures (CSV)';
+
+  @override
+  String get backupCsvSubtitle => 'Pour votre comptable — s\'ouvre dans Excel';
+
+  @override
+  String get csvNumber => 'Numéro';
+
+  @override
+  String get csvClient => 'Client';
+
+  @override
+  String get csvIssueDate => 'Date d\'émission';
+
+  @override
+  String get csvDueDate => 'Échéance';
+
+  @override
+  String get csvStatus => 'Statut';
+
+  @override
+  String get csvSubtotal => 'Sous-total';
+
+  @override
+  String get csvTps => 'TPS';
+
+  @override
+  String get csvTvq => 'TVQ';
+
+  @override
+  String get csvTotal => 'Total';
 }

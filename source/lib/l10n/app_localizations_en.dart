@@ -2162,4 +2162,82 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsProSection => 'Subscription';
+
+  @override
+  String get backupTitle => 'Backup & export';
+
+  @override
+  String get backupSubtitle => 'Save or restore all your data';
+
+  @override
+  String get backupExplainer =>
+      'Your backup contains everything: invoices, clients, business profile and email template. Keep the file somewhere safe — Facture never sends your data anywhere.';
+
+  @override
+  String get backupSection => 'Backup';
+
+  @override
+  String get backupExport => 'Export backup';
+
+  @override
+  String get backupExportSubtitle => 'All your data in one JSON file';
+
+  @override
+  String get backupImport => 'Import backup';
+
+  @override
+  String get backupImportSubtitle =>
+      'Restore everything from a JSON backup file';
+
+  @override
+  String get backupImportConfirmTitle => 'Replace all data?';
+
+  @override
+  String get backupImportConfirmMessage =>
+      'Your current invoices, clients and settings will be replaced with the backup\'s contents. This cannot be undone.';
+
+  @override
+  String get backupImportConfirmAction => 'Import';
+
+  @override
+  String get backupRestored => 'Backup restored';
+
+  @override
+  String get backupInvalid => 'This file is not a valid Facture backup.';
+
+  @override
+  String get backupExportSection => 'Export';
+
+  @override
+  String get backupCsv => 'Invoices (CSV)';
+
+  @override
+  String get backupCsvSubtitle => 'For your accountant — opens in Excel';
+
+  @override
+  String get csvNumber => 'Number';
+
+  @override
+  String get csvClient => 'Client';
+
+  @override
+  String get csvIssueDate => 'Issue date';
+
+  @override
+  String get csvDueDate => 'Due date';
+
+  @override
+  String get csvStatus => 'Status';
+
+  @override
+  String get csvSubtotal => 'Subtotal';
+
+  @override
+  String get csvTps => 'TPS';
+
+  @override
+  String get csvTvq => 'TVQ';
+
+  @override
+  String get csvTotal => 'Total';
 }

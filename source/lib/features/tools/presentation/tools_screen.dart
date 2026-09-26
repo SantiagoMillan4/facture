@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../l10n/app_l10n.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_page_route.dart';
+import '../../backup/presentation/backup_screen.dart';
 import '../../email/presentation/email_template_screen.dart';
 import 'tax_calculator_screen.dart';
 
@@ -32,6 +33,12 @@ class ToolsScreen extends StatelessWidget {
             subtitle: l10n.emailTemplateSubtitle,
             onTap: () =>
                 pushAppPage(context, (_) => const EmailTemplateScreen()),
+          ),
+          _ToolTile(
+            icon: Icons.backup_outlined,
+            title: l10n.backupTitle,
+            subtitle: l10n.backupSubtitle,
+            onTap: () => pushAppPage(context, (_) => const BackupScreen()),
           ),
         ],
       ),

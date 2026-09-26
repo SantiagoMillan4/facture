@@ -3901,6 +3901,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Subscription'**
   String get settingsProSection;
+
+  /// No description provided for @backupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup & export'**
+  String get backupTitle;
+
+  /// No description provided for @backupSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Save or restore all your data'**
+  String get backupSubtitle;
+
+  /// No description provided for @backupExplainer.
+  ///
+  /// In en, this message translates to:
+  /// **'Your backup contains everything: invoices, clients, business profile and email template. Keep the file somewhere safe — Facture never sends your data anywhere.'**
+  String get backupExplainer;
+
+  /// No description provided for @backupSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup'**
+  String get backupSection;
+
+  /// No description provided for @backupExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Export backup'**
+  String get backupExport;
+
+  /// No description provided for @backupExportSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All your data in one JSON file'**
+  String get backupExportSubtitle;
+
+  /// No description provided for @backupImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Import backup'**
+  String get backupImport;
+
+  /// No description provided for @backupImportSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore everything from a JSON backup file'**
+  String get backupImportSubtitle;
+
+  /// No description provided for @backupImportConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Replace all data?'**
+  String get backupImportConfirmTitle;
+
+  /// No description provided for @backupImportConfirmMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Your current invoices, clients and settings will be replaced with the backup\'s contents. This cannot be undone.'**
+  String get backupImportConfirmMessage;
+
+  /// No description provided for @backupImportConfirmAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Import'**
+  String get backupImportConfirmAction;
+
+  /// No description provided for @backupRestored.
+  ///
+  /// In en, this message translates to:
+  /// **'Backup restored'**
+  String get backupRestored;
+
+  /// No description provided for @backupInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'This file is not a valid Facture backup.'**
+  String get backupInvalid;
+
+  /// No description provided for @backupExportSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Export'**
+  String get backupExportSection;
+
+  /// No description provided for @backupCsv.
+  ///
+  /// In en, this message translates to:
+  /// **'Invoices (CSV)'**
+  String get backupCsv;
+
+  /// No description provided for @backupCsvSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'For your accountant — opens in Excel'**
+  String get backupCsvSubtitle;
+
+  /// No description provided for @csvNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Number'**
+  String get csvNumber;
+
+  /// No description provided for @csvClient.
+  ///
+  /// In en, this message translates to:
+  /// **'Client'**
+  String get csvClient;
+
+  /// No description provided for @csvIssueDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Issue date'**
+  String get csvIssueDate;
+
+  /// No description provided for @csvDueDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Due date'**
+  String get csvDueDate;
+
+  /// No description provided for @csvStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get csvStatus;
+
+  /// No description provided for @csvSubtotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Subtotal'**
+  String get csvSubtotal;
+
+  /// No description provided for @csvTps.
+  ///
+  /// In en, this message translates to:
+  /// **'TPS'**
+  String get csvTps;
+
+  /// No description provided for @csvTvq.
+  ///
+  /// In en, this message translates to:
+  /// **'TVQ'**
+  String get csvTvq;
+
+  /// No description provided for @csvTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get csvTotal;
 }
 
 class _AppLocalizationsDelegate
