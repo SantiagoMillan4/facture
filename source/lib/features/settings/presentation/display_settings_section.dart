@@ -21,7 +21,7 @@ class DisplaySettingsSection extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        FormSectionTitle(title: l10n.settingsAppearance, isFirst: true),
+        FormSectionTitle(title: l10n.settingsAppearance),
         _ChoiceTile(
           icon: Icons.language_outlined,
           title: l10n.settingsLanguage,

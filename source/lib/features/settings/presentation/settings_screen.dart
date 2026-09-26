@@ -74,7 +74,6 @@ class SettingsScreen extends ConsumerWidget {
       body: ListView(
         padding: AppSpacing.screenPadding,
         children: [
-          const DisplaySettingsSection(),
           FormSectionTitle(title: l10n.settingsProSection),
           _ProTile(
             isPro: isPro,
@@ -92,6 +91,7 @@ class SettingsScreen extends ConsumerWidget {
             onTap: () =>
                 pushAppPage(context, (_) => const BusinessProfileScreen()),
           ),
+          const DisplaySettingsSection(),
           FormSectionTitle(title: l10n.settingsLearn),
           _SettingsTile(
             icon: Icons.school_outlined,
