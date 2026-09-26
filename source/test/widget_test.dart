@@ -16,7 +16,7 @@ void main() {
     expect(find.text('Invoices'), findsOneWidget); // tab label
     expect(find.text('Clients'), findsWidgets); // tab label + dashboard stat
     expect(find.text('Settings'), findsOneWidget); // tab label
-    expect(find.text('Recent invoices'), findsOneWidget);
+    expect(find.text('Search invoices'), findsOneWidget); // dashboard search
 
     // Switch to the invoices tab.
     await tester.tap(find.text('Invoices'));

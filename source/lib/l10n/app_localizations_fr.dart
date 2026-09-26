@@ -2085,10 +2085,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dashboardClients => 'Clients';
 
   @override
-  String get dashboardRecent => 'Factures récentes';
+  String get dashboardSearchHint => 'Rechercher des factures';
 
   @override
-  String get dashboardRecentEmpty => 'Vos dernières factures apparaîtront ici.';
+  String get dashboardFilterAll => 'Toutes';
+
+  @override
+  String get dashboardNoResultsTitle => 'Aucune facture trouvée';
+
+  @override
+  String get dashboardNoResultsMessage =>
+      'Essayez de modifier votre recherche ou votre filtre.';
 
   @override
   String get proTitle => 'Facture Pro';

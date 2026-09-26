@@ -3752,17 +3752,29 @@ abstract class AppLocalizations {
   /// **'Clients'**
   String get dashboardClients;
 
-  /// No description provided for @dashboardRecent.
+  /// No description provided for @dashboardSearchHint.
   ///
   /// In en, this message translates to:
-  /// **'Recent invoices'**
-  String get dashboardRecent;
+  /// **'Search invoices'**
+  String get dashboardSearchHint;
 
-  /// No description provided for @dashboardRecentEmpty.
+  /// No description provided for @dashboardFilterAll.
   ///
   /// In en, this message translates to:
-  /// **'Your latest invoices will appear here.'**
-  String get dashboardRecentEmpty;
+  /// **'All'**
+  String get dashboardFilterAll;
+
+  /// No description provided for @dashboardNoResultsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No invoices found'**
+  String get dashboardNoResultsTitle;
+
+  /// No description provided for @dashboardNoResultsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Try adjusting your search or filter.'**
+  String get dashboardNoResultsMessage;
 
   /// No description provided for @proTitle.
   ///
