@@ -2077,6 +2077,34 @@ class AppLocalizationsEn extends AppLocalizations {
       'Try adjusting your search or filter.';
 
   @override
+  String get dashboardAttentionTitle => 'Needs attention';
+
+  @override
+  String dashboardOverdueBy(num days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days overdue',
+      one: '$days day overdue',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dashboardDueToday => 'Due today';
+
+  @override
+  String dashboardDueIn(num days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Due in $days days',
+      one: 'Due tomorrow',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get proTitle => 'Facture Pro';
 
   @override

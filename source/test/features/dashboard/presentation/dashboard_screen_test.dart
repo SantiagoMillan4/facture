@@ -148,4 +148,110 @@ void main() {
     expect(find.text('Paid this month'), findsOneWidget);
     expect(find.text('2'), findsOneWidget); // two clients
   });
+
+  group('needs attention', () {
+    DateTime day(int offset) {
+      final now = DateTime.now();
+      return DateTime(now.year, now.month, now.day)
+          .add(Duration(days: offset));
+    }
+
+    Future<void> pumpAttentionDashboard(WidgetTester tester) async {
+      SharedPreferences.setMockInitialValues({});
+      container = ProviderContainer();
+      addTearDown(container.dispose);
+      await container.read(invoicesProvider.future);
+      await container.read(clientsProvider.future);
+      await container.read(clientsProvider.notifier).saveClient(
+            const Client(id: 'c1', name: 'Alice Tremblay'),
+          );
+      Future<void> addInvoice(
+        String id,
+        String number,
+        InvoiceStatus status,
+        int issueOffset,
+        int dueOffset,
+      ) =>
+          container.read(invoicesProvider.notifier).saveInvoice(
+                _invoice(
+                  id: id,
+                  number: number,
+                  clientId: 'c1',
+                  issueDate: day(issueOffset),
+                  dueDate: day(dueOffset),
+                  status: status,
+                ),
+              );
+      await addInvoice(
+          'overdue', '2026-0010', InvoiceStatus.sent, -10, -3);
+      await addInvoice('due-soon', '2026-0011', InvoiceStatus.sent, -5, 2);
+      await addInvoice('due-later', '2026-0012', InvoiceStatus.sent, -5, 30);
+      await addInvoice('draft', '2026-0013', InvoiceStatus.draft, -5, 10);
+      await addInvoice('paid', '2026-0014', InvoiceStatus.paid, -20, -10);
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: const TestApp(child: DashboardScreen()),
+        ),
+      );
+      await tester.pumpAndSettle();
+    }
+
+    testWidgets('lists overdue and due-soon invoices, most urgent first',
+        (tester) async {
+      await pumpAttentionDashboard(tester);
+
+      expect(find.text('Needs attention'), findsOneWidget);
+      expect(
+          find.text('Alice Tremblay • 3 days overdue'), findsOneWidget);
+      expect(find.text('Alice Tremblay • Due in 2 days'), findsOneWidget);
+      // Draft, paid and far-future invoices need no chasing.
+      expect(find.text('Due in 30 days'), findsNothing);
+
+      final overdueDy =
+          tester.getTopLeft(find.text('Alice Tremblay • 3 days overdue')).dy;
+      final dueSoonDy =
+          tester.getTopLeft(find.text('Alice Tremblay • Due in 2 days')).dy;
+      expect(overdueDy, lessThan(dueSoonDy));
+    });
+
+    testWidgets('tapping an attention row opens the preview',
+        (tester) async {
+      await pumpAttentionDashboard(tester);
+
+      await tester.tap(find.text('Alice Tremblay • 3 days overdue'));
+      for (var i = 0; i < 5; i++) {
+        await tester.pump(const Duration(milliseconds: 200));
+      }
+
+      expect(find.text('Send invoice'), findsOneWidget);
+    });
+
+    testWidgets('hidden when nothing needs chasing', (tester) async {
+      SharedPreferences.setMockInitialValues({});
+      container = ProviderContainer();
+      addTearDown(container.dispose);
+      await container.read(invoicesProvider.future);
+      await container.read(clientsProvider.future);
+      await container.read(invoicesProvider.notifier).saveInvoice(
+            _invoice(
+              id: 'paid',
+              number: '2026-0014',
+              clientId: 'c1',
+              issueDate: day(-20),
+              dueDate: day(-10),
+              status: InvoiceStatus.paid,
+            ),
+          );
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: container,
+          child: const TestApp(child: DashboardScreen()),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('Needs attention'), findsNothing);
+    });
+  });
 }

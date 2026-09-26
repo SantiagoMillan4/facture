@@ -2098,6 +2098,34 @@ class AppLocalizationsFr extends AppLocalizations {
       'Essayez de modifier votre recherche ou votre filtre.';
 
   @override
+  String get dashboardAttentionTitle => 'À relancer';
+
+  @override
+  String dashboardOverdueBy(num days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days jours de retard',
+      one: '$days jour de retard',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get dashboardDueToday => 'Échéance aujourd\'hui';
+
+  @override
+  String dashboardDueIn(num days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Échéance dans $days jours',
+      one: 'Échéance demain',
+    );
+    return '$_temp0';
+  }
+
+  @override
   String get proTitle => 'Facture Pro';
 
   @override

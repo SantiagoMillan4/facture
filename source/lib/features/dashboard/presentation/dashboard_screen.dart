@@ -68,8 +68,36 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
     }
   }
 
-  bool _matches(Invoice invoice, Map<String, String> clientNames) {
-    if (_statusFilter != null &&
+  /// Invoices that need chasing, most urgent first: overdue invoices, then
+  /// sent invoices due within the next 7 days. Positive [daysOverdue]
+  /// means overdue; zero or negative means due today / in -days.
+  List<({Invoice invoice, int daysOverdue})> _attentionItems(
+      List<Invoice> invoices) {
+    final now = DateTime.now();
+    final today = DateTime(now.year, now.month, now.day);
+    final items = <({Invoice invoice, int daysOverdue})>[];
+    for (final invoice in invoices) {
+      final due = DateTime(
+          invoice.dueDate.year, invoice.dueDate.month, invoice.dueDate.day);
+      switch (invoice.effectiveStatus) {
+        case InvoiceStatus.overdue:
+          items.add(
+              (invoice: invoice, daysOverdue: today.difference(due).inDays));
+        case InvoiceStatus.sent:
+          final daysUntil = due.difference(today).inDays;
+          if (daysUntil <= 7) {
+            items.add((invoice: invoice, daysOverdue: -daysUntil));
+          }
+        case InvoiceStatus.draft:
+        case InvoiceStatus.paid:
+          break;
+      }
+    }
+    items.sort((a, b) => b.daysOverdue.compareTo(a.daysOverdue));
+    return items;
+  }
+
+  bool _matches(Invoice invoice, Map<String, String> clientNames) {    if (_statusFilter != null &&
         invoice.effectiveStatus != _statusFilter) {
       return false;
     }
@@ -80,8 +108,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         clientName.contains(_query);
   }
 
-  String _filterLabel(InvoiceStatus? status) {
-    final l10n = context.l10n;
+  String _filterLabel(InvoiceStatus? status) {    final l10n = context.l10n;
     switch (status) {
       case null:
         return l10n.dashboardFilterAll;
@@ -121,6 +148,7 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
               .where((invoice) => _matches(invoice, clientNames))
               .toList()
             ..sort((a, b) => b.issueDate.compareTo(a.issueDate));
+          final attention = _attentionItems(visible);
           return Column(
             children: [
               Padding(
@@ -137,6 +165,18 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
                   french: french,
                 ),
               ),
+              // The attention strip only makes sense unfiltered: with a
+              // search or status filter active, the list below already
+              // shows exactly those invoices.
+              if (attention.isNotEmpty &&
+                  _query.isEmpty &&
+                  _statusFilter == null)
+                _AttentionSection(
+                  items: attention,
+                  clientNames: clientNames,
+                  french: french,
+                  onTap: _openPreview,
+                ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(
                   AppSpacing.lg,
@@ -244,6 +284,133 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
           ),
         );
       },
+    );
+  }
+}
+
+/// "Needs attention" strip: overdue invoices and sent invoices due within
+/// 7 days, most urgent first. Hidden when there is nothing to chase.
+/// Tapping a row opens the invoice preview.
+class _AttentionSection extends StatelessWidget {
+  const _AttentionSection({
+    required this.items,
+    required this.clientNames,
+    required this.french,
+    required this.onTap,
+  });
+
+  final List<({Invoice invoice, int daysOverdue})> items;
+  final Map<String, String> clientNames;
+  final bool french;
+  final void Function(Invoice invoice) onTap;
+
+  String _urgencyLabel(BuildContext context, int daysOverdue) {
+    final l10n = context.l10n;
+    if (daysOverdue > 0) return l10n.dashboardOverdueBy(daysOverdue);
+    if (daysOverdue == 0) return l10n.dashboardDueToday;
+    return l10n.dashboardDueIn(-daysOverdue);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final l10n = context.l10n;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(
+        AppSpacing.lg,
+        AppSpacing.xs,
+        AppSpacing.lg,
+        AppSpacing.xs,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                Icons.warning_amber_rounded,
+                size: 18,
+                color: theme.colorScheme.error,
+              ),
+              const SizedBox(width: AppSpacing.xs),
+              Text(
+                l10n.dashboardAttentionTitle,
+                style: theme.textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w700,
+                  color: theme.colorScheme.error,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: AppSpacing.xs),
+          for (final item in items)
+            _AttentionRow(
+              invoice: item.invoice,
+              clientName: clientNames[item.invoice.clientId],
+              urgency: _urgencyLabel(context, item.daysOverdue),
+              overdue: item.daysOverdue > 0,
+              french: french,
+              onTap: () => onTap(item.invoice),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _AttentionRow extends StatelessWidget {
+  const _AttentionRow({
+    required this.invoice,
+    required this.clientName,
+    required this.urgency,
+    required this.overdue,
+    required this.french,
+    required this.onTap,
+  });
+
+  final Invoice invoice;
+  final String? clientName;
+  final String urgency;
+  final bool overdue;
+  final bool french;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final color =
+        overdue ? theme.colorScheme.error : theme.colorScheme.primary;
+    return Card(
+      margin: const EdgeInsets.only(bottom: AppSpacing.xs),
+      child: ListTile(
+        dense: true,
+        leading: Icon(
+          overdue ? Icons.error_outline : Icons.schedule,
+          color: color,
+        ),
+        title: Text(
+          invoice.number.isEmpty ? '—' : invoice.number,
+          style: theme.textTheme.titleSmall?.copyWith(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        subtitle: Text(
+          clientName == null ? urgency : '$clientName • $urgency',
+          style: theme.textTheme.bodySmall?.copyWith(
+            color: color,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        trailing: Text(
+          formatCurrencyWithCents(
+              centsToDollars(invoice.taxes().totalCents),
+              french: french),
+          style: theme.textTheme.titleSmall?.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
+        onTap: onTap,
+      ),
     );
   }
 }

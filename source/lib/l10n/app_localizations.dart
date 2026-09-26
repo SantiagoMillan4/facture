@@ -3776,6 +3776,30 @@ abstract class AppLocalizations {
   /// **'Try adjusting your search or filter.'**
   String get dashboardNoResultsMessage;
 
+  /// No description provided for @dashboardAttentionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs attention'**
+  String get dashboardAttentionTitle;
+
+  /// No description provided for @dashboardOverdueBy.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, one{{days} day overdue} other{{days} days overdue}}'**
+  String dashboardOverdueBy(num days);
+
+  /// No description provided for @dashboardDueToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Due today'**
+  String get dashboardDueToday;
+
+  /// No description provided for @dashboardDueIn.
+  ///
+  /// In en, this message translates to:
+  /// **'{days, plural, one{Due tomorrow} other{Due in {days} days}}'**
+  String dashboardDueIn(num days);
+
   /// No description provided for @proTitle.
   ///
   /// In en, this message translates to:
