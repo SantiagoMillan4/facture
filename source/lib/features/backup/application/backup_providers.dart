@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../business/application/business_profile_providers.dart';
+import '../../catalog/application/catalog_providers.dart';
 import '../../clients/application/clients_providers.dart';
 import '../../email/application/email_template_providers.dart';
 import '../../invoices/application/invoices_providers.dart';
@@ -13,5 +14,6 @@ final backupServiceProvider = Provider<BackupService>((ref) {
     clients: ref.watch(clientsRepositoryProvider),
     business: ref.watch(businessProfileRepositoryProvider),
     email: ref.watch(emailTemplateRepositoryProvider),
+    catalog: ref.watch(catalogRepositoryProvider),
   );
 });

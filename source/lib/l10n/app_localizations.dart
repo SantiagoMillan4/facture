@@ -4051,6 +4051,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Total'**
   String get csvTotal;
+
+  /// No description provided for @catalogTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Services & items'**
+  String get catalogTitle;
+
+  /// No description provided for @catalogSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reusable line items for your invoices'**
+  String get catalogSubtitle;
+
+  /// No description provided for @catalogAddItem.
+  ///
+  /// In en, this message translates to:
+  /// **'Add item'**
+  String get catalogAddItem;
+
+  /// No description provided for @catalogNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New item'**
+  String get catalogNewTitle;
+
+  /// No description provided for @catalogEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit item'**
+  String get catalogEditTitle;
+
+  /// No description provided for @catalogDescriptionLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get catalogDescriptionLabel;
+
+  /// No description provided for @catalogDescriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Logo design, per hour'**
+  String get catalogDescriptionHint;
+
+  /// No description provided for @catalogDescriptionRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a description'**
+  String get catalogDescriptionRequired;
+
+  /// No description provided for @catalogPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit price'**
+  String get catalogPriceLabel;
+
+  /// No description provided for @catalogPriceRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a price above \$0'**
+  String get catalogPriceRequired;
+
+  /// No description provided for @catalogEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No saved items yet'**
+  String get catalogEmptyTitle;
+
+  /// No description provided for @catalogEmptyMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Save the services and items you bill often, then add them to an invoice in one tap.'**
+  String get catalogEmptyMessage;
+
+  /// No description provided for @catalogPickTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from catalog'**
+  String get catalogPickTitle;
+
+  /// No description provided for @invoiceAddBlankLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Blank line'**
+  String get invoiceAddBlankLine;
+
+  /// No description provided for @invoiceAddFromCatalog.
+  ///
+  /// In en, this message translates to:
+  /// **'From catalog…'**
+  String get invoiceAddFromCatalog;
 }
 
 class _AppLocalizationsDelegate

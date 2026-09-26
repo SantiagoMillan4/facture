@@ -2262,4 +2262,50 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get csvTotal => 'Total';
+
+  @override
+  String get catalogTitle => 'Services et articles';
+
+  @override
+  String get catalogSubtitle => 'Lignes réutilisables pour vos factures';
+
+  @override
+  String get catalogAddItem => 'Ajouter un article';
+
+  @override
+  String get catalogNewTitle => 'Nouvel article';
+
+  @override
+  String get catalogEditTitle => 'Modifier l\'article';
+
+  @override
+  String get catalogDescriptionLabel => 'Description';
+
+  @override
+  String get catalogDescriptionHint => 'p. ex. Design de logo, à l\'heure';
+
+  @override
+  String get catalogDescriptionRequired => 'Entrez une description';
+
+  @override
+  String get catalogPriceLabel => 'Prix unitaire';
+
+  @override
+  String get catalogPriceRequired => 'Entrez un prix supérieur à 0 \$';
+
+  @override
+  String get catalogEmptyTitle => 'Aucun article enregistré';
+
+  @override
+  String get catalogEmptyMessage =>
+      'Enregistrez les services et articles que vous facturez souvent, puis ajoutez-les à une facture en un toucher.';
+
+  @override
+  String get catalogPickTitle => 'Choisir au catalogue';
+
+  @override
+  String get invoiceAddBlankLine => 'Ligne vide';
+
+  @override
+  String get invoiceAddFromCatalog => 'Depuis le catalogue…';
 }

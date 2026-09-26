@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:facture/features/backup/application/backup_service.dart';
 import 'package:facture/features/business/data/business_profile_repository.dart';
+import 'package:facture/features/catalog/data/catalog_repository.dart';
+import 'package:facture/features/catalog/domain/catalog_item.dart';
 import 'package:facture/features/business/domain/business_profile.dart';
 import 'package:facture/features/clients/data/clients_repository.dart';
 import 'package:facture/features/clients/domain/client.dart';
@@ -17,6 +19,7 @@ BackupService _service() => BackupService(
       clients: ClientsRepository(),
       business: BusinessProfileRepository(),
       email: EmailTemplateRepository(),
+      catalog: CatalogRepository(),
     );
 
 Invoice _invoice() => Invoice(
@@ -51,6 +54,10 @@ void main() {
       await EmailTemplateRepository().saveTemplate(
         const EmailTemplate(subject: 'Hi', body: 'Bye'),
       );
+      await CatalogRepository().saveItems([
+        const CatalogItem(
+            id: 'ci1', description: 'Design', unitPriceCents: 5000),
+      ]);
 
       final file = await service.writeBackupFile();
       final raw = await file.readAsString();
@@ -60,6 +67,7 @@ void main() {
       // Wipe everything, then restore.
       await InvoicesRepository().saveInvoices([]);
       await ClientsRepository().saveClients([]);
+      await CatalogRepository().saveItems([]);
       final summary = await service.restoreFromJson(raw);
       expect(summary.invoiceCount, 1);
       expect(summary.clientCount, 1);
@@ -72,6 +80,8 @@ void main() {
       expect(business?.name, 'Santiago');
       final template = await EmailTemplateRepository().loadTemplate();
       expect(template?.subject, 'Hi');
+      final catalog = await CatalogRepository().loadItems();
+      expect(catalog.single.description, 'Design');
     });
 
     test('restore rejects invalid documents', () async {

@@ -1113,5 +1113,20 @@
   "csvSubtotal": "Sous-total",
   "csvTps": "TPS",
   "csvTvq": "TVQ",
-  "csvTotal": "Total"
+  "csvTotal": "Total",
+  "catalogTitle": "Services et articles",
+  "catalogSubtitle": "Lignes réutilisables pour vos factures",
+  "catalogAddItem": "Ajouter un article",
+  "catalogNewTitle": "Nouvel article",
+  "catalogEditTitle": "Modifier l'article",
+  "catalogDescriptionLabel": "Description",
+  "catalogDescriptionHint": "p. ex. Design de logo, à l'heure",
+  "catalogDescriptionRequired": "Entrez une description",
+  "catalogPriceLabel": "Prix unitaire",
+  "catalogPriceRequired": "Entrez un prix supérieur à 0 $",
+  "catalogEmptyTitle": "Aucun article enregistré",
+  "catalogEmptyMessage": "Enregistrez les services et articles que vous facturez souvent, puis ajoutez-les à une facture en un toucher.",
+  "catalogPickTitle": "Choisir au catalogue",
+  "invoiceAddBlankLine": "Ligne vide",
+  "invoiceAddFromCatalog": "Depuis le catalogue…"
 }

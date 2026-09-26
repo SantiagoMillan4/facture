@@ -1123,5 +1123,20 @@
   "csvSubtotal": "Subtotal",
   "csvTps": "TPS",
   "csvTvq": "TVQ",
-  "csvTotal": "Total"
+  "csvTotal": "Total",
+  "catalogTitle": "Services & items",
+  "catalogSubtitle": "Reusable line items for your invoices",
+  "catalogAddItem": "Add item",
+  "catalogNewTitle": "New item",
+  "catalogEditTitle": "Edit item",
+  "catalogDescriptionLabel": "Description",
+  "catalogDescriptionHint": "e.g. Logo design, per hour",
+  "catalogDescriptionRequired": "Enter a description",
+  "catalogPriceLabel": "Unit price",
+  "catalogPriceRequired": "Enter a price above $0",
+  "catalogEmptyTitle": "No saved items yet",
+  "catalogEmptyMessage": "Save the services and items you bill often, then add them to an invoice in one tap.",
+  "catalogPickTitle": "Choose from catalog",
+  "invoiceAddBlankLine": "Blank line",
+  "invoiceAddFromCatalog": "From catalog…"
 }

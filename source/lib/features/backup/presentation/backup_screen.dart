@@ -11,6 +11,7 @@ import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/confirm_action_dialog.dart';
 import '../../../shared/widgets/form_section_title.dart';
 import '../../business/application/business_profile_providers.dart';
+import '../../catalog/application/catalog_providers.dart';
 import '../../clients/application/clients_providers.dart';
 import '../../email/application/email_template_providers.dart';
 import '../../invoices/application/invoices_providers.dart';
@@ -103,7 +104,8 @@ class _BackupScreenState extends ConsumerState<BackupScreen> {
         ..invalidate(invoicesProvider)
         ..invalidate(clientsProvider)
         ..invalidate(businessProfileProvider)
-        ..invalidate(emailTemplateProvider);
+        ..invalidate(emailTemplateProvider)
+        ..invalidate(catalogItemsProvider);
       _snack(context.l10n.backupRestored);
     } on FormatException {
       _snack(context.l10n.backupInvalid);

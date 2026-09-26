@@ -3,12 +3,15 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_l10n.dart';
 import '../../../shared/theme/app_spacing.dart';
+import '../../../shared/widgets/adaptive_action_sheet.dart';
 import '../../../shared/widgets/adaptive_date_field.dart';
 import '../../../shared/widgets/app_haptics.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/labeled_choice_field.dart';
 import '../../../shared/widgets/labeled_fields.dart';
 import '../../business/application/business_profile_providers.dart';
+import '../../catalog/application/catalog_providers.dart';
+import '../../catalog/presentation/catalog_picker_sheet.dart';
 import '../../business/domain/business_profile.dart';
 import '../../business/presentation/business_profile_screen.dart';
 import '../../clients/application/clients_providers.dart';
@@ -176,6 +179,48 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
       chargeTaxes: _chargeTaxes,
       paidDate: existing?.paidDate,
     );
+  }
+
+  /// Adds a line: a blank row directly when the catalog is empty,
+  /// otherwise a native sheet offering a blank row or a catalog item.
+  /// The form itself is unchanged — this only chooses the new row's
+  /// starting values.
+  Future<void> _addLine() async {
+    final catalog = await ref.read(catalogItemsProvider.future);
+    if (!mounted) return;
+    if (catalog.isEmpty) {
+      setState(() => _lines.add(LineDraft()));
+      return;
+    }
+    final l10n = context.l10n;
+    final choice = await showAdaptiveActionSheet<String>(
+      context,
+      title: l10n.invoiceAddLine,
+      options: [
+        ActionSheetOption(
+          value: 'blank',
+          label: l10n.invoiceAddBlankLine,
+          icon: Icons.add,
+        ),
+        ActionSheetOption(
+          value: 'catalog',
+          label: l10n.invoiceAddFromCatalog,
+          icon: Icons.inventory_2_outlined,
+        ),
+      ],
+    );
+    if (!mounted) return;
+    if (choice == 'catalog') {
+      final picked = await CatalogPickerSheet.show(context, catalog);
+      if (picked == null || !mounted) return;
+      setState(() => _lines.add(LineDraft(
+            description: picked.description,
+            quantity: '1',
+            unitPrice: (picked.unitPriceCents / 100).toStringAsFixed(2),
+          )));
+    } else if (choice == 'blank') {
+      setState(() => _lines.add(LineDraft()));
+    }
   }
 
   Future<void> _save() async {
@@ -353,7 +398,7 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
               ),
             const SizedBox(height: AppSpacing.xs),
             OutlinedButton.icon(
-              onPressed: () => setState(() => _lines.add(LineDraft())),
+              onPressed: _addLine,
               icon: const Icon(Icons.add),
               label: Text(l10n.invoiceAddLine),
             ),

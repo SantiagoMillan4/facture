@@ -11,6 +11,7 @@ class BackupPayload {
     required this.clients,
     this.businessProfile,
     this.emailTemplate,
+    this.catalogItems = const [],
   });
 
   static const format = 'facture-backup';
@@ -23,6 +24,7 @@ class BackupPayload {
   final List<Map<String, dynamic>> clients;
   final Map<String, dynamic>? businessProfile;
   final Map<String, dynamic>? emailTemplate;
+  final List<Map<String, dynamic>> catalogItems;
 
   Map<String, dynamic> toJson() => {
         'format': format,
@@ -32,6 +34,7 @@ class BackupPayload {
         'clients': clients,
         if (businessProfile != null) 'businessProfile': businessProfile,
         if (emailTemplate != null) 'emailTemplate': emailTemplate,
+        if (catalogItems.isNotEmpty) 'catalogItems': catalogItems,
       };
 
   /// Parses and validates a decoded backup document.
@@ -55,6 +58,7 @@ class BackupPayload {
       clients: _mapList(json, 'clients'),
       businessProfile: _mapOrNull(json, 'businessProfile'),
       emailTemplate: _mapOrNull(json, 'emailTemplate'),
+      catalogItems: _mapList(json, 'catalogItems'),
     );
   }
 

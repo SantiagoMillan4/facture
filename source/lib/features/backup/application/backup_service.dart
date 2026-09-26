@@ -3,6 +3,8 @@ import 'dart:io';
 
 import '../../business/data/business_profile_repository.dart';
 import '../../business/domain/business_profile.dart';
+import '../../catalog/data/catalog_repository.dart';
+import '../../catalog/domain/catalog_item.dart';
 import '../../clients/data/clients_repository.dart';
 import '../../clients/domain/client.dart';
 import '../../email/data/email_template_repository.dart';
@@ -30,12 +32,14 @@ class BackupService {
     required this.clients,
     required this.business,
     required this.email,
+    required this.catalog,
   });
 
   final InvoicesRepository invoices;
   final ClientsRepository clients;
   final BusinessProfileRepository business;
   final EmailTemplateRepository email;
+  final CatalogRepository catalog;
 
   /// Writes the whole local database to a JSON backup file in the temp
   /// directory and returns it.
@@ -44,12 +48,14 @@ class BackupService {
     final savedClients = await clients.loadClients();
     final savedBusiness = await business.loadProfile();
     final savedEmail = await email.loadTemplate();
+    final savedCatalog = await catalog.loadItems();
     final payload = BackupPayload(
       exportedAt: DateTime.now(),
       invoices: savedInvoices.map((i) => i.toJson()).toList(),
       clients: savedClients.map((c) => c.toJson()).toList(),
       businessProfile: savedBusiness?.toJson(),
       emailTemplate: savedEmail?.toJson(),
+      catalogItems: savedCatalog.map((i) => i.toJson()).toList(),
     );
     final file = await _tempFile('facture-backup', 'json');
     await file.writeAsString(
@@ -80,6 +86,9 @@ class BackupService {
     if (emailJson != null) {
       await email.saveTemplate(EmailTemplate.fromJson(emailJson));
     }
+    await catalog.saveItems(
+      payload.catalogItems.map(CatalogItem.fromJson).toList(growable: false),
+    );
     return RestoreSummary(
       invoiceCount: restoredInvoices.length,
       clientCount: restoredClients.length,

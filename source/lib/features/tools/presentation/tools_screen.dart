@@ -4,6 +4,7 @@ import '../../../l10n/app_l10n.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../backup/presentation/backup_screen.dart';
+import '../../catalog/presentation/catalog_screen.dart';
 import '../../email/presentation/email_template_screen.dart';
 import 'tax_calculator_screen.dart';
 
@@ -39,6 +40,12 @@ class ToolsScreen extends StatelessWidget {
             title: l10n.backupTitle,
             subtitle: l10n.backupSubtitle,
             onTap: () => pushAppPage(context, (_) => const BackupScreen()),
+          ),
+          _ToolTile(
+            icon: Icons.inventory_2_outlined,
+            title: l10n.catalogTitle,
+            subtitle: l10n.catalogSubtitle,
+            onTap: () => pushAppPage(context, (_) => const CatalogScreen()),
           ),
         ],
       ),
