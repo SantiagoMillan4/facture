@@ -127,20 +127,6 @@ class _ClientsScreenState extends ConsumerState<ClientsScreen> {
                   AppSpacing.lg,
                   AppSpacing.sm,
                   AppSpacing.lg,
-                  AppSpacing.xs,
-                ),
-                child: BigAddButton(
-                  key: const ValueKey('addClientButton'),
-                  label: l10n.clientsAddClient,
-                  icon: Icons.person_add_outlined,
-                  onPressed: () => _openEditor(),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.lg,
-                  AppSpacing.xs,
-                  AppSpacing.lg,
                   AppSpacing.sm,
                 ),
                 child: Row(
@@ -179,6 +165,22 @@ class _ClientsScreenState extends ConsumerState<ClientsScreen> {
                 ),
               ),
               Expanded(child: _buildList(context, visible)),
+              // Pinned above the tab bar, Rentable-style: the list scrolls
+              // above it so the primary action is always within thumb reach.
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.lg,
+                  AppSpacing.xs,
+                  AppSpacing.lg,
+                  AppSpacing.lg,
+                ),
+                child: BigAddButton(
+                  key: const ValueKey('addClientButton'),
+                  label: l10n.clientsAddClient,
+                  icon: Icons.person_add_outlined,
+                  onPressed: () => _openEditor(),
+                ),
+              ),
             ],
           );
         },

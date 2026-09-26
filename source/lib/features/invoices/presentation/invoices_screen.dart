@@ -156,19 +156,6 @@ class _InvoicesScreenState extends ConsumerState<InvoicesScreen> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(
                   AppSpacing.lg,
-                  AppSpacing.sm,
-                  AppSpacing.lg,
-                  AppSpacing.xs,
-                ),
-                child: BigAddButton(
-                  key: const ValueKey('addInvoiceButton'),
-                  label: l10n.newInvoice,
-                  onPressed: _openFormOrPaywall,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(
-                  AppSpacing.lg,
                   AppSpacing.xs,
                   AppSpacing.lg,
                   AppSpacing.xs,
@@ -251,6 +238,21 @@ class _InvoicesScreenState extends ConsumerState<InvoicesScreen> {
               Expanded(
                 child: _buildList(context, visible,
                     hasAnyInvoices: invoices.isNotEmpty),
+              ),
+              // Pinned above the tab bar, Rentable-style: the list scrolls
+              // above it so the primary action is always within thumb reach.
+              Padding(
+                padding: const EdgeInsets.fromLTRB(
+                  AppSpacing.lg,
+                  AppSpacing.xs,
+                  AppSpacing.lg,
+                  AppSpacing.lg,
+                ),
+                child: BigAddButton(
+                  key: const ValueKey('addInvoiceButton'),
+                  label: l10n.newInvoice,
+                  onPressed: _openFormOrPaywall,
+                ),
               ),
             ],
           );
