@@ -62,7 +62,7 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
     final invoice = widget.invoice;
     _notesController = TextEditingController(text: invoice?.notes ?? '');
     if (invoice == null) {
-      final existing = ref.read(invoicesProvider).valueOrNull ?? [];
+      final existing = ref.read(invoicesProvider).value ?? [];
       _numberController = TextEditingController(
         text: nextInvoiceNumber(existing),
       );
@@ -163,7 +163,7 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
     return Invoice(
       id: existing?.id ?? newInvoiceId(),
       number: _numberController.text.trim().isEmpty
-          ? nextInvoiceNumber(ref.read(invoicesProvider).valueOrNull ?? [])
+          ? nextInvoiceNumber(ref.read(invoicesProvider).value ?? [])
           : _numberController.text.trim(),
       clientId: _clientId!,
       issueDate: _issueDate,
@@ -190,11 +190,11 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
   Future<void> _sharePdf() async {
     final invoice = _validate();
     if (invoice == null) return;
-    final clients = ref.read(clientsProvider).valueOrNull ?? [];
+    final clients = ref.read(clientsProvider).value ?? [];
     final client = clients.where((c) => c.id == invoice.clientId).firstOrNull;
     if (client == null || !mounted) return;
     final l10n = context.l10n;
-    final profile = ref.read(businessProfileProvider).valueOrNull;
+    final profile = ref.read(businessProfileProvider).value;
     AppHaptics.confirm();
     await shareInvoicePdf(
       invoice: invoice,
@@ -207,9 +207,9 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    final clients = ref.watch(clientsProvider).valueOrNull ?? [];
+    final clients = ref.watch(clientsProvider).value ?? [];
     final client = clients.where((c) => c.id == _clientId).firstOrNull;
-    _reconcileTaxDefault(ref.watch(businessProfileProvider).valueOrNull);
+    _reconcileTaxDefault(ref.watch(businessProfileProvider).value);
 
     return Scaffold(
       appBar: AppBar(
@@ -234,7 +234,7 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
         child: ListView(
           padding: const EdgeInsets.all(AppSpacing.lg),
           children: [
-            if (ref.watch(businessProfileProvider).valueOrNull == null)
+            if (ref.watch(businessProfileProvider).value == null)
               _ProfileNudge(
                 onTap: () => pushAppPage(
                   context,

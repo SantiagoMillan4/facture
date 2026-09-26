@@ -108,7 +108,7 @@ void main() {
 
       expect(find.text('Please select a client.'), findsOneWidget);
       expect(find.text('Add at least one line item.', skipOffstage: false), findsOneWidget);
-      expect(container.read(invoicesProvider).valueOrNull, isEmpty);
+      expect(container.read(invoicesProvider).value, isEmpty);
     });
 
     testWidgets('live totals show the Québec TPS/TVQ breakdown', (
@@ -176,7 +176,7 @@ void main() {
       await tester.tap(find.text('Save'));
       await tester.pumpAndSettle();
 
-      final invoices = container.read(invoicesProvider).valueOrNull ?? [];
+      final invoices = container.read(invoicesProvider).value ?? [];
       expect(invoices, hasLength(1));
       final saved = invoices.single;
       expect(saved.clientId, 'c1');
@@ -200,7 +200,7 @@ void main() {
       await tester.tap(find.text('Save'));
       await tester.pumpAndSettle();
 
-      final invoices = container.read(invoicesProvider).valueOrNull ?? [];
+      final invoices = container.read(invoicesProvider).value ?? [];
       expect(invoices, hasLength(1));
       // Registration is never assumed: the stored invoice is tax-free.
       expect(invoices.single.chargeTaxes, isFalse);

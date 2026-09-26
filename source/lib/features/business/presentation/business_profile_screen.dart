@@ -38,7 +38,7 @@ class _BusinessProfileScreenState
   @override
   void initState() {
     super.initState();
-    final profile = ref.read(businessProfileProvider).valueOrNull;
+    final profile = ref.read(businessProfileProvider).value;
     _nameController = TextEditingController(text: profile?.name ?? '');
     _addressController = TextEditingController(text: profile?.address ?? '');
     _phoneController = TextEditingController(text: profile?.phone ?? '');

@@ -88,7 +88,7 @@ class PurchaseNotifier extends AsyncNotifier<PurchaseState> {
 
   /// Starts the system purchase sheet for the Pro product.
   Future<void> buyPro() async {
-    final current = state.valueOrNull;
+    final current = state.value;
     if (current == null || current.isPurchasing || current.isPro) return;
     var product = current.product;
     product ??= await ref.read(purchaseServiceProvider).loadProduct();
@@ -117,11 +117,11 @@ class PurchaseNotifier extends AsyncNotifier<PurchaseState> {
 
   /// Restores a previous Pro purchase from the store.
   Future<void> restorePurchases() async {
-    final current = state.valueOrNull;
+    final current = state.value;
     if (current == null || current.isPurchasing || current.isPro) return;
     state = AsyncData(current.copyWith(isPurchasing: true));
     final found = await ref.read(purchaseServiceProvider).restore();
-    final latest = state.valueOrNull;
+    final latest = state.value;
     if (latest == null) return;
     if (latest.isPro) {
       // The updates stream granted the entitlement while restoring.
@@ -141,7 +141,7 @@ class PurchaseNotifier extends AsyncNotifier<PurchaseState> {
   }
 
   Future<void> _onUpdate(PurchaseUpdate update) async {
-    final current = state.valueOrNull;
+    final current = state.value;
     if (current == null) return;
     switch (update.outcome) {
       case PurchaseOutcome.pending:
@@ -179,15 +179,15 @@ final purchaseProvider =
 /// Fail-open while the purchase state or the invoice book is still loading
 /// so the UI never dead-ends on a spinner.
 final canCreateInvoiceProvider = Provider<bool>((ref) {
-  final purchase = ref.watch(purchaseProvider).valueOrNull;
+  final purchase = ref.watch(purchaseProvider).value;
   if (purchase == null) return true;
   if (purchase.isPro) return true;
-  final invoices = ref.watch(invoicesProvider).valueOrNull;
+  final invoices = ref.watch(invoicesProvider).value;
   if (invoices == null) return true;
   return invoices.length < PurchaseCatalog.freeInvoiceLimit;
 });
 
 /// How many invoices exist (drives the free-tier usage label in Settings).
 final invoiceCountProvider = Provider<int>((ref) {
-  return ref.watch(invoicesProvider).valueOrNull?.length ?? 0;
+  return ref.watch(invoicesProvider).value?.length ?? 0;
 });

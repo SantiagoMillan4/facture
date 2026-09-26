@@ -68,7 +68,7 @@ class SettingsScreen extends ConsumerWidget {
     final l10n = context.l10n;
     final purchaseAsync = ref.watch(purchaseProvider);
     final usedInvoices = ref.watch(invoiceCountProvider);
-    final isPro = purchaseAsync.valueOrNull?.isPro ?? false;
+    final isPro = purchaseAsync.value?.isPro ?? false;
     return Scaffold(
       appBar: AppBar(title: Text(l10n.navSettings)),
       body: ListView(

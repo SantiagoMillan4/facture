@@ -11,8 +11,8 @@ import '../domain/dashboard_summary.dart';
 /// - paid this month: total of invoices with [Invoice.paidDate] in the
 ///   current month. With no invoices yet, both honestly read zero.
 final dashboardSummaryProvider = Provider<DashboardSummary>((ref) {
-  final clientCount = ref.watch(clientsProvider).valueOrNull?.length ?? 0;
-  final invoices = ref.watch(invoicesProvider).valueOrNull ?? [];
+  final clientCount = ref.watch(clientsProvider).value?.length ?? 0;
+  final invoices = ref.watch(invoicesProvider).value ?? [];
 
   final now = DateTime.now();
   var unpaidCents = 0;

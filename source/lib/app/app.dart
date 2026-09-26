@@ -14,7 +14,15 @@ import 'splash_screen.dart';
 /// Index of the bottom-navigation tab. A provider (rather than local state)
 /// so a pushed page can switch tabs — e.g. jumping to Invoices after
 /// creating one.
-final homeTabIndexProvider = StateProvider<int>((ref) => 0);
+final homeTabIndexProvider =
+    NotifierProvider<HomeTabIndexNotifier, int>(HomeTabIndexNotifier.new);
+
+class HomeTabIndexNotifier extends Notifier<int> {
+  @override
+  int build() => 0;
+
+  void select(int index) => state = index;
+}
 
 /// Root widget: Riverpod scope, Material 3 theme (light/dark), and
 /// EN/Québec-French localization with English fallback.
@@ -90,7 +98,7 @@ class HomeShell extends ConsumerWidget {
       bottomNavigationBar: NavigationBar(
         selectedIndex: selectedIndex,
         onDestinationSelected: (index) {
-          ref.read(homeTabIndexProvider.notifier).state = index;
+          ref.read(homeTabIndexProvider.notifier).select(index);
         },
         destinations: [
           NavigationDestination(

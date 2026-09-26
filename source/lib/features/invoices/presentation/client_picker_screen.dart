@@ -88,7 +88,7 @@ class ClientPickerScreen extends ConsumerWidget {
     );
     if (!context.mounted) return;
     final created =
-        ref.read(clientsProvider).valueOrNull?.where((c) => c.id == id).firstOrNull;
+        ref.read(clientsProvider).value?.where((c) => c.id == id).firstOrNull;
     if (created != null) {
       Navigator.of(context).pop(created);
     }

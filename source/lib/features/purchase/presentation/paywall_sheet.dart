@@ -49,8 +49,8 @@ class _PaywallSheetBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // Dismiss once the purchase completes.
     ref.listen(purchaseProvider, (previous, next) {
-      final wasPro = previous?.valueOrNull?.isPro ?? false;
-      final isPro = next.valueOrNull?.isPro ?? false;
+      final wasPro = previous?.value?.isPro ?? false;
+      final isPro = next.value?.isPro ?? false;
       if (!wasPro && isPro && context.mounted) {
         Navigator.of(context).pop();
       }

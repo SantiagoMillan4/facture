@@ -24,7 +24,7 @@ class InvoicesNotifier extends AsyncNotifier<List<Invoice>> {
   /// preserved while paid/sent, cleared when moved away. (Rebuilt rather
   /// than copyWith'd because copyWith cannot null dates out.)
   Future<void> saveInvoice(Invoice invoice) async {
-    final current = state.valueOrNull ?? [];
+    final current = state.value ?? [];
     final index = current.indexWhere((i) => i.id == invoice.id);
     final previous = index >= 0 ? current[index] : null;
 
@@ -42,7 +42,7 @@ class InvoicesNotifier extends AsyncNotifier<List<Invoice>> {
   /// Moves an invoice to [status], stamping/clearing paidDate and sentDate
   /// like [saveInvoice] does. No-op when the status is unchanged.
   Future<void> setStatus(String id, InvoiceStatus status) async {
-    final current = state.valueOrNull ?? [];
+    final current = state.value ?? [];
     final index = current.indexWhere((i) => i.id == id);
     if (index < 0) return;
     final previous = current[index];
@@ -109,7 +109,7 @@ class InvoicesNotifier extends AsyncNotifier<List<Invoice>> {
   }
 
   Future<void> deleteInvoice(String id) async {
-    final current = state.valueOrNull ?? [];
+    final current = state.value ?? [];
     await _persist(current.where((i) => i.id != id).toList());
   }
 

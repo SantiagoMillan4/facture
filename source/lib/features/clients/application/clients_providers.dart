@@ -21,7 +21,7 @@ class ClientsNotifier extends AsyncNotifier<List<Client>> {
   /// Inserts a new client or replaces the one with the same id, then
   /// persists the whole directory.
   Future<void> saveClient(Client client) async {
-    final current = state.valueOrNull ?? [];
+    final current = state.value ?? [];
     final index = current.indexWhere((c) => c.id == client.id);
     final updated = List<Client>.of(current);
     if (index >= 0) {
@@ -33,7 +33,7 @@ class ClientsNotifier extends AsyncNotifier<List<Client>> {
   }
 
   Future<void> deleteClient(String id) async {
-    final current = state.valueOrNull ?? [];
+    final current = state.value ?? [];
     await _persist(current.where((c) => c.id != id).toList());
   }
 

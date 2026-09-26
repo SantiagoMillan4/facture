@@ -176,7 +176,7 @@ class _InvoiceTile extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final client =
-        ref.watch(clientsProvider).valueOrNull?.where((c) => c.id == invoice.clientId).firstOrNull;
+        ref.watch(clientsProvider).value?.where((c) => c.id == invoice.clientId).firstOrNull;
     final status = invoice.effectiveStatus;
     final total = invoice.taxes().totalCents;
     final french = context.isFrench;
