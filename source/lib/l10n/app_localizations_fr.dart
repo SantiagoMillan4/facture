@@ -1938,6 +1938,36 @@ class AppLocalizationsFr extends AppLocalizations {
   String get clientsAddClient => 'Ajouter un client';
 
   @override
+  String get clientsSearchHint => 'Rechercher des clients';
+
+  @override
+  String get clientsSearchClear => 'Effacer la recherche';
+
+  @override
+  String get clientsSortBy => 'Trier les clients';
+
+  @override
+  String get clientsSortTitle => 'Trier par';
+
+  @override
+  String get clientsSortNameAsc => 'Nom (A à Z)';
+
+  @override
+  String get clientsSortNameDesc => 'Nom (Z à A)';
+
+  @override
+  String get clientsSortNewest => 'Plus récents d\'abord';
+
+  @override
+  String get clientsSortOldest => 'Plus anciens d\'abord';
+
+  @override
+  String get clientsNoResultsTitle => 'Aucun client trouvé';
+
+  @override
+  String get clientsNoResultsMessage => 'Essayez une autre recherche.';
+
+  @override
   String get clientNewTitle => 'Nouveau client';
 
   @override

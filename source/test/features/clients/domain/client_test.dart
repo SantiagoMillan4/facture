@@ -27,6 +27,13 @@ void main() {
       expect(recovered.notes, '');
       expect(recovered.tpsNumber, isNull);
       expect(recovered.tvqNumber, isNull);
+      expect(recovered.createdAt, isNull);
+    });
+
+    test('JSON round-trip preserves createdAt', () {
+      final stamped = client.copyWith(createdAt: DateTime(2026, 9, 25, 12));
+
+      expect(Client.fromJson(stamped.toJson()), stamped);
     });
 
     test('copyWith replaces only the given fields', () {

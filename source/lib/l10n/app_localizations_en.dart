@@ -1917,6 +1917,36 @@ class AppLocalizationsEn extends AppLocalizations {
   String get clientsAddClient => 'Add client';
 
   @override
+  String get clientsSearchHint => 'Search clients';
+
+  @override
+  String get clientsSearchClear => 'Clear search';
+
+  @override
+  String get clientsSortBy => 'Sort clients';
+
+  @override
+  String get clientsSortTitle => 'Sort by';
+
+  @override
+  String get clientsSortNameAsc => 'Name (A–Z)';
+
+  @override
+  String get clientsSortNameDesc => 'Name (Z–A)';
+
+  @override
+  String get clientsSortNewest => 'Newest first';
+
+  @override
+  String get clientsSortOldest => 'Oldest first';
+
+  @override
+  String get clientsNoResultsTitle => 'No matching clients';
+
+  @override
+  String get clientsNoResultsMessage => 'Try a different search.';
+
+  @override
   String get clientNewTitle => 'New client';
 
   @override

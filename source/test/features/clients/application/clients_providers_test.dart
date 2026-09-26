@@ -26,24 +26,32 @@ void main() {
       final notifier = container.read(clientsProvider.notifier);
       await container.read(clientsProvider.future);
 
+      List<Client> saved() => container.read(clientsProvider).value!;
+
       await notifier.saveClient(const Client(id: 'c1', name: 'Acme'));
-      expect(
-        container.read(clientsProvider).value,
-        [const Client(id: 'c1', name: 'Acme')],
-      );
+      // New clients are stamped with the current time.
+      expect(saved().single.id, 'c1');
+      expect(saved().single.name, 'Acme');
+      expect(saved().single.createdAt, isNotNull);
+      final stampedAt = saved().single.createdAt;
 
       await notifier.saveClient(
         const Client(id: 'c1', name: 'Acme Inc', email: 'b@acme.example'),
       );
-      expect(
-        container.read(clientsProvider).value,
-        [const Client(id: 'c1', name: 'Acme Inc', email: 'b@acme.example')],
-      );
+      // Updating keeps the original timestamp.
+      expect(saved().single.createdAt, stampedAt);
+      expect(saved().single.name, 'Acme Inc');
+      expect(saved().single.email, 'b@acme.example');
 
-      // Survives a fresh load: it was written to disk.
+      // Survives a fresh load: it was written to disk (timestamps persist
+      // at millisecond precision).
+      final fromDisk = await ClientsRepository().loadClients();
+      expect(fromDisk.single.id, 'c1');
+      expect(fromDisk.single.name, 'Acme Inc');
+      expect(fromDisk.single.email, 'b@acme.example');
       expect(
-        await ClientsRepository().loadClients(),
-        [const Client(id: 'c1', name: 'Acme Inc', email: 'b@acme.example')],
+        fromDisk.single.createdAt?.millisecondsSinceEpoch,
+        stampedAt?.millisecondsSinceEpoch,
       );
     });
 
@@ -57,13 +65,12 @@ void main() {
       await notifier.saveClient(const Client(id: 'c2', name: 'Solo'));
       await notifier.deleteClient('c1');
 
-      expect(
-        container.read(clientsProvider).value,
-        [const Client(id: 'c2', name: 'Solo')],
-      );
-      expect(await ClientsRepository().loadClients(), [
-        const Client(id: 'c2', name: 'Solo'),
-      ]);
+      final remaining = container.read(clientsProvider).value!;
+      expect(remaining.single.id, 'c2');
+      expect(remaining.single.name, 'Solo');
+      final fromDisk = await ClientsRepository().loadClients();
+      expect(fromDisk.single.id, 'c2');
+      expect(fromDisk.single.name, 'Solo');
     });
   });
 }

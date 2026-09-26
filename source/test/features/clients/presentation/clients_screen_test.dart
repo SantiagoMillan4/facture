@@ -100,5 +100,49 @@ void main() {
       expect(find.text('Acme Incorporated'), findsOneWidget);
       expect(find.text('Acme Inc'), findsNothing);
     });
+
+    testWidgets('search filters clients by name', (tester) async {
+      await pumpClients(tester);
+      await addClient(tester, 'Acme Inc');
+      await addClient(tester, 'Beta Corp');
+
+      await tester.enterText(find.byType(TextField), 'acme');
+      await tester.pumpAndSettle();
+
+      expect(find.text('Acme Inc'), findsOneWidget);
+      expect(find.text('Beta Corp'), findsNothing);
+    });
+
+    testWidgets('search shows a no-results state', (tester) async {
+      await pumpClients(tester);
+      await addClient(tester, 'Acme Inc');
+
+      await tester.enterText(find.byType(TextField), 'zzz');
+      await tester.pumpAndSettle();
+
+      expect(find.text('No matching clients'), findsOneWidget);
+      expect(find.text('Acme Inc'), findsNothing);
+    });
+
+    testWidgets('sort sheet switches the list order', (tester) async {
+      await pumpClients(tester);
+      await addClient(tester, 'Alpha');
+      await addClient(tester, 'Beta');
+
+      List<String?> rowNames() => tester
+          .widgetList<ListTile>(find.byType(ListTile))
+          .map((tile) => (tile.title! as Text).data)
+          .toList();
+
+      // Default: name ascending.
+      expect(rowNames(), ['Alpha', 'Beta']);
+
+      await tester.tap(find.byIcon(Icons.sort));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Name (Z–A)'));
+      await tester.pumpAndSettle();
+
+      expect(rowNames(), ['Beta', 'Alpha']);
+    });
   });
 }

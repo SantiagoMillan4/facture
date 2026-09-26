@@ -962,6 +962,46 @@
   "clientsEmptyTitle": "Aucun client pour l'instant",
   "clientsEmptyMessage": "Ajoutez votre premier client pour commencer à le facturer.",
   "clientsAddClient": "Ajouter un client",
+  "clientsSearchHint": "Rechercher des clients",
+  "@clientsSearchHint": {
+    "description": "Hint text in the client directory search field"
+  },
+  "clientsSearchClear": "Effacer la recherche",
+  "@clientsSearchClear": {
+    "description": "Tooltip for clearing the client search field"
+  },
+  "clientsSortBy": "Trier les clients",
+  "@clientsSortBy": {
+    "description": "Tooltip for the client sort button"
+  },
+  "clientsSortTitle": "Trier par",
+  "@clientsSortTitle": {
+    "description": "Title of the client sort action sheet"
+  },
+  "clientsSortNameAsc": "Nom (A à Z)",
+  "@clientsSortNameAsc": {
+    "description": "Client sort option: name ascending"
+  },
+  "clientsSortNameDesc": "Nom (Z à A)",
+  "@clientsSortNameDesc": {
+    "description": "Client sort option: name descending"
+  },
+  "clientsSortNewest": "Plus récents d'abord",
+  "@clientsSortNewest": {
+    "description": "Client sort option: newest first"
+  },
+  "clientsSortOldest": "Plus anciens d'abord",
+  "@clientsSortOldest": {
+    "description": "Client sort option: oldest first"
+  },
+  "clientsNoResultsTitle": "Aucun client trouvé",
+  "@clientsNoResultsTitle": {
+    "description": "Empty state title when client search has no results"
+  },
+  "clientsNoResultsMessage": "Essayez une autre recherche.",
+  "@clientsNoResultsMessage": {
+    "description": "Empty state message when client search has no results"
+  },
   "clientNewTitle": "Nouveau client",
   "clientEditTitle": "Modifier le client",
   "clientNameLabel": "Nom",

@@ -19,15 +19,18 @@ class ClientsNotifier extends AsyncNotifier<List<Client>> {
   }
 
   /// Inserts a new client or replaces the one with the same id, then
-  /// persists the whole directory.
+  /// persists the whole directory. New clients are stamped with the
+  /// current time so the directory can sort by recency.
   Future<void> saveClient(Client client) async {
     final current = state.value ?? [];
     final index = current.indexWhere((c) => c.id == client.id);
     final updated = List<Client>.of(current);
     if (index >= 0) {
-      updated[index] = client;
+      updated[index] = client.copyWith(
+        createdAt: client.createdAt ?? current[index].createdAt,
+      );
     } else {
-      updated.add(client);
+      updated.add(client.copyWith(createdAt: client.createdAt ?? DateTime.now()));
     }
     await _persist(updated);
   }

@@ -3476,6 +3476,66 @@ abstract class AppLocalizations {
   /// **'Add client'**
   String get clientsAddClient;
 
+  /// Hint text in the client directory search field
+  ///
+  /// In en, this message translates to:
+  /// **'Search clients'**
+  String get clientsSearchHint;
+
+  /// Tooltip for clearing the client search field
+  ///
+  /// In en, this message translates to:
+  /// **'Clear search'**
+  String get clientsSearchClear;
+
+  /// Tooltip for the client sort button
+  ///
+  /// In en, this message translates to:
+  /// **'Sort clients'**
+  String get clientsSortBy;
+
+  /// Title of the client sort action sheet
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get clientsSortTitle;
+
+  /// Client sort option: name ascending
+  ///
+  /// In en, this message translates to:
+  /// **'Name (A–Z)'**
+  String get clientsSortNameAsc;
+
+  /// Client sort option: name descending
+  ///
+  /// In en, this message translates to:
+  /// **'Name (Z–A)'**
+  String get clientsSortNameDesc;
+
+  /// Client sort option: newest first
+  ///
+  /// In en, this message translates to:
+  /// **'Newest first'**
+  String get clientsSortNewest;
+
+  /// Client sort option: oldest first
+  ///
+  /// In en, this message translates to:
+  /// **'Oldest first'**
+  String get clientsSortOldest;
+
+  /// Empty state title when client search has no results
+  ///
+  /// In en, this message translates to:
+  /// **'No matching clients'**
+  String get clientsNoResultsTitle;
+
+  /// Empty state message when client search has no results
+  ///
+  /// In en, this message translates to:
+  /// **'Try a different search.'**
+  String get clientsNoResultsMessage;
+
   /// No description provided for @clientNewTitle.
   ///
   /// In en, this message translates to:

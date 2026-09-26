@@ -19,6 +19,7 @@ class Client {
     this.notes = '',
     this.tpsNumber,
     this.tvqNumber,
+    this.createdAt,
   });
 
   final String id;
@@ -34,6 +35,11 @@ class Client {
   /// Client's own QST/TVQ registration number, if known. Optional.
   final String? tvqNumber;
 
+  /// When the client was added. Null for records saved before this field
+  /// existed — treated as the oldest when sorting. New clients get stamped
+  /// by [ClientsNotifier.saveClient].
+  final DateTime? createdAt;
+
   Client copyWith({
     String? id,
     String? name,
@@ -43,6 +49,7 @@ class Client {
     String? notes,
     String? tpsNumber,
     String? tvqNumber,
+    DateTime? createdAt,
   }) {
     return Client(
       id: id ?? this.id,
@@ -53,6 +60,7 @@ class Client {
       notes: notes ?? this.notes,
       tpsNumber: tpsNumber ?? this.tpsNumber,
       tvqNumber: tvqNumber ?? this.tvqNumber,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 
@@ -65,6 +73,7 @@ class Client {
     'notes': notes,
     'tpsNumber': tpsNumber,
     'tvqNumber': tvqNumber,
+    'createdAt': createdAt?.millisecondsSinceEpoch,
   };
 
   factory Client.fromJson(Map<String, dynamic> json) => Client(
@@ -76,6 +85,9 @@ class Client {
     notes: json['notes'] as String? ?? '',
     tpsNumber: json['tpsNumber'] as String?,
     tvqNumber: json['tvqNumber'] as String?,
+    createdAt: json['createdAt'] is int
+        ? DateTime.fromMillisecondsSinceEpoch(json['createdAt'] as int)
+        : null,
   );
 
   @override
@@ -89,7 +101,8 @@ class Client {
           address == other.address &&
           notes == other.notes &&
           tpsNumber == other.tpsNumber &&
-          tvqNumber == other.tvqNumber;
+          tvqNumber == other.tvqNumber &&
+          createdAt == other.createdAt;
 
   @override
   int get hashCode => Object.hash(
@@ -101,5 +114,6 @@ class Client {
     notes,
     tpsNumber,
     tvqNumber,
+    createdAt,
   );
 }
