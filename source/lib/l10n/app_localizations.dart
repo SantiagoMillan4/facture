@@ -2108,12 +2108,6 @@ abstract class AppLocalizations {
   /// **'Scenario'**
   String get scenarioFieldLabel;
 
-  /// No description provided for @navDashboard.
-  ///
-  /// In en, this message translates to:
-  /// **'Dashboard'**
-  String get navDashboard;
-
   /// No description provided for @navProperties.
   ///
   /// In en, this message translates to:
@@ -2876,12 +2870,6 @@ abstract class AppLocalizations {
   /// **'Tax year'**
   String get taxYear;
 
-  /// No description provided for @toolsSection.
-  ///
-  /// In en, this message translates to:
-  /// **'Tools'**
-  String get toolsSection;
-
   /// No description provided for @totalExpenses.
   ///
   /// In en, this message translates to:
@@ -3469,6 +3457,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invoices'**
   String get navInvoices;
+
+  /// No description provided for @navTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Tools'**
+  String get navTools;
 
   /// No description provided for @navClients.
   ///

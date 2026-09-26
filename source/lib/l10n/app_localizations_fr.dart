@@ -1162,9 +1162,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get scenarioFieldLabel => 'Scénario';
 
   @override
-  String get navDashboard => 'Tableau de bord';
-
-  @override
   String get navProperties => 'Propriétés';
 
   @override
@@ -1599,9 +1596,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get taxYear => 'Année d\'imposition';
 
   @override
-  String get toolsSection => 'Outils';
-
-  @override
   String get totalExpenses => 'Dépenses totales';
 
   @override
@@ -1932,6 +1926,9 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get navInvoices => 'Factures';
+
+  @override
+  String get navTools => 'Outils';
 
   @override
   String get navClients => 'Clients';

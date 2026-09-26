@@ -1,4 +1,4 @@
-import 'package:facture/features/settings/presentation/tax_calculator_screen.dart';
+import 'package:facture/features/tools/presentation/tax_calculator_screen.dart';
 import 'package:facture/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';

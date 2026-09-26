@@ -1,14 +1,19 @@
-import 'dart:ui';
-
 import 'package:facture/app/app.dart';
 import 'package:facture/features/clients/presentation/clients_screen.dart';
-import 'package:facture/features/dashboard/presentation/dashboard_screen.dart';
+import 'package:facture/features/invoices/presentation/invoice_form_screen.dart';
 import 'package:facture/features/invoices/presentation/invoices_screen.dart';
 import 'package:facture/features/settings/presentation/how_it_works_screen.dart';
 import 'package:facture/features/settings/presentation/settings_screen.dart';
 import 'package:facture/features/settings/presentation/tax_explainer_screen.dart';
+import 'package:facture/features/tools/presentation/tax_calculator_screen.dart';
+import 'package:facture/features/tools/presentation/tools_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+/// Taps a bottom-bar tab by index: 0 Invoices, 1 Clients, 2 Tools, 3 Settings.
+Future<void> tapTab(WidgetTester tester, int index) =>
+    tester.tap(find.byKey(ValueKey('navTab$index')));
 
 void main() {
   setUpAll(() {
@@ -29,7 +34,7 @@ void main() {
   Future<void> goToSettings(WidgetTester tester) async {
     await pumpShell(tester);
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Settings'));
+    await tapTab(tester, 3);
     await tester.pumpAndSettle();
   }
 
@@ -38,28 +43,68 @@ void main() {
       await pumpShell(tester);
       await tester.pumpAndSettle();
 
-      expect(find.byType(DashboardScreen), findsOneWidget);
-
-      await tester.tap(find.text('Invoices'));
-      await tester.pumpAndSettle();
       expect(find.byType(InvoicesScreen), findsOneWidget);
 
-      await tester.tap(find.text('Clients'));
+      await tapTab(tester, 1);
       await tester.pumpAndSettle();
       expect(find.byType(ClientsScreen), findsOneWidget);
 
-      await tester.tap(find.text('Settings'));
+      await tapTab(tester, 2);
+      await tester.pumpAndSettle();
+      expect(find.byType(ToolsScreen), findsOneWidget);
+
+      await tapTab(tester, 3);
       await tester.pumpAndSettle();
       expect(find.byType(SettingsScreen), findsOneWidget);
 
-      await tester.tap(find.text('Dashboard'));
+      await tapTab(tester, 0);
       await tester.pumpAndSettle();
-      expect(find.byType(DashboardScreen), findsOneWidget);
+      expect(find.byType(InvoicesScreen), findsOneWidget);
+    });
+
+    testWidgets('center button opens the invoice form', (tester) async {
+      await pumpShell(tester);
+      await tester.pumpAndSettle();
+
+      // Fresh install: free tier still has room, so the form opens directly.
+      await tester.tap(find.byKey(const ValueKey('newInvoiceButton')));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(InvoiceFormScreen), findsOneWidget);
+    });
+  });
+
+  group('ToolsScreen', () {
+    testWidgets('lists the tax calculator and email template', (tester) async {
+      await pumpShell(tester);
+      await tester.pumpAndSettle();
+
+      await tapTab(tester, 2);
+      await tester.pumpAndSettle();
+
+      expect(find.text('TPS/TVQ calculator'), findsOneWidget);
+      expect(
+        find.text('Add taxes or extract them from a total.'),
+        findsOneWidget,
+      );
+      expect(find.text('Email template'), findsOneWidget);
+    });
+
+    testWidgets('calculator tile opens the tax calculator', (tester) async {
+      await pumpShell(tester);
+      await tester.pumpAndSettle();
+
+      await tapTab(tester, 2);
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('TPS/TVQ calculator'));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(TaxCalculatorScreen), findsOneWidget);
     });
   });
 
   group('SettingsScreen', () {
-    testWidgets('shows business, learn, tools and about sections', (tester) async {
+    testWidgets('shows business, learn and about sections', (tester) async {
       await goToSettings(tester);
 
       expect(find.text('Business'), findsOneWidget);
@@ -67,17 +112,18 @@ void main() {
       expect(find.text('Learn'), findsOneWidget);
       expect(find.text('How Facture works'), findsOneWidget);
       expect(find.text('Understanding TPS/TVQ'), findsOneWidget);
-      expect(find.text('Tools'), findsOneWidget);
-      expect(find.text('TPS/TVQ calculator'), findsOneWidget);
-      expect(
-        find.text('Add taxes or extract them from a total.'),
-        findsOneWidget,
-      );
       expect(find.text('About'), findsOneWidget);
       expect(find.text('Send feedback'), findsOneWidget);
       await tester.scrollUntilVisible(find.text('Rate Facture'), 200);
       expect(find.text('Rate Facture'), findsOneWidget);
       expect(find.text('Version 0.1.0'), findsOneWidget);
+    });
+
+    testWidgets('tools moved out of settings', (tester) async {
+      await goToSettings(tester);
+
+      expect(find.text('TPS/TVQ calculator'), findsNothing);
+      expect(find.text('Email template'), findsNothing);
     });
 
     testWidgets('guide tile opens the how-it-works screen', (tester) async {
@@ -101,7 +147,7 @@ void main() {
     });
   });
 
-  group('DashboardScreen', () {
+  group('InvoicesScreen', () {
     testWidgets('shows summary stats with zero values', (tester) async {
       await pumpShell(tester);
       await tester.pumpAndSettle();

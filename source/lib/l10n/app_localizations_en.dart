@@ -1151,9 +1151,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get scenarioFieldLabel => 'Scenario';
 
   @override
-  String get navDashboard => 'Dashboard';
-
-  @override
   String get navProperties => 'Properties';
 
   @override
@@ -1581,9 +1578,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get taxYear => 'Tax year';
 
   @override
-  String get toolsSection => 'Tools';
-
-  @override
   String get totalExpenses => 'Total expenses';
 
   @override
@@ -1911,6 +1905,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get navInvoices => 'Invoices';
+
+  @override
+  String get navTools => 'Tools';
 
   @override
   String get navClients => 'Clients';

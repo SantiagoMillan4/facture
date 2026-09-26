@@ -1,10 +1,11 @@
 import 'package:facture/app/app.dart';
+import 'package:facture/features/invoices/presentation/invoice_form_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  testWidgets('app launches on the dashboard with four tabs',
-      (tester) async {
+  testWidgets('app launches on Invoices with the new tab bar', (tester) async {
     // Providers read on-device storage; the mock keeps them resolving
     // instead of hanging on the real method channel.
     SharedPreferences.setMockInitialValues({});
@@ -12,16 +13,25 @@ void main() {
     await tester.pumpAndSettle();
 
     // Default test locale is English.
-    expect(find.text('Dashboard'), findsWidgets); // app bar + tab label
-    expect(find.text('Invoices'), findsOneWidget); // tab label
-    expect(find.text('Clients'), findsWidgets); // tab label + dashboard stat
+    expect(find.text('Invoices'), findsWidgets); // app bar + tab label
+    expect(find.text('Clients'), findsWidgets); // tab label + summary stat
+    expect(find.text('Tools'), findsOneWidget); // tab label
     expect(find.text('Settings'), findsOneWidget); // tab label
-    expect(find.text('Search invoices'), findsOneWidget); // dashboard search
+    expect(find.text('New invoice'), findsWidgets); // center btn + empty state
+    expect(find.text('Search invoices'), findsOneWidget); // list search
 
-    // Switch to the invoices tab.
-    await tester.tap(find.text('Invoices'));
+    // The Tools tab lists the tax calculator and the email template.
+    await tester.tap(find.byKey(const ValueKey('navTab2')));
     await tester.pumpAndSettle();
-    expect(find.text('No invoices yet'), findsOneWidget);
+    expect(find.text('TPS/TVQ calculator'), findsOneWidget);
+    expect(find.text('Email template'), findsOneWidget);
+
+    // Back on Invoices, the center button opens the invoice form.
+    await tester.tap(find.byKey(const ValueKey('navTab0')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const ValueKey('newInvoiceButton')));
+    await tester.pumpAndSettle();
+    expect(find.byType(InvoiceFormScreen), findsOneWidget);
 
     expect(tester.takeException(), isNull);
   });

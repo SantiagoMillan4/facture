@@ -9,12 +9,10 @@ import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/form_section_title.dart';
 import '../../business/presentation/business_profile_screen.dart';
-import '../../email/presentation/email_template_screen.dart';
 import '../../purchase/application/purchase_providers.dart';
 import '../../purchase/domain/purchase_catalog.dart';
 import '../../purchase/presentation/paywall_sheet.dart';
 import 'how_it_works_screen.dart';
-import 'tax_calculator_screen.dart';
 import 'tax_explainer_screen.dart';
 
 // TODO: replace with the real support address before the App Store release.
@@ -92,13 +90,6 @@ class SettingsScreen extends ConsumerWidget {
             onTap: () =>
                 pushAppPage(context, (_) => const BusinessProfileScreen()),
           ),
-          _SettingsTile(
-            icon: Icons.mail_outline,
-            title: l10n.emailTemplateTitle,
-            subtitle: l10n.emailTemplateSubtitle,
-            onTap: () =>
-                pushAppPage(context, (_) => const EmailTemplateScreen()),
-          ),
           FormSectionTitle(title: l10n.settingsLearn),
           _SettingsTile(
             icon: Icons.school_outlined,
@@ -111,14 +102,6 @@ class SettingsScreen extends ConsumerWidget {
             title: l10n.tpsTvqTitle,
             subtitle: l10n.tpsTvqSubtitle,
             onTap: () => pushAppPage(context, (_) => const TaxExplainerScreen()),
-          ),
-          FormSectionTitle(title: l10n.toolsSection),
-          _SettingsTile(
-            icon: Icons.calculate_outlined,
-            title: l10n.toolsTaxCalculator,
-            subtitle: l10n.toolsTaxCalculatorSubtitle,
-            onTap: () =>
-                pushAppPage(context, (_) => const TaxCalculatorScreen()),
           ),
           FormSectionTitle(title: l10n.settingsAbout),
           _SettingsTile(
