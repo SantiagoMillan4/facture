@@ -243,6 +243,21 @@ When changing business logic:
 
 Never change a test merely to make it pass unless the expected business behavior intentionally changed.
 
+Testing lessons (each bit us at least once):
+
+* Any SharedPreferences-backed async provider hangs `pumpAndSettle` in
+  widget tests without `SharedPreferences.setMockInitialValues({})` — the
+  mock is required in widget_test.dart and every provider/widget test.
+* Pure-Dart tests that mock platform channels
+  (`TestDefaultBinaryMessengerBinding`) need
+  `TestWidgetsFlutterBinding.ensureInitialized()` in `main()`.
+* Lazily-built ListViews + tall forms push fields out of the 600px test
+  viewport: use a tall `tester.view.physicalSize` (with tearDown reset) in
+  pump helpers instead of scrolling hacks. Adding UI above a form can push
+  previously-visible fields below the fold and break existing tests.
+* `dart:typed_data` is an unnecessary import when
+  `package:flutter/services.dart` is imported (it re-exports Uint8List).
+
 ---
 
 ## Dependencies

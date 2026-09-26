@@ -4,13 +4,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../l10n/app_l10n.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_haptics.dart';
+import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/labeled_choice_field.dart';
 import '../../../shared/widgets/labeled_fields.dart';
+
 import 'dart:typed_data';
 
 import '../application/business_logo.dart';
 import '../application/business_profile_providers.dart';
 import '../domain/business_profile.dart';
+import '../../logo/presentation/logo_creator_screen.dart';
 
 /// The freelancer's own business identity: name, contact details, and an
 /// explicit TPS/TVQ registration status.
@@ -26,8 +29,7 @@ class BusinessProfileScreen extends ConsumerStatefulWidget {
       _BusinessProfileScreenState();
 }
 
-class _BusinessProfileScreenState
-    extends ConsumerState<BusinessProfileScreen> {
+class _BusinessProfileScreenState extends ConsumerState<BusinessProfileScreen> {
   final _formKey = GlobalKey<FormState>();
   late final TextEditingController _nameController;
   late final TextEditingController _addressController;
@@ -39,6 +41,10 @@ class _BusinessProfileScreenState
   String? _logoPath;
   Uint8List? _logoBytes;
   var _saving = false;
+  // Whether the user explicitly picked a tax status in this form session.
+  // Used to avoid clobbering an explicit choice when the logo creator
+  // creates the underlying profile (see _createLogo).
+  var _taxStatusTouched = false;
 
   @override
   void initState() {
@@ -50,8 +56,7 @@ class _BusinessProfileScreenState
     _emailController = TextEditingController(text: profile?.email ?? '');
     _tpsController = TextEditingController(text: profile?.tpsNumber ?? '');
     _tvqController = TextEditingController(text: profile?.tvqNumber ?? '');
-    _taxStatus =
-        profile?.taxStatus ?? TaxRegistrationStatus.registered;
+    _taxStatus = profile?.taxStatus ?? TaxRegistrationStatus.registered;
     _logoPath = profile?.logoPath;
     _loadLogoBytes();
   }
@@ -64,7 +69,34 @@ class _BusinessProfileScreenState
   Future<void> _pickLogo() async {
     final path = await BusinessLogo.pickAndStore();
     if (path == null || !mounted) return;
-    await BusinessLogo.delete(_logoPath);
+    // pickAndStore writes to a fixed filename, so a repeat pick overwrites
+    // the previous file in place: only delete when the path changed,
+    // otherwise we'd delete the copy we just made.
+    if (path != _logoPath) await BusinessLogo.delete(_logoPath);
+    setState(() => _logoPath = path);
+    await _loadLogoBytes();
+  }
+
+  /// Opens the in-app logo creator. It persists the generated logo itself;
+  /// this screen just adopts the returned path into its draft.
+  Future<void> _createLogo() async {
+    // The creator creates a small-supplier profile when none exists yet.
+    // If it does, the tax status this form initialized with (registered by
+    // default) is stale: adopt the profile's status so a later form save
+    // can't silently switch taxes on. An explicit user choice always wins,
+    // and draft name/contact fields are never touched.
+    final hadProfile = ref.read(businessProfileProvider).value != null;
+    final path = await pushAppPage<String>(
+      context,
+      (_) => LogoCreatorScreen(initialName: _nameController.text),
+    );
+    if (path == null || !mounted) return;
+    if (!hadProfile && !_taxStatusTouched) {
+      final profile = ref.read(businessProfileProvider).value;
+      if (profile != null) {
+        setState(() => _taxStatus = profile.taxStatus);
+      }
+    }
     setState(() => _logoPath = path);
     await _loadLogoBytes();
   }
@@ -117,10 +149,7 @@ class _BusinessProfileScreenState
       appBar: AppBar(
         title: Text(l10n.businessProfileTitle),
         actions: [
-          TextButton(
-            onPressed: _saving ? null : _save,
-            child: Text(l10n.save),
-          ),
+          TextButton(onPressed: _saving ? null : _save, child: Text(l10n.save)),
         ],
       ),
       body: GestureDetector(
@@ -137,7 +166,14 @@ class _BusinessProfileScreenState
                 onPick: _pickLogo,
                 onRemove: _removeLogo,
               ),
-              const SizedBox(height: AppSpacing.md),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: _createLogo,
+                  child: Text(l10n.businessLogoCreate),
+                ),
+              ),
+              const SizedBox(height: AppSpacing.sm),
               LabeledTextField(
                 controller: _nameController,
                 label: l10n.businessNameLabel,
@@ -145,8 +181,7 @@ class _BusinessProfileScreenState
                 autofocus: true,
                 textInputAction: TextInputAction.next,
                 textCapitalization: TextCapitalization.words,
-                validator: (value) =>
-                    (value == null || value.trim().isEmpty)
+                validator: (value) => (value == null || value.trim().isEmpty)
                     ? l10n.businessNameRequired
                     : null,
               ),
@@ -184,7 +219,10 @@ class _BusinessProfileScreenState
               LabeledChoiceField<TaxRegistrationStatus>(
                 label: l10n.businessTaxStatusLabel,
                 selected: _taxStatus,
-                onChanged: (s) => setState(() => _taxStatus = s),
+                onChanged: (s) => setState(() {
+                  _taxStatus = s;
+                  _taxStatusTouched = true;
+                }),
                 helper: l10n.businessTaxStatusHelper,
                 options: [
                   ChoiceOption(
@@ -266,12 +304,7 @@ class _LogoTile extends StatelessWidget {
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
                 )
-              : Image.memory(
-                  bytes,
-                  width: 52,
-                  height: 52,
-                  fit: BoxFit.cover,
-                ),
+              : Image.memory(bytes, width: 52, height: 52, fit: BoxFit.cover),
         ),
         title: Text(l10n.businessLogoLabel),
         subtitle: Text(l10n.businessLogoHint),

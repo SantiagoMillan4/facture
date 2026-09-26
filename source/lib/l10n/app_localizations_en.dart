@@ -2295,4 +2295,46 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get businessLogoRemove => 'Remove logo';
+
+  @override
+  String get businessLogoCreate => 'Create a logo';
+
+  @override
+  String get toolsLogoCreator => 'Create logo';
+
+  @override
+  String get toolsLogoCreatorSubtitle =>
+      'Generate a logo from your business name.';
+
+  @override
+  String get logoCreatorTitle => 'Create logo';
+
+  @override
+  String get logoCreatorSubtitle =>
+      'Pick a style and a color — your business name does the rest.';
+
+  @override
+  String get logoCreatorNameLabel => 'Business name';
+
+  @override
+  String get logoCreatorStyleLabel => 'Style';
+
+  @override
+  String get logoCreatorStyleCircle => 'Circle';
+
+  @override
+  String get logoCreatorStyleSquare => 'Rounded square';
+
+  @override
+  String get logoCreatorStyleWordmark => 'Wordmark';
+
+  @override
+  String get logoCreatorColorLabel => 'Color';
+
+  @override
+  String get logoCreatorSave => 'Use this logo';
+
+  @override
+  String get logoCreatorEmptyName =>
+      'Enter your business name to preview your logo.';
 }

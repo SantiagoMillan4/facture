@@ -1131,5 +1131,18 @@
   "invoiceAddFromCatalog": "Depuis le catalogue…",
   "businessLogoLabel": "Logo",
   "businessLogoHint": "Affiché sur vos factures PDF",
-  "businessLogoRemove": "Retirer le logo"
+  "businessLogoRemove": "Retirer le logo",
+  "businessLogoCreate": "Créer un logo",
+  "toolsLogoCreator": "Créer un logo",
+  "toolsLogoCreatorSubtitle": "Générez un logo à partir du nom de votre entreprise.",
+  "logoCreatorTitle": "Créer un logo",
+  "logoCreatorSubtitle": "Choisissez un style et une couleur, le nom de votre entreprise fait le reste.",
+  "logoCreatorNameLabel": "Nom de l'entreprise",
+  "logoCreatorStyleLabel": "Style",
+  "logoCreatorStyleCircle": "Cercle",
+  "logoCreatorStyleSquare": "Carré arrondi",
+  "logoCreatorStyleWordmark": "Logotype",
+  "logoCreatorColorLabel": "Couleur",
+  "logoCreatorSave": "Utiliser ce logo",
+  "logoCreatorEmptyName": "Entrez le nom de votre entreprise pour voir un aperçu du logo."
 }

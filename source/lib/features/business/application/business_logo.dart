@@ -25,6 +25,18 @@ class BusinessLogo {
     final ext = dotParts.length > 1 ? dotParts.last : 'png';
     final target = File('${dir.path}/$_fileName.$ext');
     await File(picked.path).copy(target.path);
+    await _deleteStaleSiblings(target.path);
+    return target.path;
+  }
+
+  /// Stores generated logo bytes (from the in-app logo creator) as a
+  /// private copy. Overwrites any previous generated logo. Returns the
+  /// stored path.
+  static Future<String> storeBytes(Uint8List bytes) async {
+    final dir = await getApplicationDocumentsDirectory();
+    final target = File('${dir.path}/$_fileName.png');
+    await target.writeAsBytes(bytes, flush: true);
+    await _deleteStaleSiblings(target.path);
     return target.path;
   }
 
@@ -48,6 +60,26 @@ class BusinessLogo {
       if (await file.exists()) await file.delete();
     } catch (_) {
       // A missing logo is not an error worth surfacing.
+    }
+  }
+
+  /// Deletes stale logo files sharing the fixed basename but not [keepPath
+  /// (e.g. a previous `business-logo.jpg` after storing `business-logo.png`).
+  /// Generated logos always use `.png` while imports keep the picked
+  /// extension, so switching sources would otherwise orphan the old file.
+  /// The newly written file itself is never touched. Best-effort.
+  static Future<void> _deleteStaleSiblings(String keepPath) async {
+    try {
+      final dir = Directory(File(keepPath).parent.path);
+      await for (final entity in dir.list()) {
+        if (entity is File &&
+            entity.path != keepPath &&
+            entity.path.split('/').last.startsWith('$_fileName.')) {
+          await entity.delete();
+        }
+      }
+    } catch (_) {
+      // Cleanup is best-effort; a stale sibling is harmless.
     }
   }
 }

@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../l10n/app_l10n.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/widgets/app_page_route.dart';
 import '../../backup/presentation/backup_screen.dart';
+import '../../business/application/business_profile_providers.dart';
 import '../../catalog/presentation/catalog_screen.dart';
 import '../../email/presentation/email_template_screen.dart';
+import '../../logo/presentation/logo_creator_screen.dart';
 import 'tax_calculator_screen.dart';
 
 /// Tools tab: the freelancer's utility drawer. Each tool opens its own
 /// screen; new tools (item catalog, backup & export, logo) land here.
-class ToolsScreen extends StatelessWidget {
+class ToolsScreen extends ConsumerWidget {
   const ToolsScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
+    final profileName = ref.watch(businessProfileProvider).value?.name ?? '';
     return Scaffold(
       appBar: AppBar(title: Text(l10n.navTools)),
       body: ListView(
@@ -46,6 +50,15 @@ class ToolsScreen extends StatelessWidget {
             title: l10n.catalogTitle,
             subtitle: l10n.catalogSubtitle,
             onTap: () => pushAppPage(context, (_) => const CatalogScreen()),
+          ),
+          _ToolTile(
+            icon: Icons.palette_outlined,
+            title: l10n.toolsLogoCreator,
+            subtitle: l10n.toolsLogoCreatorSubtitle,
+            onTap: () => pushAppPage(
+              context,
+              (_) => LogoCreatorScreen(initialName: profileName),
+            ),
           ),
         ],
       ),

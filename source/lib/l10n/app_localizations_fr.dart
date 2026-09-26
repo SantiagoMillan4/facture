@@ -2317,4 +2317,46 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get businessLogoRemove => 'Retirer le logo';
+
+  @override
+  String get businessLogoCreate => 'Créer un logo';
+
+  @override
+  String get toolsLogoCreator => 'Créer un logo';
+
+  @override
+  String get toolsLogoCreatorSubtitle =>
+      'Générez un logo à partir du nom de votre entreprise.';
+
+  @override
+  String get logoCreatorTitle => 'Créer un logo';
+
+  @override
+  String get logoCreatorSubtitle =>
+      'Choisissez un style et une couleur, le nom de votre entreprise fait le reste.';
+
+  @override
+  String get logoCreatorNameLabel => 'Nom de l\'entreprise';
+
+  @override
+  String get logoCreatorStyleLabel => 'Style';
+
+  @override
+  String get logoCreatorStyleCircle => 'Cercle';
+
+  @override
+  String get logoCreatorStyleSquare => 'Carré arrondi';
+
+  @override
+  String get logoCreatorStyleWordmark => 'Logotype';
+
+  @override
+  String get logoCreatorColorLabel => 'Couleur';
+
+  @override
+  String get logoCreatorSave => 'Utiliser ce logo';
+
+  @override
+  String get logoCreatorEmptyName =>
+      'Entrez le nom de votre entreprise pour voir un aperçu du logo.';
 }

@@ -4159,6 +4159,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Remove logo'**
   String get businessLogoRemove;
+
+  /// No description provided for @businessLogoCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a logo'**
+  String get businessLogoCreate;
+
+  /// No description provided for @toolsLogoCreator.
+  ///
+  /// In en, this message translates to:
+  /// **'Create logo'**
+  String get toolsLogoCreator;
+
+  /// No description provided for @toolsLogoCreatorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Generate a logo from your business name.'**
+  String get toolsLogoCreatorSubtitle;
+
+  /// No description provided for @logoCreatorTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create logo'**
+  String get logoCreatorTitle;
+
+  /// No description provided for @logoCreatorSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a style and a color — your business name does the rest.'**
+  String get logoCreatorSubtitle;
+
+  /// No description provided for @logoCreatorNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Business name'**
+  String get logoCreatorNameLabel;
+
+  /// No description provided for @logoCreatorStyleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Style'**
+  String get logoCreatorStyleLabel;
+
+  /// No description provided for @logoCreatorStyleCircle.
+  ///
+  /// In en, this message translates to:
+  /// **'Circle'**
+  String get logoCreatorStyleCircle;
+
+  /// No description provided for @logoCreatorStyleSquare.
+  ///
+  /// In en, this message translates to:
+  /// **'Rounded square'**
+  String get logoCreatorStyleSquare;
+
+  /// No description provided for @logoCreatorStyleWordmark.
+  ///
+  /// In en, this message translates to:
+  /// **'Wordmark'**
+  String get logoCreatorStyleWordmark;
+
+  /// No description provided for @logoCreatorColorLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Color'**
+  String get logoCreatorColorLabel;
+
+  /// No description provided for @logoCreatorSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Use this logo'**
+  String get logoCreatorSave;
+
+  /// No description provided for @logoCreatorEmptyName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your business name to preview your logo.'**
+  String get logoCreatorEmptyName;
 }
 
 class _AppLocalizationsDelegate

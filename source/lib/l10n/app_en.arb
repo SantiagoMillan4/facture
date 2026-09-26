@@ -1141,5 +1141,18 @@
   "invoiceAddFromCatalog": "From catalog…",
   "businessLogoLabel": "Logo",
   "businessLogoHint": "Shown on your invoice PDFs",
-  "businessLogoRemove": "Remove logo"
+  "businessLogoRemove": "Remove logo",
+  "businessLogoCreate": "Create a logo",
+  "toolsLogoCreator": "Create logo",
+  "toolsLogoCreatorSubtitle": "Generate a logo from your business name.",
+  "logoCreatorTitle": "Create logo",
+  "logoCreatorSubtitle": "Pick a style and a color — your business name does the rest.",
+  "logoCreatorNameLabel": "Business name",
+  "logoCreatorStyleLabel": "Style",
+  "logoCreatorStyleCircle": "Circle",
+  "logoCreatorStyleSquare": "Rounded square",
+  "logoCreatorStyleWordmark": "Wordmark",
+  "logoCreatorColorLabel": "Color",
+  "logoCreatorSave": "Use this logo",
+  "logoCreatorEmptyName": "Enter your business name to preview your logo."
 }
