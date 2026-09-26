@@ -330,14 +330,16 @@ iOS aggressively caches the launch screen: after changing splash assets,
 bump the build number and delete the app from the device before
 reinstalling, otherwise the old launch screen keeps showing.
 
-Layout gotcha (bit us 2026-09-25): never center content with
-`Scaffold(body: Stack(alignment: Alignment.center))`. Scaffold layers its
-body inside an internal Stack with loose constraints, so the inner Stack
-shrink-wraps to its child and sticks to the top-left — the logo rendered
-there instead of centered, and no test caught it until a position
-assertion was added (`test/app/splash_screen_test.dart`). Use
-`ColoredBox` + `SafeArea` + full-screen `Stack` (or `Center`) instead,
-like Rentable's splash does.
+Layout gotcha (bit us twice 2026-09-25): the splash is a direct child of
+an AnimatedSwitcher, whose Stack lays children out with LOOSE constraints
+and centers them. So the widget under SafeArea must EXPAND under loose
+constraints — Center/Align (no factors) and SizedBox.expand do;
+Stack and Scaffold.body do not. First the logo stuck top-left
+(Scaffold > Stack shrink-wrapped), then the background painted as a
+centered band (ColoredBox > SafeArea > Stack shrink-wrapped to the logo +
+SafeArea padding). Rentable's splash works because it is ColoredBox >
+SafeArea > Center. Guarded by `test/app/splash_screen_test.dart`, which
+asserts the background fills the screen and the logo is centered.
 
 ## Legal notes (not legal advice)
 
