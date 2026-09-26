@@ -316,6 +316,20 @@ When multiple valid solutions exist, choose the simplest solution that satisfies
 
 Do not build for hypothetical future requirements.
 
+## Native splash
+
+The native launch screen is a plain brand background only (no logo image):
+`flutter_native_splash` is configured with colors but no `image`, so iOS
+gets a 1×1 transparent launch image and Android 12+ falls back to the
+launcher icon via the system splash API. The in-app animated splash
+(`lib/app/splash_screen.dart`) owns the logo moment. Rationale: the
+storyboard image rendered mispositioned on iOS, and a static native logo
+pops in size at the handoff to the animated one.
+
+iOS aggressively caches the launch screen: after changing splash assets,
+bump the build number and delete the app from the device before
+reinstalling, otherwise the old launch screen keeps showing.
+
 ## Legal notes (not legal advice)
 
 Invoicing software is not a regulated product in Canada/Québec, but the
