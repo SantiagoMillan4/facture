@@ -439,6 +439,31 @@
   "emailTemplatePlaceholdersHint": "Replaced automatically when the email opens.",
   "emailTemplateReset": "Reset to default",
   "invoiceSendEmail": "Send by email",
+  "@invoiceSendEmail": {
+    "description": "Tooltip for the button that emails the invoice"
+  },
+  "invoiceEmailFailed": "Couldn't open the email composer.",
+  "@invoiceEmailFailed": {
+    "description": "Snackbar when the native email composer cannot be opened"
+  },
+  "invoiceNoClientEmailTitle": "No email address",
+  "@invoiceNoClientEmailTitle": {
+    "description": "Dialog title when the client has no email address"
+  },
+  "invoiceNoClientEmailMessage": "Add an email address for {name} to send them the invoice.",
+  "@invoiceNoClientEmailMessage": {
+    "description": "Dialog message when the client has no email address",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Acme Inc."
+      }
+    }
+  },
+  "invoiceNoClientEmailAdd": "Add email",
+  "@invoiceNoClientEmailAdd": {
+    "description": "Dialog button opening the client editor to add an email"
+  },
   "primaryScenarioSection": "Primary scenario",
   "primaryScenarioSectionSubtitle": "The primary scenario holds your main assumptions — you can add more later to compare.",
   "primaryScenarioCopyHelper": "Only applies when starting from scratch — a copied property keeps its scenarios' names.",

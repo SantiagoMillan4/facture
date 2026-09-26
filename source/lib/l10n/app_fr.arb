@@ -429,6 +429,31 @@
   "emailTemplatePlaceholdersHint": "Remplacées automatiquement à l'ouverture du courriel.",
   "emailTemplateReset": "Réinitialiser",
   "invoiceSendEmail": "Envoyer par courriel",
+  "@invoiceSendEmail": {
+    "description": "Tooltip for the button that emails the invoice"
+  },
+  "invoiceEmailFailed": "Impossible d'ouvrir l'éditeur de courriel.",
+  "@invoiceEmailFailed": {
+    "description": "Snackbar when the native email composer cannot be opened"
+  },
+  "invoiceNoClientEmailTitle": "Aucune adresse courriel",
+  "@invoiceNoClientEmailTitle": {
+    "description": "Dialog title when the client has no email address"
+  },
+  "invoiceNoClientEmailMessage": "Ajoutez une adresse courriel pour {name} afin de lui envoyer la facture.",
+  "@invoiceNoClientEmailMessage": {
+    "description": "Dialog message when the client has no email address",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Acme Inc."
+      }
+    }
+  },
+  "invoiceNoClientEmailAdd": "Ajouter le courriel",
+  "@invoiceNoClientEmailAdd": {
+    "description": "Dialog button opening the client editor to add an email"
+  },
   "primaryScenarioSection": "Scénario principal",
   "primaryScenarioSectionSubtitle": "Le scénario principal contient vos hypothèses principales — vous pourrez en ajouter d'autres pour comparer.",
   "primaryScenarioCopyHelper": "S'applique uniquement en partant de zéro — une propriété copiée conserve ses scénarios.",

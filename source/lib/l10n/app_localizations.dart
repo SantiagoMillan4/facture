@@ -644,11 +644,35 @@ abstract class AppLocalizations {
   /// **'Reset to default'**
   String get emailTemplateReset;
 
-  /// No description provided for @invoiceSendEmail.
+  /// Tooltip for the button that emails the invoice
   ///
   /// In en, this message translates to:
   /// **'Send by email'**
   String get invoiceSendEmail;
+
+  /// Snackbar when the native email composer cannot be opened
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t open the email composer.'**
+  String get invoiceEmailFailed;
+
+  /// Dialog title when the client has no email address
+  ///
+  /// In en, this message translates to:
+  /// **'No email address'**
+  String get invoiceNoClientEmailTitle;
+
+  /// Dialog message when the client has no email address
+  ///
+  /// In en, this message translates to:
+  /// **'Add an email address for {name} to send them the invoice.'**
+  String invoiceNoClientEmailMessage(String name);
+
+  /// Dialog button opening the client editor to add an email
+  ///
+  /// In en, this message translates to:
+  /// **'Add email'**
+  String get invoiceNoClientEmailAdd;
 
   /// No description provided for @primaryScenarioSection.
   ///

@@ -325,6 +325,21 @@ class AppLocalizationsFr extends AppLocalizations {
   String get invoiceSendEmail => 'Envoyer par courriel';
 
   @override
+  String get invoiceEmailFailed =>
+      'Impossible d\'ouvrir l\'éditeur de courriel.';
+
+  @override
+  String get invoiceNoClientEmailTitle => 'Aucune adresse courriel';
+
+  @override
+  String invoiceNoClientEmailMessage(String name) {
+    return 'Ajoutez une adresse courriel pour $name afin de lui envoyer la facture.';
+  }
+
+  @override
+  String get invoiceNoClientEmailAdd => 'Ajouter le courriel';
+
+  @override
   String get primaryScenarioSection => 'Scénario principal';
 
   @override

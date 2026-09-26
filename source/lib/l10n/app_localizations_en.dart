@@ -324,6 +324,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get invoiceSendEmail => 'Send by email';
 
   @override
+  String get invoiceEmailFailed => 'Couldn\'t open the email composer.';
+
+  @override
+  String get invoiceNoClientEmailTitle => 'No email address';
+
+  @override
+  String invoiceNoClientEmailMessage(String name) {
+    return 'Add an email address for $name to send them the invoice.';
+  }
+
+  @override
+  String get invoiceNoClientEmailAdd => 'Add email';
+
+  @override
   String get primaryScenarioSection => 'Primary scenario';
 
   @override

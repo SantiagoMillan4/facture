@@ -10,6 +10,26 @@ import '../domain/invoice.dart';
 import '../domain/quebec_tax.dart';
 import 'invoice_pdf.dart';
 
+/// Renders the invoice as a PDF into a temp file and returns it.
+/// The temp file is left for the OS to reclaim; nothing is uploaded anywhere.
+Future<File> writeInvoicePdfToTemp({
+  required Invoice invoice,
+  required Client client,
+  required BusinessProfile? profile,
+  required bool french,
+}) async {
+  final bytes = await buildInvoicePdf(
+    invoice: invoice,
+    client: client,
+    profile: profile,
+    french: french,
+  );
+  final safeNumber = invoice.number.replaceAll(RegExp('[^A-Za-z0-9-_]'), '_');
+  final file = File('${Directory.systemTemp.path}/facture-$safeNumber.pdf');
+  await file.writeAsBytes(bytes);
+  return file;
+}
+
 /// Renders the invoice as a PDF into a temp file and opens the native
 /// share sheet with it attached. The temp file is left for the OS to
 /// reclaim; nothing is uploaded anywhere.
@@ -26,15 +46,12 @@ Future<void> shareInvoicePdf({
   String? text,
 }) async {
   final french = l10n.localeName == 'fr';
-  final bytes = await buildInvoicePdf(
+  final file = await writeInvoicePdfToTemp(
     invoice: invoice,
     client: client,
     profile: profile,
     french: french,
   );
-  final safeNumber = invoice.number.replaceAll(RegExp('[^A-Za-z0-9-_]'), '_');
-  final file = File('${Directory.systemTemp.path}/facture-$safeNumber.pdf');
-  await file.writeAsBytes(bytes);
 
   final taxes = taxesForInvoice(
     invoice.lines.map((l) => dollarsToCents(l.subtotal)),

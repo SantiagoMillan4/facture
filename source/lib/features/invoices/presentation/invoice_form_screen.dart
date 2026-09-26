@@ -205,9 +205,9 @@ class _InvoiceFormScreenState extends ConsumerState<InvoiceFormScreen> {
     );
   }
 
-  /// Opens the share sheet with the invoice PDF attached and the email
-  /// template rendered as subject/message. The invoice doesn't need to be
-  /// saved first.
+  /// Opens the native email composer sheet with the client prefilled,
+  /// the template rendered as subject/message, and the invoice PDF attached.
+  /// The invoice doesn't need to be saved first.
   Future<void> _sendEmail() async {
     final invoice = _validate();
     if (invoice == null) return;
