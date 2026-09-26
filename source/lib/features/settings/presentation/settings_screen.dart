@@ -12,6 +12,7 @@ import '../../business/presentation/business_profile_screen.dart';
 import '../../purchase/application/purchase_providers.dart';
 import '../../purchase/domain/purchase_catalog.dart';
 import '../../purchase/presentation/paywall_sheet.dart';
+import 'display_settings_section.dart';
 import 'how_it_works_screen.dart';
 import 'tax_explainer_screen.dart';
 
@@ -73,6 +74,7 @@ class SettingsScreen extends ConsumerWidget {
       body: ListView(
         padding: AppSpacing.screenPadding,
         children: [
+          const DisplaySettingsSection(),
           FormSectionTitle(title: l10n.settingsProSection),
           _ProTile(
             isPro: isPro,

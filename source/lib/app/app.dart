@@ -5,6 +5,7 @@ import '../features/clients/presentation/clients_screen.dart';
 import '../features/invoices/presentation/invoices_screen.dart';
 import '../features/onboarding/application/onboarding_service.dart';
 import '../features/onboarding/presentation/onboarding_screen.dart';
+import '../features/settings/application/display_settings.dart';
 import '../features/settings/presentation/settings_screen.dart';
 import '../features/tools/presentation/tools_screen.dart';
 import '../l10n/app_l10n.dart';
@@ -37,24 +38,60 @@ class FactureApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProviderScope(
-      child: MaterialApp(
-        title: 'Facture',
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.light(),
-        darkTheme: AppTheme.dark(),
-        themeMode: ThemeMode.system,
-        localizationsDelegates: AppLocalizations.localizationsDelegates,
-        supportedLocales: AppLocalizations.supportedLocales,
-        localeListResolutionCallback: (locales, supported) {
-          for (final locale in locales ?? const <Locale>[]) {
-            if (locale.languageCode == 'fr') return const Locale('fr');
-            if (locale.languageCode == 'en') return const Locale('en');
-          }
-          return const Locale('en');
-        },
-        home: const _SplashGate(),
-      ),
+    return const ProviderScope(
+      // _AppRoot watches the display-settings providers (language/theme
+      // overrides) and hydrates them from storage behind the splash.
+      child: _AppRoot(),
+    );
+  }
+}
+
+/// The MaterialApp, rebuilt whenever the language or theme override changes.
+///
+/// Hydrates the saved overrides in [initState] — the splash is still up at
+/// that point, so the first visible frame already honors the user's choices.
+class _AppRoot extends ConsumerStatefulWidget {
+  const _AppRoot();
+
+  @override
+  ConsumerState<_AppRoot> createState() => _AppRootState();
+}
+
+class _AppRootState extends ConsumerState<_AppRoot> {
+  @override
+  void initState() {
+    super.initState();
+    _hydrateDisplaySettings();
+  }
+
+  Future<void> _hydrateDisplaySettings() async {
+    final settings = await DisplaySettingsService.load();
+    if (!mounted) return;
+    ref.read(themeModeProvider.notifier).set(settings.themeMode);
+    ref.read(localeOverrideProvider.notifier).set(settings.locale);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Facture',
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.light(),
+      darkTheme: AppTheme.dark(),
+      themeMode: ref.watch(themeModeProvider),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      // An explicit override wins; otherwise the device locale resolves as
+      // before (French when preferred, English fallback).
+      locale: ref.watch(localeOverrideProvider),
+      localeListResolutionCallback: (locales, supported) {
+        for (final locale in locales ?? const <Locale>[]) {
+          if (locale.languageCode == 'fr') return const Locale('fr');
+          if (locale.languageCode == 'en') return const Locale('en');
+        }
+        return const Locale('en');
+      },
+      home: const _SplashGate(),
     );
   }
 }
