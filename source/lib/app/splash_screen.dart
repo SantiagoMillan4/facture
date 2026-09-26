@@ -78,45 +78,49 @@ class _SplashScreenState extends State<SplashScreen>
     return GestureDetector(
       onTap: _notifyReady,
       behavior: HitTestBehavior.opaque,
-      // NOTE: do NOT use Scaffold(body: Stack(alignment: center)) here.
-      // Scaffold layers its body inside an internal Stack with loose
-      // constraints, so an inner Stack shrink-wraps to its child and sticks
-      // to the top-left (the logo rendered there instead of centered).
-      // ColoredBox fills the screen; the inner Stack then truly centers.
+      // NOTE: this splash is a direct child of an AnimatedSwitcher, whose
+      // Stack lays children out with LOOSE constraints. The widget directly
+      // under SafeArea must therefore EXPAND under loose constraints
+      // (Center/SizedBox.expand do; Stack/Scaffold.body do not), or the
+      // background shrink-wraps into a visible band and the logo misplaces.
+      // (Rentable's splash works for exactly this reason: ColoredBox >
+      // SafeArea > Center.) Do not "simplify" this back to Scaffold+Stack.
       child: ColoredBox(
         color: dark ? _bgDark : _bgLight,
         child: SafeArea(
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              FadeTransition(
-                opacity: logoIn,
-                child: ScaleTransition(
-                  scale: Tween<double>(begin: 0.85, end: 1.0).animate(logoIn),
-                  child: Image.asset(
-                    dark ? _logoDark : _logoLight,
-                    width: 120,
-                    height: 120,
-                  ),
-                ),
-              ),
-              Positioned(
-                bottom: MediaQuery.sizeOf(context).height * 0.30,
-                child: FadeTransition(
-                  opacity: wordmarkIn,
-                  child: const Text(
-                    'Facture',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
-                      letterSpacing: 0.5,
-                      decoration: TextDecoration.none,
+          child: SizedBox.expand(
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                FadeTransition(
+                  opacity: logoIn,
+                  child: ScaleTransition(
+                    scale: Tween<double>(begin: 0.85, end: 1.0).animate(logoIn),
+                    child: Image.asset(
+                      dark ? _logoDark : _logoLight,
+                      width: 120,
+                      height: 120,
                     ),
                   ),
                 ),
-              ),
-            ],
+                Positioned(
+                  bottom: MediaQuery.sizeOf(context).height * 0.30,
+                  child: FadeTransition(
+                    opacity: wordmarkIn,
+                    child: const Text(
+                      'Facture',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: 0.5,
+                        decoration: TextDecoration.none,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
