@@ -1419,7 +1419,25 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsAbout => 'À propos';
 
   @override
+  String get settingsAppearance => 'Apparence';
+
+  @override
+  String get settingsLanguage => 'Langue';
+
+  @override
   String get settingsLearn => 'Apprendre';
+
+  @override
+  String get settingsSystemDefault => 'Défaut du système';
+
+  @override
+  String get settingsTheme => 'Thème';
+
+  @override
+  String get settingsThemeDark => 'Sombre';
+
+  @override
+  String get settingsThemeLight => 'Clair';
 
   @override
   String get shareDealSnapshot => 'Partager l\'aperçu de l\'affaire';
