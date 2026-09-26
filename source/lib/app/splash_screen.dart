@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../shared/theme/app_motion.dart';
 
-/// In-app animated splash shown after the native launch image.
+/// In-app animated splash shown after the native launch screen.
 ///
-/// The native splash (brand teal / near-black green, logo centered) hands
-/// off seamlessly into this screen: same background and logo, then the
-/// "Facture" wordmark fades in below. Tapping skips immediately;
-/// reduced-motion shows the final frame at once.
+/// The native splash is a plain brand background (teal / near-black green),
+/// which hands off seamlessly into this screen: same background, then the
+/// logo fades/scales in centered and the "Facture" wordmark fades in below.
+/// Tapping skips immediately; reduced-motion shows the final frame at once.
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key, required this.onReady});
 

@@ -159,7 +159,14 @@ class _SwipeToDeleteTileState extends State<SwipeToDeleteTile>
               offset: Offset(_dragExtent, 0),
               child: AbsorbPointer(
                 absorbing: _dragExtent != 0,
-                child: widget.child,
+                // Opaque row background: the delete layer sits behind the
+                // row, so a transparent child would let the red show
+                // through at rest. A Material (not a ColoredBox) keeps
+                // ListTile ink splashes working.
+                child: Material(
+                  color: theme.colorScheme.surfaceContainerLow,
+                  child: widget.child,
+                ),
               ),
             ),
           ),

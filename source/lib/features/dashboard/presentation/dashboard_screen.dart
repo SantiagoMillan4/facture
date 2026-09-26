@@ -5,8 +5,13 @@ import '../../../l10n/app_l10n.dart';
 import '../../../shared/theme/app_spacing.dart';
 import '../../../shared/utils/currency_formatter.dart';
 import '../../../shared/widgets/animated_money.dart';
+import '../../../shared/widgets/app_page_route.dart';
 import '../../../shared/widgets/form_section_title.dart';
+import '../../clients/application/clients_providers.dart';
+import '../../invoices/application/invoices_providers.dart';
+import '../../invoices/domain/invoice.dart';
 import '../../invoices/domain/quebec_tax.dart' show centsToDollars;
+import '../../invoices/presentation/invoice_form_screen.dart';
 import '../application/dashboard_providers.dart';
 
 /// Home tab: money-in summaries (unpaid, paid this month, clients) plus
@@ -19,6 +24,7 @@ class DashboardScreen extends ConsumerWidget {
     final l10n = context.l10n;
     final summary = ref.watch(dashboardSummaryProvider);
     final french = Localizations.localeOf(context).languageCode == 'fr';
+    final recent = ref.watch(invoicesProvider).value?.take(5).toList() ?? [];
     return Scaffold(
       appBar: AppBar(title: Text(l10n.navDashboard)),
       body: ListView(
@@ -31,19 +37,61 @@ class DashboardScreen extends ConsumerWidget {
             french: french,
           ),
           FormSectionTitle(title: l10n.dashboardRecent),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.md,
-              vertical: AppSpacing.sm,
-            ),
-            child: Text(
-              l10n.dashboardRecentEmpty,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
-            ),
-          ),
+          if (recent.isEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppSpacing.md,
+                vertical: AppSpacing.sm,
+              ),
+              child: Text(
+                l10n.dashboardRecentEmpty,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+              ),
+            )
+          else
+            for (final invoice in recent) _RecentInvoiceRow(invoice: invoice),
         ],
+      ),
+    );
+  }
+}
+
+/// Compact tappable invoice row: number, client, total. Opens the invoice
+/// form, same as tapping a row in the Invoices tab.
+class _RecentInvoiceRow extends ConsumerWidget {
+  const _RecentInvoiceRow({required this.invoice});
+
+  final Invoice invoice;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = Theme.of(context);
+    final french = Localizations.localeOf(context).languageCode == 'fr';
+    final client = ref.watch(clientsProvider).value
+        ?.where((c) => c.id == invoice.clientId)
+        .firstOrNull;
+    final total = invoice.taxes().totalCents;
+
+    return Card(
+      margin: const EdgeInsets.only(bottom: AppSpacing.sm),
+      child: ListTile(
+        onTap: () =>
+            pushAppPage(context, (_) => InvoiceFormScreen(invoice: invoice)),
+        title: Text(
+          invoice.number.isEmpty ? '—' : invoice.number,
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+        subtitle: client == null ? null : Text(client.name),
+        trailing: Text(
+          formatCurrencyWithCents(centsToDollars(total), french: french),
+          style: theme.textTheme.titleMedium?.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
+        ),
       ),
     );
   }

@@ -70,19 +70,18 @@ flutter_launcher_icons:
   adaptive_icon_background: "#0D6F6C"
   adaptive_icon_foreground: assets/brand/app_icon.png
 
-# Native launch screen: brand teal with the logo centered in light mode;
-# near-black green tint in dark mode. The background colors are sampled
-# from the logo corners so the artwork blends seamlessly.
+# Native launch screen: plain brand background only (teal in light mode,
+# near-black green in dark mode). No logo image natively: the in-app
+# animated splash owns the logo moment, fading/scaling it in centered.
+# A native storyboard image caused positioning quirks on iOS and would pop
+# in size at the handoff to the animated splash. Android 12+ shows the
+# launcher icon through the system splash API instead.
 flutter_native_splash:
   color: "#0D6F6C"
   color_dark: "#091717"
-  image: assets/brand/app_icon.png
-  image_dark: assets/brand/app_icon_dark.png
   android: true
   ios: true
   web: false
   android_12:
     color: "#0D6F6C"
     color_dark: "#091717"
-    image: assets/brand/app_icon.png
-    image_dark: assets/brand/app_icon_dark.png
